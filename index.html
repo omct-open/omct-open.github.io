@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OMCT · Observatorio Mexicano de Ciencias de la Tierra</title>
+<meta name="description" content="Datos abiertos de Ciencias de la Tierra en México, explicados y citables: fuentes, tutoriales y productos con DOI.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="OMCT · Observatorio Mexicano de Ciencias de la Tierra">
+<meta property="og:description" content="Datos abiertos de Ciencias de la Tierra en México, explicados y citables: fuentes, tutoriales y productos con DOI.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="inicio">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="globe"><circle cx="50" cy="50" r="48"/></clipPath>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <g clip-path="url(#globe)">
+        <rect width="100" height="100" fill="#2F4FA8"/>
+        <path d="M-10 34 C 20 10, 52 58, 112 20 L112 36 C 52 76, 22 28, -10 50 Z" fill="#46B3A6" stroke="#fff" stroke-width="2.5"/>
+        <path d="M-10 62 C 22 38, 54 86, 112 46 L112 62 C 54 102, 22 56, -10 78 Z" fill="#C06C1E" stroke="#fff" stroke-width="2.5"/>
+        <path d="M-10 92 C 26 72, 58 104, 112 76 L112 112 L-10 112 Z" fill="#46B3A6" stroke="#fff" stroke-width="2.5"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal · logotipo provisional</span></div></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>OMCT</b><small>Observatorio Mexicano de Ciencias de la Tierra</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menú</button>
+    <nav class="main" id="mainNav" aria-label="Principal">
+      <a href="index.html" data-p="inicio">Inicio</a>
+      <a href="fuentes.html" data-p="fuentes">Fuentes</a>
+      <a href="aprende.html" data-p="aprende">Aprende</a>
+      <a href="productos.html" data-p="productos">Productos</a>
+      <a href="observatorio.html" data-p="observatorio">Observatorio</a>
+      <a href="vinculacion.html" data-p="vinculacion">Vinculación</a>
+      <a href="citar.html" data-p="citar">Cómo citarnos</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="hero">
+    <canvas id="topo" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <span class="eyebrow">Observatorio independiente · Ciencia abierta</span>
+      <h1>Los datos de la Tierra en México, <em>abiertos y explicados.</em></h1>
+      <p class="lead">El OMCT transforma geodatos abiertos en conocimiento accesible para investigadores, estudiantes, tomadores de decisiones y sociedad en general. Cada recurso con su fuente, su licencia y su cita.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="fuentes.html">Explorar fuentes de datos</a>
+        <a class="btn ghost" href="aprende.html">Ver tutoriales</a>
+      </div>
+      <div class="coords" aria-label="Extensión geográfica de México">
+        <span>N <b>32.72°</b></span><span>S <b>14.53°</b></span><span>O <b>118.37°</b></span><span>E <b>86.71°</b></span><span>Superficie continental <b>1 960 189 km²</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="band tight">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:var(--s5);flex-wrap:wrap">
+      <div style="display:grid;gap:.3rem">
+        <span class="eyebrow">Lanzamiento</span>
+        <h3>1 de enero de 2027</h3>
+      </div>
+      <div class="launch" role="timer" aria-live="off">
+        <div class="t" id="countdown">
+          <div><b id="cd-d">--</b><small>días</small></div>
+          <div><b id="cd-h">--</b><small>horas</small></div>
+          <div><b id="cd-m">--</b><small>min</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band alt">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Qué encuentras aquí</span><h2>Tres maneras de usar el observatorio</h2></div>
+      <div class="doors">
+        <a class="door" href="fuentes.html"><span class="swatch" style="background:var(--blue)"></span><span class="tag">DIRECTORIO</span><h3>Fuentes</h3><p>Los portales de datos de Ciencias de la Tierra sobre México, comentados: qué ofrecen, en qué formato y bajo qué licencia puedes reutilizarlos.</p><span class="go">Consultar directorio →</span></a>
+        <a class="door" href="aprende.html"><span class="swatch" style="background:var(--teal)"></span><span class="tag">TUTORIALES E INFOGRAFÍAS</span><h3>Aprende</h3><p>Guías paso a paso para descargar, procesar e interpretar datos reales, con rutas para estudiantes, investigadores y docentes.</p><span class="go">Elegir una ruta →</span></a>
+        <a class="door" href="productos.html"><span class="swatch" style="background:var(--ochre)"></span><span class="tag">PRODUCCIÓN PROPIA</span><h3>Productos OMCT</h3><p>Mapas, bases de datos e informes elaborados por el observatorio, con DOI, metodología publicada y licencia abierta.</p><span class="go">Ver productos →</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="head" style="display:flex;justify-content:space-between;align-items:end;gap:var(--s4);flex-wrap:wrap">
+        <div style="display:grid;gap:var(--s3)"><span class="eyebrow">Novedades</span><h2>Lo más reciente</h2></div>
+        <span class="pill ochre">Ejemplos de maqueta</span>
+      </div>
+      <div class="cards" id="newsCards"></div>
+    </div>
+  </div>
+
+  <div class="band alt">
+    <div class="wrap quote">
+      <div style="display:grid;gap:var(--s3)"><span class="eyebrow">¿Por qué un observatorio?</span><h2>Complementar, integrar, abrir</h2></div>
+      <div style="display:grid;gap:var(--s4)">
+        <blockquote>Un observatorio no sustituye a las instituciones académicas ni a los organismos gubernamentales. Su función es complementar esos esfuerzos integrando información, generando análisis y construyendo redes de colaboración.</blockquote>
+        <a href="observatorio.html" style="font-weight:500">Conoce al observatorio →</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="display:grid;gap:var(--s3);align-content:start">
+        <div class="brand" style="color:inherit"><svg aria-hidden="true"><use href="#logo"/></svg><b style="color:inherit">OMCT</b></div>
+        <p>Observatorio Mexicano de Ciencias de la Tierra. Datos abiertos, explicados y citables.</p>
+      </div>
+      <div><h4>Explorar</h4><a href="fuentes.html">Fuentes</a><a href="aprende.html">Aprende</a><a href="productos.html">Productos</a></div>
+      <div><h4>Observatorio</h4><a href="observatorio.html">Quiénes somos</a><a href="vinculacion.html">Vinculación</a><a href="citar.html">Cómo citarnos</a></div>
+      <div><h4>Legal</h4><a href="citar.html">Licencias</a><a href="privacidad.html">Aviso de privacidad</a><a href="terminos.html">Términos de uso</a></div>
+    </div>
+    <div class="legalline">
+      <p>© 2027 Observatorio Mexicano de Ciencias de la Tierra. Salvo indicación contraria, el contenido se publica bajo licencia CC BY 4.0.</p>
+      <p>El material de terceros conserva la licencia de su titular.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+<script src="main.js"></script>
+</body>
+</html>

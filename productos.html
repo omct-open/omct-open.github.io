@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Productos · OMCT</title>
+<meta name="description" content="Mapas, bases de datos e informes del OMCT con DOI, metodología documentada y licencia abierta.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Productos · OMCT">
+<meta property="og:description" content="Mapas, bases de datos e informes del OMCT con DOI, metodología documentada y licencia abierta.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="productos">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="globe"><circle cx="50" cy="50" r="48"/></clipPath>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <g clip-path="url(#globe)">
+        <rect width="100" height="100" fill="#2F4FA8"/>
+        <path d="M-10 34 C 20 10, 52 58, 112 20 L112 36 C 52 76, 22 28, -10 50 Z" fill="#46B3A6" stroke="#fff" stroke-width="2.5"/>
+        <path d="M-10 62 C 22 38, 54 86, 112 46 L112 62 C 54 102, 22 56, -10 78 Z" fill="#C06C1E" stroke="#fff" stroke-width="2.5"/>
+        <path d="M-10 92 C 26 72, 58 104, 112 76 L112 112 L-10 112 Z" fill="#46B3A6" stroke="#fff" stroke-width="2.5"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal · logotipo provisional</span></div></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>OMCT</b><small>Observatorio Mexicano de Ciencias de la Tierra</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menú</button>
+    <nav class="main" id="mainNav" aria-label="Principal">
+      <a href="index.html" data-p="inicio">Inicio</a>
+      <a href="fuentes.html" data-p="fuentes">Fuentes</a>
+      <a href="aprende.html" data-p="aprende">Aprende</a>
+      <a href="productos.html" data-p="productos">Productos</a>
+      <a href="observatorio.html" data-p="observatorio">Observatorio</a>
+      <a href="vinculacion.html" data-p="vinculacion">Vinculación</a>
+      <a href="citar.html" data-p="citar">Cómo citarnos</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="band">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Producción propia</span><h2>Productos OMCT</h2><p class="lead">Cada producto se publica con DOI en Zenodo, metodología documentada y licencia abierta, para que pueda citarse en tesis y artículos científicos.</p></div>
+      <div class="cards" id="prodCards"></div>
+      <p class="note">Los DOI mostrados tienen formato de ejemplo (10.5281/zenodo.XXXXXXX). Se asignarán al depositar cada producto.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="display:grid;gap:var(--s3);align-content:start">
+        <div class="brand" style="color:inherit"><svg aria-hidden="true"><use href="#logo"/></svg><b style="color:inherit">OMCT</b></div>
+        <p>Observatorio Mexicano de Ciencias de la Tierra. Datos abiertos, explicados y citables.</p>
+      </div>
+      <div><h4>Explorar</h4><a href="fuentes.html">Fuentes</a><a href="aprende.html">Aprende</a><a href="productos.html">Productos</a></div>
+      <div><h4>Observatorio</h4><a href="observatorio.html">Quiénes somos</a><a href="vinculacion.html">Vinculación</a><a href="citar.html">Cómo citarnos</a></div>
+      <div><h4>Legal</h4><a href="citar.html">Licencias</a><a href="privacidad.html">Aviso de privacidad</a><a href="terminos.html">Términos de uso</a></div>
+    </div>
+    <div class="legalline">
+      <p>© 2027 Observatorio Mexicano de Ciencias de la Tierra. Salvo indicación contraria, el contenido se publica bajo licencia CC BY 4.0.</p>
+      <p>El material de terceros conserva la licencia de su titular.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+<script src="main.js"></script>
+</body>
+</html>

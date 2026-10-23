@@ -248,3 +248,15 @@ footer.site p{opacity:.8;font-size:.9rem}
 .principles{display:grid;gap:var(--s5)}
 .principles div{display:grid;gap:.3rem;padding-left:var(--s4);border-left:2px solid var(--blue)}
 .principles p{color:var(--muted);font-size:.95rem}
+
+/* Líneas de trabajo por esferas */
+.spheres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:960px){.spheres{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.spheres{grid-template-columns:1fr}}
+.sphere{display:grid;gap:var(--s3);align-content:start;padding:var(--s5);background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--sc);border-radius:8px}
+.sphere-top{display:flex;align-items:center;gap:var(--s3)}
+.sphere-top svg{width:2rem;height:2rem;flex:none;fill:none;stroke:var(--sc);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sphere p{color:var(--muted);font-size:.95rem}
+.sphere ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.35rem}
+.sphere li{font-size:.8rem;padding:.2rem .55rem;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--ink)}
+.sphere .sphere-src{font:400 .72rem var(--f-mono);color:var(--muted)}

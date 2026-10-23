@@ -267,3 +267,8 @@ footer.site p{opacity:.8;font-size:.9rem}
 .ficha-cite .copy{justify-self:start;background:var(--surface)}
 .cite-notes{margin:0;padding-left:1.1rem;display:grid;gap:.5rem;color:var(--muted)}
 .cite-notes b{color:var(--ink)}
+
+/* Figura: corrección de un valor atípico */
+.fix-fig{margin:var(--s3) 0 0;display:grid;gap:var(--s2)}
+.fix-fig canvas{width:100%;height:auto;aspect-ratio:16/7;max-width:100%;display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.fix-fig figcaption{font:400 .75rem var(--f-mono);color:var(--muted)}

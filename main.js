@@ -207,6 +207,57 @@
     window.__omctGlobe=()=>drawGlobe(performance.now());
   }
 
+  // Figura de corrección: una señal con un valor atípico que se detecta y se corrige (dibujada en código)
+  const fix=$("fixfig");
+  if(fix){
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const CYCLE=7000, t0=performance.now();
+    const ease=x=>x<0?0:x>1?1:x*x*(3-2*x);
+    const sig=(x,ph)=>Math.sin(x*0.09+ph)*0.35+Math.sin(x*0.23-ph*1.7)*0.22+Math.sin(x*0.57+ph*0.6)*0.12;
+    const drawFix=now=>{
+      const r=fix.getBoundingClientRect(); if(!r.width)return;
+      const dpr=Math.min(2,window.devicePixelRatio||1), W=r.width, H=r.height;
+      if(fix.width!==Math.round(W*dpr)){fix.width=W*dpr;fix.height=H*dpr;}
+      const ctx=fix.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+      const t=reduce?CYCLE*0.45:(now-t0)%CYCLE, ph=reduce?0:(now-t0)/1600;
+      // fases: 0–25% normal, 25–40% aparece el error, 40–60% marcado, 60–75% se corrige, 75–100% corregido
+      const p=t/CYCLE;
+      const spike=p<0.25?0:p<0.40?ease((p-0.25)/0.15):p<0.60?1:p<0.75?1-ease((p-0.60)/0.15):0;
+      const fixed=p>=0.60, mid=H*0.55, amp=H*0.18, sx=W*0.64;
+      // rejilla
+      ctx.strokeStyle=css("--line");ctx.lineWidth=1;
+      for(let gx=0;gx<W;gx+=W/12){ctx.beginPath();ctx.moveTo(gx,H*0.15);ctx.lineTo(gx,H*0.92);ctx.stroke();}
+      ctx.beginPath();ctx.moveTo(0,mid);ctx.lineTo(W,mid);ctx.stroke();
+      // señal
+      const spikeAt=x=>{const d=(x-sx)/(W*0.018);return -Math.exp(-d*d)*H*0.42*spike;};
+      ctx.strokeStyle=css("--blue");ctx.lineWidth=1.8;ctx.beginPath();
+      for(let x=0;x<=W;x+=2){const y=mid-sig(x,ph)*amp+spikeAt(x);x?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+      ctx.stroke();
+      // marca del error
+      const font=(s)=>`500 ${s}px "IBM Plex Mono", ui-monospace, monospace`;
+      if(spike>0.05&&!fixed){
+        const y=mid-sig(sx,ph)*amp-H*0.42*spike;
+        ctx.globalAlpha=Math.min(1,spike*1.4);
+        ctx.strokeStyle=css("--ochre");ctx.lineWidth=2;ctx.setLineDash([4,3]);
+        ctx.beginPath();ctx.arc(sx,y+H*0.04,H*0.12,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
+        ctx.fillStyle=css("--ochre");ctx.font=font(Math.max(10,W*0.024));ctx.textAlign="right";
+        ctx.fillText("Valor atípico detectado",sx-H*0.17,Math.max(H*0.12,y+H*0.05));
+        ctx.globalAlpha=1;
+      }
+      if(fixed){
+        const a=p<0.75?ease((p-0.60)/0.15):1;
+        ctx.globalAlpha=a;ctx.fillStyle=css("--teal");ctx.font=font(Math.max(10,W*0.024));ctx.textAlign="left";
+        ctx.textAlign="center";ctx.fillText("Corregido · versión 1.1",sx,H*0.12);
+        ctx.beginPath();ctx.arc(sx,mid-sig(sx,ph)*amp,3.5,0,Math.PI*2);ctx.fill();
+        ctx.globalAlpha=1;
+      }
+      ctx.fillStyle=css("--muted");ctx.font=font(Math.max(9,W*0.02));ctx.textAlign="left";
+      ctx.fillText(p<0.60?"versión 1.0":"versión 1.1",8,H-8);
+    };
+    const loopF=now=>{drawFix(now);if(!reduce)requestAnimationFrame(loopF);};
+    requestAnimationFrame(loopF);
+  }
+
   // Menú y página actual
   const nav=$("mainNav"),menuBtn=$("menuBtn");
   const page=document.body.dataset.page;

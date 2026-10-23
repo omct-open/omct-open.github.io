@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body data-page="citar">
 
@@ -90,12 +90,16 @@
           <li>Cita siempre con el <b>DOI</b>: es un enlace permanente que no cambia aunque el sitio se mueva.</li>
         </ul>
         <p style="color:var(--muted)">Si encuentras un error, escríbenos con el asunto <b style="color:var(--ink)">Corrección: [título del recurso]</b>. Lo corregimos en una nueva versión y dejamos constancia del cambio.</p>
+        <figure class="fix-fig">
+          <canvas id="fixfig" role="img" aria-label="Una señal de datos muestra un valor atípico marcado como error; después se corrige y aparece como versión 1.1"></canvas>
+          <figcaption>Un valor atípico en la señal se detecta, se corrige y queda registrado en una nueva versión.</figcaption>
+        </figure>
       </div>
     </div>
   </div>
   <div class="band">
     <div class="wrap">
-      <div class="panel" style="max-width:46rem">
+      <div class="panel">
         <span class="eyebrow">Material de terceros</span>
         <h3>Lo que no es nuestro conserva su licencia</h3>
         <p>Las imágenes, datos y figuras de otras instituciones que aparecen en el sitio mantienen la licencia de su titular. Siempre indicamos el crédito y la cita de la fuente original junto al recurso.</p>
@@ -128,6 +132,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=2"></script>
+<script src="main.js?v=3"></script>
 </body>
 </html>

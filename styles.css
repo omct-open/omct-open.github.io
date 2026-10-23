@@ -260,3 +260,10 @@ footer.site p{opacity:.8;font-size:.9rem}
 .sphere ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.35rem}
 .sphere li{font-size:.8rem;padding:.2rem .55rem;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--ink)}
 .sphere .sphere-src{font:400 .72rem var(--f-mono);color:var(--muted)}
+
+/* Ficha con cita integrada */
+.ficha-cite{display:grid;gap:var(--s2);padding:var(--s4);background:var(--teal-soft);border-radius:6px}
+.ficha-cite code{font:400 .85rem/1.6 var(--f-mono);color:var(--ink);word-break:break-word}
+.ficha-cite .copy{justify-self:start;background:var(--surface)}
+.cite-notes{margin:0;padding-left:1.1rem;display:grid;gap:.5rem;color:var(--muted)}
+.cite-notes b{color:var(--ink)}

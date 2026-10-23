@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body data-page="citar">
 
@@ -45,7 +45,7 @@
   <div class="band">
     <div class="wrap">
       <div class="head"><span class="eyebrow">Licencias y referencias</span><h2>Úsalo, compártelo, adáptalo y cítanos</h2><p class="lead">El contenido del OMCT se publica con licencias abiertas. La condición es reconocer a la persona autora, al OMCT y enlazar a la fuente original.</p></div>
-      <div class="table-wrap" style="margin-bottom:var(--s6)">
+      <div class="table-wrap">
         <table>
           <thead><tr><th>Tipo de producto</th><th>Licencia</th><th>Qué permite</th></tr></thead>
           <tbody>
@@ -57,53 +57,52 @@
           </tbody>
         </table>
       </div>
-      <div class="two">
-        <div style="display:grid;gap:var(--s4)">
-          <h3>Cita en formato APA 7</h3>
-          <p style="color:var(--muted)">La autoría es de las personas que crean cada recurso. El OMCT figura como editor.</p>
-          <div class="cite">
-            <span class="eyebrow">Conjunto de datos con DOI</span>
-            <code id="c1">Apellido, N., &amp; Apellido, N. (2027). <i>Título del producto</i> (Versión 1.0) [Conjunto de datos]. Observatorio Mexicano de Ciencias de la Tierra. https://doi.org/10.5281/zenodo.XXXXXXX</code>
-            <button class="copy" data-copy-el="c1">Copiar cita</button>
-          </div>
-          <div class="cite">
-            <span class="eyebrow">Infografía o página del sitio</span>
-            <code id="c2">Apellido, N. (2027, 15 de enero). <i>Título de la infografía</i> [Infografía]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/ruta-del-recurso</code>
-            <button class="copy" data-copy-el="c2">Copiar cita</button>
-          </div>
-        </div>
-        <div class="panel">
-          <span class="eyebrow">Material de terceros</span>
-          <h3>Lo que no es nuestro conserva su licencia</h3>
-          <p>Las imágenes, datos y figuras de otras instituciones que aparecen en el sitio mantienen la licencia de su titular. Siempre indicamos el crédito y la cita de la fuente original junto al recurso.</p>
-          <p>Si eres titular de algún material y detectas un uso incorrecto, escríbenos y lo corregimos.</p>
-          <p class="mono" style="color:var(--ink);user-select:all">omct.contacto@gmail.com</p>
-          <p>Asunto: <b style="color:var(--ink)">Derechos de autor: [título del recurso]</b></p>
-          <button class="copy" data-copy="omct.contacto@gmail.com">Copiar correo</button>
-        </div>
-      </div>
     </div>
   </div>
   <div class="band alt" id="ficha">
     <div class="wrap method">
-        <article class="ficha" aria-label="Ejemplo de ficha de un recurso">
-          <div class="ficha-head"><span class="pill ochre">Ejemplo</span><span class="mono">Ficha del recurso</span></div>
-          <h3>Sismicidad de México: balance anual</h3>
-          <dl>
-            <div><dt>Autoría</dt><dd>Nombre Apellido · ORCID</dd></div>
-            <div><dt>Fuente de datos</dt><dd>Catálogo del Servicio Sismológico Nacional (UNAM), consultado el 15/01/2027</dd></div>
-            <div><dt>Método</dt><dd>Procedimiento descrito paso a paso, con el código y los parámetros usados</dd></div>
-            <div><dt>Revisión</dt><dd>Revisado por una especialista distinta a la autora</dd></div>
-            <div><dt>Licencia</dt><dd>CC BY 4.0 · el material de terceros conserva la suya</dd></div>
-            <div><dt>Versión</dt><dd>1.0 · historial de cambios público</dd></div>
-            <div><dt>Cita</dt><dd>APA 7 lista para copiar · DOI permanente</dd></div>
-          </dl>
-        </article>
+      <article class="ficha" aria-label="Ejemplo de ficha de un recurso">
+        <div class="ficha-head"><span class="pill ochre">Ejemplo</span><span class="mono">Ficha del recurso</span></div>
+        <h3>Sismicidad de México: balance anual</h3>
+        <dl>
+          <div><dt>Autoría</dt><dd>Nombre Apellido · ORCID</dd></div>
+          <div><dt>Tipo</dt><dd>Informe</dd></div>
+          <div><dt>Fuente de datos</dt><dd>Catálogo del Servicio Sismológico Nacional (UNAM), consultado el 15/01/2027</dd></div>
+          <div><dt>Método</dt><dd>Procedimiento descrito paso a paso, con el código y los parámetros usados</dd></div>
+          <div><dt>Revisión</dt><dd>Revisado por una especialista distinta a la autora</dd></div>
+          <div><dt>Licencia</dt><dd>CC BY 4.0 · el material de terceros conserva la suya</dd></div>
+          <div><dt>Versión</dt><dd>1.0 · historial de cambios público</dd></div>
+          <div><dt>DOI</dt><dd class="mono">10.5281/zenodo.XXXXXXX</dd></div>
+        </dl>
+        <div class="ficha-cite">
+          <span class="eyebrow">Cómo citar este recurso · APA 7</span>
+          <code id="c1">Apellido, N. (2027). <i>Sismicidad de México: balance anual</i> (Versión 1.0) [Informe]. Observatorio Mexicano de Ciencias de la Tierra. https://doi.org/10.5281/zenodo.XXXXXXX</code>
+          <button class="copy" data-copy-el="c1">Copiar cita</button>
+        </div>
+      </article>
       <div style="display:grid;gap:var(--s4);align-content:start">
         <span class="eyebrow">Ficha del recurso</span>
-        <h2>Todo lo que necesitas para citar y verificar</h2>
-        <p class="lead">Cada recurso del OMCT se publica con una ficha como esta. Ahí encuentras quién lo hizo, de dónde salen los datos, cómo se analizaron, bajo qué licencia puedes usarlo y cómo citarlo.</p>
+        <h2>Cada recurso trae su ficha y su cita</h2>
+        <p class="lead">Junto a cada publicación del OMCT encontrarás una ficha como esta: quién la hizo, de dónde salen los datos, cómo se analizaron, bajo qué licencia puedes usarla y la cita lista para copiar.</p>
+        <ul class="cite-notes">
+          <li><b>La autoría es de las personas</b> que crean cada recurso. El OMCT figura como editor.</li>
+          <li>El tipo entre corchetes cambia según el recurso: [Conjunto de datos], [Infografía], [Video], [Tutorial] o [Informe].</li>
+          <li>Cita siempre con el <b>DOI</b>: es un enlace permanente que no cambia aunque el sitio se mueva.</li>
+        </ul>
         <p style="color:var(--muted)">Si encuentras un error, escríbenos con el asunto <b style="color:var(--ink)">Corrección: [título del recurso]</b>. Lo corregimos en una nueva versión y dejamos constancia del cambio.</p>
+      </div>
+    </div>
+  </div>
+  <div class="band">
+    <div class="wrap">
+      <div class="panel" style="max-width:46rem">
+        <span class="eyebrow">Material de terceros</span>
+        <h3>Lo que no es nuestro conserva su licencia</h3>
+        <p>Las imágenes, datos y figuras de otras instituciones que aparecen en el sitio mantienen la licencia de su titular. Siempre indicamos el crédito y la cita de la fuente original junto al recurso.</p>
+        <p>Si eres titular de algún material y detectas un uso incorrecto, escríbenos y lo corregimos.</p>
+        <p class="mono" style="color:var(--ink);user-select:all">omct.contacto@gmail.com</p>
+        <p>Asunto: <b style="color:var(--ink)">Derechos de autor: [título del recurso]</b></p>
+        <button class="copy" data-copy="omct.contacto@gmail.com">Copiar correo</button>
       </div>
     </div>
   </div>

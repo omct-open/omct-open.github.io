@@ -10,34 +10,22 @@
 <meta property="og:description" content="Colabora con el OMCT: investigadores, instituciones, estudiantes y ciudadanía.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://omct-open.github.io/omct-isotipo-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="vinculacion">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <clipPath id="globe"><circle cx="50" cy="50" r="48"/></clipPath>
-    <symbol id="logo" viewBox="0 0 100 100">
-      <g clip-path="url(#globe)">
-        <rect width="100" height="100" fill="#2F4FA8"/>
-        <path d="M-10 34 C 20 10, 52 58, 112 20 L112 36 C 52 76, 22 28, -10 50 Z" fill="#46B3A6" stroke="#fff" stroke-width="2.5"/>
-        <path d="M-10 62 C 22 38, 54 86, 112 46 L112 62 C 54 102, 22 56, -10 78 Z" fill="#C06C1E" stroke="#fff" stroke-width="2.5"/>
-        <path d="M-10 92 C 26 72, 58 104, 112 76 L112 112 L-10 112 Z" fill="#46B3A6" stroke="#fff" stroke-width="2.5"/>
-      </g>
-    </symbol>
-  </defs>
-</svg>
 
-<div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal · logotipo provisional</span></div></div>
+<div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal</span></div></div>
 
 <header class="site">
   <div class="wrap">
     <a class="brand" href="index.html">
-      <svg aria-hidden="true"><use href="#logo"/></svg>
-      <span><b>OMCT</b><small>Observatorio Mexicano de Ciencias de la Tierra</small></span>
+      <img class="brand-img" src="omct-imagotipo.svg" alt="OMCT" width="160" height="37"><small>Observatorio Mexicano de Ciencias de la Tierra</small>
     </a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menú</button>
     <nav class="main" id="mainNav" aria-label="Principal">
@@ -59,9 +47,20 @@
       <div class="head"><span class="eyebrow">Vinculación</span><h2>Construyendo conocimiento en colaboración</h2><p class="lead">Las Ciencias de la Tierra requieren integrar disciplinas, instituciones y experiencias. Buscamos colaborar con quien quiera comprender y comunicar mejor el territorio mexicano.</p></div>
       <div class="doors">
         <div class="door" style="cursor:default"><span class="swatch" style="background:var(--blue)"></span><h3>Investigadores e instituciones</h3><p>Proyectos conjuntos, publicación de datos derivados, coautoría de productos y alianzas académicas.</p></div>
-        <div class="door" style="cursor:default"><span class="swatch" style="background:var(--teal)"></span><h3>Estudiantes</h3><p>Servicio social, prácticas, tesis con datos abiertos y elaboración de tutoriales supervisados.</p></div>
+        <div class="door" style="cursor:default"><span class="swatch" style="background:var(--teal)"></span><h3>Estudiantes</h3><p>Asesoría y coasesoría de tesis con datos abiertos, y elaboración de tutoriales supervisados.</p><p style="font-size:.88rem"><i>Servicio social y prácticas profesionales: próximamente, mediante convenio con tu institución.</i></p></div>
         <div class="door" style="cursor:default"><span class="swatch" style="background:var(--ochre)"></span><h3>Ciudadanía y comunicadores</h3><p>Ciencia ciudadana, reporte de observaciones y difusión responsable de contenidos del observatorio.</p></div>
       </div>
+    </div>
+  </div>
+  <div class="band" id="publicar">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Contribuciones externas</span><h2>¿Quieres publicar con nosotros?</h2><p class="lead">Recibimos infografías, tutoriales, datos, mapas y análisis sobre Ciencias de la Tierra en México. Tu nombre se queda en la autoría y en la cita.</p></div>
+      <ol class="steps steps-4">
+        <li><h3>Envío</h3><p>Escríbenos con el asunto «Publicar: [título]». Incluye una descripción breve, el archivo o un enlace, y las fuentes de datos que usaste.</p></li>
+        <li><h3>Pertinencia</h3><p>Revisamos que el tema encaje con el observatorio y te respondemos con los siguientes pasos.</p></li>
+        <li><h3>Carta de licencia</h3><p>Firmas una carta en la que conservas la titularidad y autorizas publicar tu obra bajo CC BY 4.0.</p></li>
+        <li><h3>Revisión y publicación</h3><p>Tu obra pasa por <a href="observatorio.html">nuestro proceso editorial</a> y se publica con tu nombre, tu ORCID y, si aplica, un DOI.</p></li>
+      </ol>
     </div>
   </div>
   <div class="band alt">
@@ -74,10 +73,15 @@
       </div>
       <div class="panel">
         <span class="eyebrow">Contacto</span>
-        <h3>Propón un proyecto o una alianza</h3>
-        <p>Escríbenos a:</p>
+        <h3>¿Tienes una idea? Investiguémosla juntos</h3>
+        <p>Escríbenos y usa el asunto que corresponda, para que tu mensaje llegue a la persona indicada:</p>
         <p class="mono" style="color:var(--ink);font-size:1.05rem;user-select:all" id="mail">omct.contacto@gmail.com</p>
         <button class="copy" data-copy="omct.contacto@gmail.com">Copiar correo</button>
+        <ul class="subjects">
+          <li><b>Colaboración:</b> [tema del proyecto]</li>
+          <li><b>Publicar:</b> [título del recurso]</li>
+          <li><b>Tesis:</b> [tema y universidad]</li>
+        </ul>
         <p style="font-size:.85rem">Redes sociales: próximamente.</p>
       </div>
     </div>
@@ -89,7 +93,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div style="display:grid;gap:var(--s3);align-content:start">
-        <div class="brand" style="color:inherit"><svg aria-hidden="true"><use href="#logo"/></svg><b style="color:inherit">OMCT</b></div>
+        <div class="brand foot-brand"><img src="omct-isotipo-128.png" alt="O" width="40" height="40"><b>MCT</b></div>
         <p>Observatorio Mexicano de Ciencias de la Tierra. Datos abiertos, explicados y citables.</p>
       </div>
       <div><h4>Explorar</h4><a href="fuentes.html">Fuentes</a><a href="aprende.html">Aprende</a><a href="productos.html">Productos</a></div>

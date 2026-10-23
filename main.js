@@ -55,10 +55,10 @@
     });
   }
   const PAL={
-    heat:["#2B3A8C","#3E7CC0","#63B7A8","#E8C25A","#E07B2E","#B8321F"],
-    seis:["#14213D","#2F4FA8","#5C7BD0","#9DB2E8"],
-    geo:["#7A4A1E","#B8651B","#D9A066","#2E9488","#2F4FA8"],
-    ocean:["#0E2A47","#1F5F8B","#2E9488","#7FC8BF"]
+    heat:["#2B3A8C","#4167BC","#40ADB8","#E8C25A","#C16210","#A54402"],
+    seis:["#0C193A","#4167BC","#6E8FD6","#A9BDEB"],
+    geo:["#A54402","#C16210","#E0A060","#41B79D","#4167BC"],
+    ocean:["#0C193A","#4167BC","#40ADB8","#41B79D"]
   };
   function drawFig(cv,pal,seed){
     const r=cv.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);
@@ -154,6 +154,57 @@
     };
     const loop=now=>{drawTopo(now);if(!reduce)requestAnimationFrame(loop);};
     requestAnimationFrame(loop);
+  }
+
+  // Globo terrestre (proyección ortográfica, dibujado en código: sin material de terceros)
+  const globe=$("globe");
+  if(globe){
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const D=Math.PI/180, TILT=23.44*D, VIEW_LAT=12*D;
+    const sinV=Math.sin(VIEW_LAT), cosV=Math.cos(VIEW_LAT);
+    const t0=performance.now();
+    const proj=(lat,lon,lon0,R)=>{
+      const p=lat*D,l=(lon-lon0)*D,cp=Math.cos(p);
+      const vis=sinV*Math.sin(p)+cosV*cp*Math.cos(l);
+      const x=R*cp*Math.sin(l), y=-R*(cosV*Math.sin(p)-sinV*cp*Math.cos(l));
+      return [x*Math.cos(TILT)-y*Math.sin(TILT), x*Math.sin(TILT)+y*Math.cos(TILT), vis];
+    };
+    const line=(ctx,pts,lon0,R)=>{
+      let pen=false;ctx.beginPath();
+      for(const [la,lo] of pts){const [x,y,v]=proj(la,lo,lon0,R);if(v>0){pen?ctx.lineTo(x,y):ctx.moveTo(x,y);pen=true;}else pen=false;}
+      ctx.stroke();
+    };
+    const range=(a,b,s)=>{const r=[];for(let v=a;v<=b+1e-9;v+=s)r.push(v);return r;};
+    const drawGlobe=now=>{
+      const r=globe.getBoundingClientRect(); if(!r.width)return;
+      const dpr=Math.min(2,window.devicePixelRatio||1), W=r.width;
+      if(globe.width!==Math.round(W*dpr)){globe.width=W*dpr;globe.height=W*dpr;}
+      const ctx=globe.getContext("2d");ctx.setTransform(dpr,0,0,dpr,W/2*dpr,W/2*dpr);ctx.clearRect(-W/2,-W/2,W,W);
+      const R=W*0.44, lon0=reduce?-100:-100+((now-t0)/1000)*9;
+      // eje de rotación inclinado
+      ctx.strokeStyle=css("--line");ctx.lineWidth=1;ctx.setLineDash([3,4]);
+      ctx.beginPath();ctx.moveTo(Math.sin(TILT)*R*1.18,-Math.cos(TILT)*R*1.18);ctx.lineTo(-Math.sin(TILT)*R*1.18,Math.cos(TILT)*R*1.18);ctx.stroke();ctx.setLineDash([]);
+      // océano
+      const g=ctx.createRadialGradient(-R*.35,-R*.35,R*.1,0,0,R);
+      g.addColorStop(0,css("--blue-soft"));g.addColorStop(1,css("--surface"));
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,R,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle=css("--blue");ctx.lineWidth=1.5;ctx.stroke();
+      // retícula cada 15°
+      ctx.strokeStyle=css("--contour");ctx.lineWidth=1;
+      for(const lat of range(-75,75,15))line(ctx,range(-180,180,3).map(lo=>[lat,lo]),lon0,R);
+      for(const lon of range(-180,165,15))line(ctx,range(-90,90,3).map(la=>[la,lon]),lon0,R);
+      // ecuador y Trópico de Cáncer
+      ctx.lineWidth=1.6;ctx.strokeStyle=css("--teal");line(ctx,range(-180,180,2).map(lo=>[0,lo]),lon0,R);
+      ctx.strokeStyle=css("--ochre");line(ctx,range(-180,180,2).map(lo=>[23.44,lo]),lon0,R);
+      // Ciudad de México
+      const [cx,cy,cv]=proj(19.43,-99.13,lon0,R);
+      if(cv>0){const pulse=reduce?0:(Math.sin(now/400)+1)/2;
+        ctx.fillStyle=css("--ochre");ctx.globalAlpha=.25;ctx.beginPath();ctx.arc(cx,cy,4+pulse*5,0,Math.PI*2);ctx.fill();
+        ctx.globalAlpha=1;ctx.beginPath();ctx.arc(cx,cy,3.5,0,Math.PI*2);ctx.fill();}
+    };
+    const loopG=now=>{drawGlobe(now);if(!reduce)requestAnimationFrame(loopG);};
+    requestAnimationFrame(loopG);
+    window.__omctGlobe=()=>drawGlobe(performance.now());
   }
 
   // Menú y página actual

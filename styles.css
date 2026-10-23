@@ -3,16 +3,16 @@
 :root{
   --bg:#F3F6F8;        /* papel cartográfico frío */
   --surface:#FFFFFF;
-  --ink:#14213D;       /* tinta de mapa */
+  --ink:#0C193A;       /* azul marino oficial OMCT */
   --muted:#55627A;
   --line:#D5DCE5;
-  --blue:#2F4FA8;      /* azul del logotipo */
-  --teal:#2E9488;      /* turquesa del logotipo */
-  --ochre:#B8651B;     /* ocre del logotipo (suelo, roca) */
+  --blue:#4366AF;      /* azul del logotipo tipográfico (oficial) */
+  --teal:#2E8F7A;      /* verde del isotipo, oscurecido para texto legible */
+  --ochre:#A54402;     /* ocre oscuro oficial (suelo, roca) */
   --blue-soft:#E4EAF7;
   --teal-soft:#DDF0ED;
   --ochre-soft:#F6E8DA;
-  --contour:rgba(47,79,168,.16);
+  --contour:rgba(65,103,188,.16);
   --f-display:"Newsreader", Georgia, "Times New Roman", serif;
   --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -213,3 +213,23 @@ footer.site p{opacity:.8;font-size:.9rem}
 .toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.6rem 1rem;border-radius:6px;font-size:.9rem;z-index:70}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Logotipo oficial */
+.brand-img{display:block;height:2.3rem;width:auto}
+.brand{flex-wrap:wrap;row-gap:.2rem}
+.brand small{flex-basis:100%;max-width:none}
+@media (min-width:861px){.brand{flex-wrap:nowrap}.brand small{flex-basis:auto;max-width:12rem;border-left:1px solid var(--line);padding-left:.6rem}}
+.foot-brand img{width:2.5rem;height:2.5rem}
+.foot-brand b{font-family:"Times New Roman",Times,var(--f-display);font-size:1.6rem;color:var(--bg);letter-spacing:.02em}
+
+/* Quiénes somos + globo */
+.who{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--s7);align-items:center}
+@media (max-width:860px){.who{grid-template-columns:1fr;gap:var(--s5)}}
+.globe-fig{margin:0;display:grid;gap:var(--s3);justify-items:center}
+.globe-fig canvas{width:100%;max-width:320px;height:auto;aspect-ratio:1/1}
+.globe-fig figcaption{font:400 .75rem var(--f-mono);color:var(--muted);text-align:center;max-width:22rem}
+.steps.steps-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:860px){.steps.steps-4{grid-template-columns:1fr}}
+.subjects{margin:0;padding-left:1.1rem;display:grid;gap:.3rem;font-size:.92rem}
+.subjects b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
+
+.door{align-content:start}

@@ -234,3 +234,17 @@ footer.site p{opacity:.8;font-size:.9rem}
 .subjects b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
 
 .door{align-content:start}
+
+/* Metodología: ficha + principios */
+.method{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:var(--s7);align-items:start}
+@media (max-width:860px){.method{grid-template-columns:1fr;gap:var(--s5)}}
+.ficha{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:var(--s5);display:grid;gap:var(--s4);box-shadow:0 1px 0 var(--line)}
+.ficha-head{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.ficha dl{margin:0;display:grid}
+.ficha dl div{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:var(--s3);padding:.6rem 0;border-top:1px solid var(--line)}
+@media (max-width:480px){.ficha dl div{grid-template-columns:1fr;gap:.15rem}}
+.ficha dt{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--teal);padding-top:.15rem}
+.ficha dd{margin:0;font-size:.92rem;color:var(--ink)}
+.principles{display:grid;gap:var(--s5)}
+.principles div{display:grid;gap:.3rem;padding-left:var(--s4);border-left:2px solid var(--blue)}
+.principles p{color:var(--muted);font-size:.95rem}

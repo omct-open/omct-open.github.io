@@ -315,3 +315,12 @@ footer.site p{opacity:.8;font-size:.9rem}
 .fair p{color:var(--muted);font-size:.92rem}
 @media (min-width:861px){#prodCards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:961px){#typesP{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Artículo del mes (Inicio) */
+.aotm{margin-top:var(--s6);display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s6);align-items:center;padding:var(--s6);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--ochre);border-radius:8px}
+@media (max-width:700px){.aotm{grid-template-columns:1fr;gap:var(--s4);padding:var(--s5)}}
+.aotm-mark{display:grid;place-items:center;width:7.5rem;aspect-ratio:1/1;border-radius:50%;background:var(--ochre-soft);color:var(--ochre);text-align:center;line-height:1.1}
+.aotm-mark span{font:500 .72rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;align-self:end}
+.aotm-mark b{font:500 1.35rem var(--f-display);align-self:start}
+.aotm-body{display:grid;gap:var(--s3)}
+.aotm-body p{color:var(--muted);max-width:44rem}

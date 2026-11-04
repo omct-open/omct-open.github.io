@@ -25,6 +25,7 @@
     {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
     {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
     {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
+    {id:"articulo-mes",r:["estudiante","investigador"],type:"Artículo del mes",cls:"ochre",title:"Primer Artículo del mes · enero 2027",text:"Lectura comentada de un artículo revisado por pares, con tres preguntas a su autora o autor.",lvl:"Intermedio",time:"10 min",esf:[],pal:"geo",credit:"Próximamente"},
     {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
   ];
   const PRODS = [
@@ -44,7 +45,8 @@
     ["Conjunto de datos didáctico","Una porción limpia y pequeña de datos reales, con su diccionario de variables, para practicar.","Estudiantes y docentes"],
     ["Dilo en ciencia","Serie breve que lleva una palabra cotidiana a su término científico preciso.","Público general, estudiantes y redes sociales"],
     ["Caso de estudio","Análisis aplicado a un lugar o evento de México, de la pregunta a la conclusión.","Estudiantes e investigadores"],
-    ["Seminario web o clase grabada","Sesión en vivo con una persona especialista, que queda grabada con sus materiales.","Todo público"]
+    ["Seminario web o clase grabada","Sesión en vivo con una persona especialista, que queda grabada con sus materiales.","Todo público"],
+    ["Artículo del mes","Lectura comentada de un artículo científico sobre México, con tres preguntas a su autora o autor.","Estudiantes, investigadores y público interesado"]
   ];
   const TYPES_PROD = [
     ["Base de datos","Conjunto de datos organizado y documentado, generado o integrado por el OMCT, con diccionario de variables y metadatos.","Investigadores y estudiantes de posgrado"],

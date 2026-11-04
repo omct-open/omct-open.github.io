@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body data-page="vinculacion">
 
@@ -63,7 +63,28 @@
       </ol>
     </div>
   </div>
-  <div class="band alt">
+  <div class="band alt" id="articulo">
+    <div class="wrap two">
+      <div style="display:grid;gap:var(--s3);align-content:start">
+        <span class="eyebrow">Artículo del mes</span>
+        <h2>¿Publicaste un artículo sobre Ciencias de la Tierra en México?</h2>
+        <p class="lead">Proponlo para el Artículo del mes. Lo explicamos en lenguaje claro, te hacemos tres preguntas y lo compartimos con nuestra comunidad, siempre con tu nombre y el enlace a la revista.</p>
+        <p style="color:var(--muted)">Escríbenos a <span class="mono" style="color:var(--ink)">omct.contacto@gmail.com</span> con el asunto <b style="color:var(--ink)">Artículo del mes: [título del artículo]</b>.</p>
+      </div>
+      <div class="panel">
+        <span class="eyebrow">Criterios de selección</span>
+        <ul>
+          <li>Artículo revisado por pares.</li>
+          <li>Tema sobre Ciencias de la Tierra en México.</li>
+          <li>De preferencia de acceso abierto.</li>
+          <li>Alternamos esferas e instituciones.</li>
+          <li>Damos prioridad a investigadoras e investigadores jóvenes.</li>
+        </ul>
+        <p style="font-size:.88rem">No reproducimos el artículo: lo citamos y enlazamos a su DOI. Si alguien del OMCT es coautor, lo declaramos.</p>
+      </div>
+    </div>
+  </div>
+  <div class="band">
     <div class="wrap two">
       <div class="panel">
         <span class="eyebrow">Red de Colaboradores OMCT</span>
@@ -81,6 +102,7 @@
           <li><b>Colaboración:</b> [tema del proyecto]</li>
           <li><b>Publicar:</b> [título del recurso]</li>
           <li><b>Tesis:</b> [tema y universidad]</li>
+          <li><b>Artículo del mes:</b> [título del artículo]</li>
         </ul>
         <p style="font-size:.85rem">Redes sociales: próximamente.</p>
       </div>
@@ -108,6 +130,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=5"></script>
+<script src="main.js?v=6"></script>
 </body>
 </html>

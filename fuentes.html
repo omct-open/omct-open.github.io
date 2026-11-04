@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body data-page="fuentes">
 
@@ -44,17 +44,12 @@
 <section>
   <div class="band">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">Directorio</span><h2>Fuentes de datos abiertos</h2><p class="lead">Dónde están los datos, qué permiten hacer con ellos y cómo citarlos. Cada ficha indica el estado de su revisión legal.</p></div>
+      <div class="head"><span class="eyebrow">Directorio</span><h2>Fuentes de datos abiertos</h2><p class="lead">Dónde están los datos de la Tierra en México, qué ofrece cada portal y bajo qué licencia puedes reutilizarlos. Cuando existe, cada fuente enlaza a la infografía y al tutorial que te enseñan a usarla.</p></div>
       <div class="tools">
-        <input id="q" type="search" placeholder="Buscar por institución, tema o tipo de dato" aria-label="Buscar fuentes">
-        <div class="chips" id="chips" role="group" aria-label="Filtrar por disciplina"></div>
+        <input id="q" type="search" placeholder="Buscar por institución, tema o formato" aria-label="Buscar fuentes">
+        <div class="chips" id="chips" role="group" aria-label="Filtrar por esfera"></div>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Institución</th><th>Disciplina</th><th>Qué ofrece</th><th>Licencia de reutilización</th><th>Revisión</th></tr></thead>
-          <tbody id="srcBody"></tbody>
-        </table>
-      </div>
+      <div class="src-grid" id="srcGrid"></div>
       <p class="note">“Por confirmar” significa que la licencia está identificada de forma preliminar y se verificará contra los términos oficiales de cada portal durante la fase Beta. Ningún recurso se publica en el sitio con este estado.</p>
     </div>
   </div>
@@ -80,6 +75,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=3"></script>
+<script src="main.js?v=5"></script>
 </body>
 </html>

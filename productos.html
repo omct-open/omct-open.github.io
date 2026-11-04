@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body data-page="productos">
 
@@ -44,9 +44,30 @@
 <section>
   <div class="band">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">Producción propia</span><h2>Productos OMCT</h2><p class="lead">Cada producto se publica con DOI en Zenodo, metodología documentada y licencia abierta, para que pueda citarse en tesis y artículos científicos.</p></div>
+      <div class="head"><span class="eyebrow">Producción propia</span><h2>Productos OMCT</h2><p class="lead">Resultados de investigación del observatorio, con DOI en Zenodo, metodología documentada y licencia abierta, para que puedan citarse en tesis y artículos científicos.</p></div>
+      <div class="filters">
+        <div class="chips" id="prodType" role="group" aria-label="Filtrar por tipo de producto"></div>
+        <div class="chips" id="prodEsf" role="group" aria-label="Filtrar por esfera"></div>
+      </div>
       <div class="cards" id="prodCards"></div>
-      <p class="note">Los DOI mostrados tienen formato de ejemplo (10.5281/zenodo.XXXXXXX). Se asignarán al depositar cada producto.</p>
+      <p class="note">Los DOI mostrados tienen formato de ejemplo (10.5281/zenodo.XXXXXXX). Se asignarán al depositar cada producto. Cada producto se publica con su <a href="citar.html#ficha">ficha completa y su cita</a>.</p>
+    </div>
+  </div>
+  <div class="band alt">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Principios FAIR</span><h2>Datos hechos para reutilizarse</h2><p class="lead">Publicamos bajo los principios FAIR, el estándar internacional de la ciencia abierta para datos.</p></div>
+      <div class="fair">
+        <div><b>F</b><h3>Localizables</h3><p>Cada producto tiene un DOI permanente y metadatos que permiten encontrarlo.</p></div>
+        <div><b>A</b><h3>Accesibles</h3><p>Descarga libre, sin registro, desde el sitio y desde Zenodo.</p></div>
+        <div><b>I</b><h3>Interoperables</h3><p>Formatos abiertos como CSV, NetCDF, GeoPackage o GeoTIFF.</p></div>
+        <div><b>R</b><h3>Reutilizables</h3><p>Licencia clara, metodología documentada y autoría reconocida.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="band">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Tipos de producto</span><h2>Siete formas de generar conocimiento citable</h2><p class="lead">Productos reúne los resultados de investigación del observatorio. Estos son los tipos que publicamos.</p></div>
+      <div class="type-grid" id="typesP"></div>
     </div>
   </div>
 </section>
@@ -71,6 +92,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=3"></script>
+<script src="main.js?v=5"></script>
 </body>
 </html>

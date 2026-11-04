@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body data-page="aprende">
 
@@ -44,14 +44,24 @@
 <section>
   <div class="band">
     <div class="wrap">
-      <div class="head"><span class="eyebrow">Elige tu punto de partida</span><h2>Aprende con datos reales de México</h2><p class="lead">Todos los tutoriales usan datos abiertos y terminan con un resultado que puedes reproducir y citar.</p></div>
+      <div class="head"><span class="eyebrow">Elige tu punto de partida</span><h2>Aprende con datos reales de México</h2><p class="lead">Recursos para aprender a usar y entender los datos de la Tierra en México. Cada uno indica su tipo, su nivel y el tiempo que te tomará.</p></div>
       <div class="routes" id="routes" role="group" aria-label="Rutas de aprendizaje">
         <button class="route" data-r="todas" aria-pressed="true"><b>Todo</b><small>Ver el catálogo completo</small></button>
         <button class="route" data-r="estudiante" aria-pressed="false"><b>Estudiante</b><small>Del concepto al primer mapa</small></button>
         <button class="route" data-r="investigador" aria-pressed="false"><b>Investigador</b><small>Flujos reproducibles y scripts</small></button>
         <button class="route" data-r="docente" aria-pressed="false"><b>Docente</b><small>Material listo para el aula</small></button>
       </div>
+      <div class="filters">
+        <div class="chips" id="aprType" role="group" aria-label="Filtrar por tipo de recurso"></div>
+        <div class="chips" id="aprEsf" role="group" aria-label="Filtrar por esfera"></div>
+      </div>
       <div class="cards" id="tutCards"></div>
+    </div>
+  </div>
+  <div class="band alt">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Tipos de recurso</span><h2>Once formas de aprender</h2><p class="lead">Aprende es para enseñar a usar y entender. Estos son los tipos de recurso que encontrarás aquí.</p></div>
+      <div class="type-grid" id="typesA"></div>
     </div>
   </div>
 </section>
@@ -76,6 +86,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=3"></script>
+<script src="main.js?v=5"></script>
 </body>
 </html>

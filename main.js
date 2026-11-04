@@ -1,36 +1,61 @@
 (function(){
   // ---------- Datos ----------
   const SOURCES = [
-    {org:"Servicio Sismológico Nacional (SSN)",inst:"UNAM",d:"Sismología",what:"Catálogo de sismos, reportes especiales y datos de estaciones.",lic:"Uso libre con cita al SSN según sus términos",st:"pend"},
-    {org:"Servicio Meteorológico Nacional (SMN)",inst:"CONAGUA",d:"Meteorología",what:"Normales climatológicas, datos de estaciones, pronósticos e imágenes de satélite.",lic:"Probablemente Libre Uso MX",st:"pend"},
-    {org:"INEGI",inst:"Gobierno de México",d:"Geografía",what:"Continuo de elevaciones, cartas edafológicas, geológicas y de uso de suelo.",lic:"Términos de Libre Uso de la Información del INEGI",st:"ok"},
-    {org:"Servicio Geológico Mexicano (SGM)",inst:"Gobierno de México",d:"Geología",what:"Cartografía geológica, geoquímica y magnetometría (GeoInfoMex).",lic:"Uso libre con atribución, por confirmar",st:"pend"},
-    {org:"CONABIO Geoportal",inst:"Gobierno de México",d:"Ambiente",what:"Capas de biodiversidad, vegetación, ecorregiones y cuencas.",lic:"Varía por capa",st:"pend"},
-    {org:"datos.gob.mx",inst:"Gobierno de México",d:"Varias",what:"Portal federal de datos abiertos con conjuntos de varias dependencias.",lic:"Libre Uso MX",st:"ok"},
-    {org:"NASA Earthdata",inst:"NASA (EE. UU.)",d:"Teledetección",what:"MODIS, Landsat, ECOSTRESS, GPM y otros productos satelitales.",lic:"Sin derechos de autor en general; se pide atribución",st:"ok"},
-    {org:"NOAA NCEI",inst:"NOAA (EE. UU.)",d:"Oceanografía",what:"Temperatura del mar, batimetría, registros climáticos y huracanes.",lic:"Dominio público (gobierno de EE. UU.) en general",st:"ok"},
-    {org:"Copernicus Data Space",inst:"Unión Europea / ESA",d:"Teledetección",what:"Imágenes Sentinel-1, -2, -3 y -5P, y productos de atmósfera.",lic:"Acceso libre y abierto con atribución obligatoria",st:"ok"}
+    {id:"ssn",org:"Servicio Sismológico Nacional (SSN)",inst:"UNAM",esf:["Geósfera"],what:"Catálogo de sismos de México, reportes especiales de sismos relevantes y datos de su red de estaciones.",fmt:"CSV, reportes en PDF",acc:"Descarga libre",lic:"Uso libre con cita al SSN según sus términos",st:"pend",url:"http://www.ssn.unam.mx",inf:"inf-sismo",tut:"tut-ssn"},
+    {id:"smn",org:"Servicio Meteorológico Nacional (SMN)",inst:"CONAGUA",esf:["Atmósfera","Hidrósfera"],what:"Normales climatológicas, datos diarios de estaciones, pronósticos e imágenes de satélite meteorológico.",fmt:"CSV, TXT, imágenes",acc:"Descarga libre",lic:"Probablemente Libre Uso MX",st:"pend",url:"https://smn.conagua.gob.mx"},
+    {id:"inegi",org:"INEGI",inst:"Gobierno de México",esf:["Geósfera","Biósfera","Hidrósfera"],what:"Continuo de elevaciones, cartas de edafología, geología, hidrología y uso de suelo y vegetación.",fmt:"GeoTIFF, Shapefile, PDF",acc:"Descarga libre",lic:"Términos de Libre Uso de la Información del INEGI",st:"ok",url:"https://www.inegi.org.mx",tut:"tut-inegi"},
+    {id:"sgm",org:"Servicio Geológico Mexicano (SGM)",inst:"Gobierno de México",esf:["Geósfera"],what:"Cartografía geológica, geoquímica y magnetometría del país en la plataforma GeoInfoMex.",fmt:"Shapefile, PDF",acc:"Descarga libre",lic:"Uso libre con atribución, por confirmar",st:"pend",url:"https://www.sgm.gob.mx"},
+    {id:"conabio",org:"Geoportal de la CONABIO",inst:"Gobierno de México",esf:["Biósfera"],what:"Capas de biodiversidad, vegetación, ecorregiones, áreas naturales y cuencas.",fmt:"Shapefile, KML",acc:"Descarga libre",lic:"Varía por capa",st:"pend",url:"http://geoportal.conabio.gob.mx"},
+    {id:"datosgob",org:"datos.gob.mx",inst:"Gobierno de México",esf:["Atmósfera","Hidrósfera","Geósfera","Biósfera"],what:"Portal federal de datos abiertos que reúne conjuntos de varias dependencias.",fmt:"CSV y otros",acc:"Descarga libre",lic:"Libre Uso MX",st:"ok",url:"https://datos.gob.mx"},
+    {id:"nasa",org:"NASA Earthdata",inst:"NASA (EE. UU.)",esf:["Atmósfera","Hidrósfera","Criósfera","Geósfera","Biósfera"],what:"Productos satelitales como MODIS, Landsat, ECOSTRESS y GPM, con cobertura global.",fmt:"HDF, NetCDF, GeoTIFF",acc:"Registro gratuito",lic:"Sin derechos de autor en general; se pide atribución",st:"ok",url:"https://www.earthdata.nasa.gov",tut:"tut-ecostress"},
+    {id:"noaa",org:"NOAA NCEI",inst:"NOAA (EE. UU.)",esf:["Hidrósfera","Atmósfera"],what:"Temperatura del mar, batimetría, registros climáticos históricos y trayectorias de huracanes.",fmt:"NetCDF, CSV",acc:"Descarga libre",lic:"Dominio público (gobierno de EE. UU.) en general",st:"ok",url:"https://www.ncei.noaa.gov"},
+    {id:"copernicus",org:"Copernicus Data Space",inst:"Unión Europea / ESA",esf:["Atmósfera","Hidrósfera","Criósfera","Geósfera","Biósfera"],what:"Imágenes Sentinel-1, -2, -3 y -5P, y productos de composición de la atmósfera.",fmt:"SAFE, NetCDF, JPEG 2000",acc:"Registro gratuito",lic:"Acceso libre y abierto con atribución obligatoria",st:"ok",url:"https://dataspace.copernicus.eu"}
   ];
-  const DISC = ["Todas",...Array.from(new Set(SOURCES.map(s=>s.d)))];
+  const DISC = ["Todas","Atmósfera","Hidrósfera","Criósfera","Geósfera","Biósfera"];
 
   const NEWS = [
     {type:"Tutorial",cls:"teal",title:"Islas de calor en Monterrey con ECOSTRESS",text:"Descarga y mapea la temperatura de superficie del área metropolitana.",credit:"Ilustración de maqueta",pal:"heat"},
     {type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Ondas P y S, estaciones y triangulación, explicadas en una sola lámina.",credit:"Ilustración de maqueta",pal:"seis"},
-    {type:"Producto",cls:"ochre",title:"Atlas de fallas activas del Eje Neovolcánico",text:"Base de datos con DOI, metodología y capas descargables.",credit:"Ilustración de maqueta",pal:"geo"}
+    {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Base de datos con DOI, metodología y capas descargables.",credit:"Ilustración de maqueta",pal:"geo"}
   ];
   const TUTS = [
-    {r:["estudiante","docente"],type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Del sismograma al epicentro, paso a paso.",lvl:"Básico",pal:"seis"},
-    {r:["estudiante","investigador"],type:"Tutorial",cls:"teal",title:"Catálogo del SSN en Python",text:"Descarga, limpia y grafica la sismicidad de un estado.",lvl:"Intermedio",pal:"seis"},
-    {r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",pal:"heat"},
-    {r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",pal:"geo"},
-    {r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",pal:"ocean"},
-    {r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",pal:"geo"}
+    {id:"inf-sismo",r:["estudiante","docente"],type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Del sismograma al epicentro, paso a paso.",lvl:"Básico",time:"2 min",esf:["Geósfera"],pal:"seis"},
+    {id:"dilo-precipitacion",r:["estudiante","docente"],type:"Dilo en ciencia",cls:"ochre",title:"Lluvia → precipitación",text:"Por qué no son lo mismo y cómo se mide en milímetros.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean"},
+    {id:"tut-ssn",r:["estudiante","investigador"],type:"Tutorial",cls:"teal",title:"Catálogo del SSN en Python",text:"Descarga, limpia y grafica la sismicidad de un estado.",lvl:"Intermedio",time:"40 min",esf:["Geósfera"],pal:"seis"},
+    {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
+    {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
+    {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
+    {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
   ];
   const PRODS = [
-    {type:"Base de datos",cls:"ochre",title:"Atlas de fallas activas del Eje Neovolcánico",text:"Capas vectoriales con atributos de cinemática y fuente bibliográfica.",lic:"CC BY 4.0",pal:"geo"},
-    {type:"Informe",cls:"blue",title:"Sismicidad de México: balance anual",text:"Análisis del catálogo del SSN con gráficas y mapas reproducibles.",lic:"CC BY 4.0",pal:"seis"},
-    {type:"Capa geográfica",cls:"teal",title:"Temperatura superficial urbana 2026",text:"Mosaicos de las principales zonas metropolitanas del país.",lic:"CC BY 4.0",pal:"heat"}
+    {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Capas vectoriales con atributos de cinemática y fuente bibliográfica.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"geo"},
+    {type:"Nota técnica",cls:"blue",title:"Control de calidad de series de radiación solar",text:"Método para detectar y corregir valores atípicos en datos solarimétricos.",lic:"CC BY 4.0",esf:["Atmósfera"],pal:"heat"},
+    {type:"Informe",cls:"blue",title:"Sismicidad de México: balance anual",text:"Análisis del catálogo del SSN con gráficas y mapas reproducibles.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"seis"},
+    {type:"Capa geográfica",cls:"teal",title:"Temperatura superficial urbana 2026",text:"Mosaicos de las principales zonas metropolitanas del país.",lic:"CC BY 4.0",esf:["Atmósfera"],pal:"heat"}
   ];
+  const TYPES_APRENDE = [
+    ["Infografía","Pieza visual que explica un concepto, un proceso o un dato en una sola lámina.","Público general, docentes y redes sociales"],
+    ["Tutorial","Procedimiento paso a paso con datos o herramientas reales que termina en un resultado concreto. Puede ser escrito, en video o en un cuaderno con código.","Todo público"],
+    ["Guía","Texto de orientación para entender o interpretar algo. Se consulta, no se sigue paso a paso.","Estudiantes, docentes y público interesado"],
+    ["Material didáctico","Secuencias de clase, actividades, ejercicios y evaluaciones para el aula, con notas para el docente.","Docentes de secundaria, bachillerato y universidad"],
+    ["Problemario","Ejercicios con datos reales y sus soluciones explicadas, por niveles de dificultad.","Estudiantes"],
+    ["Cuaderno interactivo","Explicación, código y resultados que se ejecutan en el navegador (Jupyter o Google Colab).","Investigadores y estudiantes avanzados"],
+    ["Mapa o visualización interactiva","Mapa o gráfica que se explora: hacer zoom, filtrar, comparar años.","Público general y docentes"],
+    ["Conjunto de datos didáctico","Una porción limpia y pequeña de datos reales, con su diccionario de variables, para practicar.","Estudiantes y docentes"],
+    ["Dilo en ciencia","Serie breve que lleva una palabra cotidiana a su término científico preciso.","Público general, estudiantes y redes sociales"],
+    ["Caso de estudio","Análisis aplicado a un lugar o evento de México, de la pregunta a la conclusión.","Estudiantes e investigadores"],
+    ["Seminario web o clase grabada","Sesión en vivo con una persona especialista, que queda grabada con sus materiales.","Todo público"]
+  ];
+  const TYPES_PROD = [
+    ["Base de datos","Conjunto de datos organizado y documentado, generado o integrado por el OMCT, con diccionario de variables y metadatos.","Investigadores y estudiantes de posgrado"],
+    ["Capa geográfica","Información espacial lista para un sistema de información geográfica, con sistema de coordenadas declarado.","Investigadores, analistas SIG y gobiernos locales"],
+    ["Nota técnica","Comunicación breve sobre un método, un conjunto de datos o un resultado preliminar, con estructura científica.","Investigadores"],
+    ["Informe","Análisis amplio de un tema o periodo, con resumen ejecutivo, metodología, resultados y conclusiones.","Investigadores, instituciones y tomadores de decisiones"],
+    ["Software o herramienta","Programa, script o paquete de código abierto para procesar o analizar datos.","Investigadores y estudiantes de programación científica"],
+    ["Nota para tomadores de decisiones","Resumen breve que traduce resultados científicos en información útil, sin postura partidista.","Gobierno, instituciones y organizaciones civiles"],
+    ["Estado del conocimiento","Síntesis de lo que se sabe sobre un tema en México; identifica vacíos de investigación.","Estudiantes de posgrado e investigadores que inician un tema"]
+  ];
+  const ESFERAS = ["Atmósfera","Hidrósfera","Criósfera","Geósfera","Biósfera"];
 
   // ---------- Ilustraciones generativas (sin imágenes de terceros) ----------
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -74,7 +99,7 @@
     ctx.lineWidth=.8;contours(ctx,w,h,0,seed,[-1,-.5,0,.5,1],()=> "rgba(255,255,255,.45)",8);
   }
   function cardHTML(o,extra){
-    return `<article class="card"><div class="fig"><canvas data-pal="${o.pal}" aria-hidden="true"></canvas><span class="credit">${o.credit||"Ilustración de maqueta"}</span></div>
+    return `<article class="card"${o.id?` id="${o.id}"`:""}><div class="fig"><canvas data-pal="${o.pal}" aria-hidden="true"></canvas><span class="credit">${o.credit||"Ilustración de maqueta"}</span></div>
     <div class="body"><div class="meta"><span class="pill ${o.cls}">${o.type}</span>${extra||""}</div><h3>${o.title}</h3><p>${o.text}</p></div></article>`;
   }
   function paintFigs(root){root.querySelectorAll(".fig canvas").forEach((c,i)=>drawFig(c,c.dataset.pal,1.7+i*1.3));}
@@ -84,15 +109,46 @@
   // Novedades
   const news=$("newsCards");
   if(news){news.innerHTML=NEWS.map(o=>cardHTML(o)).join("");}
+  const escH=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const chipRow=(el,label,opts,key)=>{el.innerHTML=`<span class="chip-label">${label}</span>`+["Todos",...opts].map(o=>`<button class="chip" aria-pressed="${o==="Todos"}" data-${key}="${o}">${o}</button>`).join("");};
+  const pressOne=(el,b)=>el.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b?"true":"false"));
+  const typeGrid=(el,list)=>{el.innerHTML=list.map(([n,d,i])=>`<div class="type-item"><h3>${n}</h3><p>${d}</p><small>Ideal para: ${i}</small></div>`).join("");};
+  const esfTags=e=>e.map(x=>`<span class="esf-tag">${x}</span>`).join("");
+
   // Productos
   const prod=$("prodCards");
-  if(prod){prod.innerHTML=PRODS.map(o=>cardHTML(o,`<span class="pill line">${o.lic}</span>`).replace('</p></div></article>',`</p><p style="font-size:.85rem;color:var(--ink)">Autoría: Nombre Apellido</p><p class="mono" style="font-size:.78rem">DOI 10.5281/zenodo.XXXXXXX</p></div></article>`)).join("");}
+  if(prod){
+    let pT="Todos",pE="Todos";
+    const tc=$("prodType"),ec=$("prodEsf");
+    chipRow(tc,"Tipo",[...new Set(PRODS.map(p=>p.type))],"t");
+    chipRow(ec,"Esfera",ESFERAS.filter(e=>PRODS.some(p=>p.esf.includes(e))),"e");
+    const renderProd=()=>{
+      const list=PRODS.filter(p=>(pT==="Todos"||p.type===pT)&&(pE==="Todos"||p.esf.includes(pE)));
+      prod.innerHTML=list.length?list.map(o=>cardHTML(o,`<span class="pill line">${o.lic}</span>`).replace('</p></div></article>',`</p><div class="esf-row">${esfTags(o.esf)}</div><p style="font-size:.85rem;color:var(--ink)">Autoría: Nombre Apellido</p><p class="mono" style="font-size:.78rem">DOI 10.5281/zenodo.XXXXXXX</p></div></article>`)).join(""):`<p class="empty">Aún no hay productos con esa combinación. Prueba con otro tipo o esfera.</p>`;
+      paintFigs(prod);
+    };
+    tc.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;pT=b.dataset.t;pressOne(tc,b);renderProd();});
+    ec.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;pE=b.dataset.e;pressOne(ec,b);renderProd();});
+    renderProd();
+  }
+  if($("typesP"))typeGrid($("typesP"),TYPES_PROD);
+  if($("typesA"))typeGrid($("typesA"),TYPES_APRENDE);
+
   // Tutoriales
   const tut=$("tutCards");
+  let aR="todas",aT="Todos",aE="Todos";
+  const atc=$("aprType"),aec=$("aprEsf");
+  if(tut){
+    chipRow(atc,"Tipo",[...new Set(TUTS.map(x=>x.type))],"t");
+    chipRow(aec,"Esfera",ESFERAS.filter(e=>TUTS.some(x=>x.esf.includes(e))),"e");
+    atc.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;aT=b.dataset.t;pressOne(atc,b);renderTuts(aR);});
+    aec.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;aE=b.dataset.e;pressOne(aec,b);renderTuts(aR);});
+  }
   function renderTuts(r){
     if(!tut)return;
-    const list=TUTS.filter(t=>r==="todas"||t.r.includes(r));
-    tut.innerHTML=list.map(o=>cardHTML(o,`<span class="pill line">${o.lvl}</span>`)).join("");
+    aR=r;
+    const list=TUTS.filter(x=>(r==="todas"||x.r.includes(r))&&(aT==="Todos"||x.type===aT)&&(aE==="Todos"||x.esf.includes(aE)));
+    tut.innerHTML=list.length?list.map(o=>cardHTML(o,`<span class="pill line">${o.lvl}</span><span class="mono time">${o.time}</span>`).replace('</p></div></article>',`</p><div class="esf-row">${esfTags(o.esf)}</div></div></article>`)).join(""):`<p class="empty">Aún no hay recursos con esa combinación. Prueba con otro público, tipo o esfera.</p>`;
     paintFigs(tut);
   }
   document.querySelectorAll("#routes .route").forEach(b=>b.addEventListener("click",()=>{
@@ -100,17 +156,37 @@
     renderTuts(b.dataset.r);
   }));
   renderTuts("todas");
+  if(tut&&location.hash){const el=document.getElementById(location.hash.slice(1));if(el&&tut.contains(el)){el.classList.add("is-target");setTimeout(()=>el.scrollIntoView({block:"center"}),80);}}
 
   // Fuentes
-  const chips=$("chips"),q=$("q"),body=$("srcBody");
+  const chips=$("chips"),q=$("q"),body=$("srcGrid");
   if(chips&&q&&body){
     let disc="Todas";
+    const TITLES={};TUTS.forEach(x=>TITLES[x.id]=x.title);
+    const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
     chips.innerHTML=DISC.map(d=>`<button class="chip" aria-pressed="${d==="Todas"}" data-d="${d}">${d}</button>`).join("");
+    const learn=x=>{
+      const l=[];
+      if(x.inf)l.push(`<a class="learn" href="aprende.html#${x.inf}"><span class="pill blue">Infografía</span>${esc(TITLES[x.inf]||"")}</a>`);
+      if(x.tut)l.push(`<a class="learn" href="aprende.html#${x.tut}"><span class="pill teal">Tutorial</span>${esc(TITLES[x.tut]||"")}</a>`);
+      return l.length?`<div class="src-learn"><span class="eyebrow">Aprende a usarla</span>${l.join("")}</div>`:"";
+    };
     const renderSrc=()=>{
       const s=q.value.trim().toLowerCase();
-      const rows=SOURCES.filter(x=>(disc==="Todas"||x.d===disc)&&(!s||(x.org+x.inst+x.d+x.what).toLowerCase().includes(s)));
-      body.innerHTML=rows.length?rows.map(x=>`<tr><td><span class="org">${x.org}</span><small>${x.inst}</small></td><td>${x.d}</td><td>${x.what}</td><td>${x.lic}</td><td><span class="status ${x.st}">${x.st==="ok"?"Identificada":"Por confirmar"}</span></td></tr>`).join("")
-        :`<tr><td colspan="5" class="empty">No hay fuentes que coincidan con “${q.value.replace(/[<>&"]/g,"")}”. Prueba con otra palabra o quita el filtro de disciplina.</td></tr>`;
+      const rows=SOURCES.filter(x=>(disc==="Todas"||x.esf.includes(disc))&&(!s||(x.org+x.inst+x.esf.join(" ")+x.what+x.fmt).toLowerCase().includes(s)));
+      body.innerHTML=rows.length?rows.map(x=>`<article class="src-card" id="f-${x.id}">
+        <header><h3>${x.org}</h3><small>${x.inst}</small></header>
+        <div class="src-esf">${x.esf.length===5?'<span class="pill line">Todas las esferas</span>':x.esf.map(e=>`<span class="pill line">${e}</span>`).join("")}</div>
+        <p>${x.what}</p>
+        <dl>
+          <div><dt>Formatos</dt><dd>${x.fmt}</dd></div>
+          <div><dt>Acceso</dt><dd>${x.acc}</dd></div>
+          <div><dt>Licencia</dt><dd>${x.lic} <span class="status ${x.st}">${x.st==="ok"?"Identificada":"Por confirmar"}</span></dd></div>
+        </dl>
+        ${learn(x)}
+        <a class="src-go" href="${x.url}" rel="noopener" target="_blank">Ir al portal ↗</a>
+      </article>`).join("")
+        :`<p class="empty">No hay fuentes que coincidan con “${esc(q.value)}”. Prueba con otra palabra o quita el filtro de esfera.</p>`;
     };
     chips.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;disc=b.dataset.d;chips.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b?"true":"false"));renderSrc();});
     q.addEventListener("input",renderSrc);

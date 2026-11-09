@@ -285,52 +285,55 @@
     window.__omctGlobe=()=>drawGlobe(performance.now());
   }
 
-  // Figura de corrección: una señal con un valor atípico que se detecta y se corrige (dibujada en código)
+  // Figura de corrección: una lupa revisa un estante de libros, encuentra un error y lo corrige (dibujada en código)
   const fix=$("fixfig");
   if(fix){
     const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const CYCLE=7000, t0=performance.now();
+    const CYCLE=8000, t0=performance.now(), N=9, BAD=5;
     const ease=x=>x<0?0:x>1?1:x*x*(3-2*x);
-    const sig=(x,ph)=>Math.sin(x*0.09+ph)*0.35+Math.sin(x*0.23-ph*1.7)*0.22+Math.sin(x*0.57+ph*0.6)*0.12;
+    const BOOKS=[{h:.78,w:1,c:"--blue"},{h:.66,w:.8,c:"--teal"},{h:.84,w:1.1,c:"--ochre"},{h:.7,w:.9,c:"--blue"},{h:.62,w:.75,c:"--teal"},{h:.8,w:1,c:"--blue"},{h:.72,w:.9,c:"--ochre"},{h:.86,w:1.05,c:"--teal"},{h:.68,w:.85,c:"--blue"}];
+    const font=s=>`500 ${s}px "IBM Plex Mono", ui-monospace, monospace`;
     const drawFix=now=>{
       const r=fix.getBoundingClientRect(); if(!r.width)return;
       const dpr=Math.min(2,window.devicePixelRatio||1), W=r.width, H=r.height;
       if(fix.width!==Math.round(W*dpr)){fix.width=W*dpr;fix.height=H*dpr;}
       const ctx=fix.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
-      const t=reduce?CYCLE*0.45:(now-t0)%CYCLE, ph=reduce?0:(now-t0)/1600;
-      // fases: 0–25% normal, 25–40% aparece el error, 40–60% marcado, 60–75% se corrige, 75–100% corregido
-      const p=t/CYCLE;
-      const spike=p<0.25?0:p<0.40?ease((p-0.25)/0.15):p<0.60?1:p<0.75?1-ease((p-0.60)/0.15):0;
-      const fixed=p>=0.60, mid=H*0.55, amp=H*0.18, sx=W*0.64;
-      // rejilla
-      ctx.strokeStyle=css("--line");ctx.lineWidth=1;
-      for(let gx=0;gx<W;gx+=W/12){ctx.beginPath();ctx.moveTo(gx,H*0.15);ctx.lineTo(gx,H*0.92);ctx.stroke();}
-      ctx.beginPath();ctx.moveTo(0,mid);ctx.lineTo(W,mid);ctx.stroke();
-      // señal
-      const spikeAt=x=>{const d=(x-sx)/(W*0.018);return -Math.exp(-d*d)*H*0.42*spike;};
-      ctx.strokeStyle=css("--blue");ctx.lineWidth=1.8;ctx.beginPath();
-      for(let x=0;x<=W;x+=2){const y=mid-sig(x,ph)*amp+spikeAt(x);x?ctx.lineTo(x,y):ctx.moveTo(x,y);}
-      ctx.stroke();
-      // marca del error
-      const font=(s)=>`500 ${s}px "IBM Plex Mono", ui-monospace, monospace`;
-      if(spike>0.05&&!fixed){
-        const y=mid-sig(sx,ph)*amp-H*0.42*spike;
-        ctx.globalAlpha=Math.min(1,spike*1.4);
-        ctx.strokeStyle=css("--ochre");ctx.lineWidth=2;ctx.setLineDash([4,3]);
-        ctx.beginPath();ctx.arc(sx,y+H*0.04,H*0.12,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-        ctx.fillStyle=css("--ochre");ctx.font=font(Math.max(10,W*0.024));ctx.textAlign="right";
-        ctx.fillText("Valor atípico detectado",sx-H*0.17,Math.max(H*0.12,y+H*0.05));
-        ctx.globalAlpha=1;
-      }
-      if(fixed){
-        const a=p<0.75?ease((p-0.60)/0.15):1;
-        ctx.globalAlpha=a;ctx.fillStyle=css("--teal");ctx.font=font(Math.max(10,W*0.024));ctx.textAlign="left";
-        ctx.textAlign="center";ctx.fillText("Corregido · versión 1.1",sx,H*0.12);
-        ctx.beginPath();ctx.arc(sx,mid-sig(sx,ph)*amp,3.5,0,Math.PI*2);ctx.fill();
-        ctx.globalAlpha=1;
-      }
-      ctx.fillStyle=css("--muted");ctx.font=font(Math.max(9,W*0.02));ctx.textAlign="left";
-      ctx.fillText(p<0.60?"versión 1.0":"versión 1.1",8,H-8);
+      const t=reduce?CYCLE*0.5:(now-t0)%CYCLE, p=t/CYCLE;
+      // estante
+      const shelfY=H*0.82, left=W*0.06, right=W*0.94;
+      const totalW=BOOKS.reduce((a,b)=>a+b.w,0), unit=(right-left)/(totalW+N*0.18);
+      ctx.fillStyle=css("--line");ctx.fillRect(left-6,shelfY,right-left+12,5);
+      const pos=[];let x=left;
+      BOOKS.forEach((b,i)=>{const bw=b.w*unit,bh=b.h*(shelfY-H*0.12);pos.push({x,bw,bh});x+=bw+unit*0.18;});
+      // fases: 0–45% la lupa recorre, 45–60% error detectado, 60–75% se corrige, 75–100% corregido
+      const target=pos[BAD].x+pos[BAD].bw/2, start=pos[0].x+pos[0].bw/2;
+      const lensX=start+(target-start)*ease(Math.min(1,p/0.45));
+      const found=p>=0.45, fixing=p>=0.60, fixed=p>=0.75;
+      const fixA=fixed?1:fixing?ease((p-0.60)/0.15):0;
+      BOOKS.forEach((b,i)=>{
+        const {x:bx,bw,bh}=pos[i], by=shelfY-bh;
+        ctx.fillStyle=css(b.c);ctx.globalAlpha=0.9;ctx.fillRect(bx,by,bw,bh);ctx.globalAlpha=1;
+        ctx.fillStyle="rgba(255,255,255,.55)";ctx.fillRect(bx+bw*0.2,by+bh*0.12,bw*0.6,2);ctx.fillRect(bx+bw*0.2,by+bh*0.18,bw*0.6,2);
+        if(i===BAD&&found){
+          const ey=by+bh*0.5;
+          if(!fixed){ctx.globalAlpha=1-fixA;ctx.strokeStyle="#fff";ctx.lineWidth=2.4;const s=Math.min(bw*0.28,9);
+            ctx.beginPath();ctx.moveTo(bx+bw/2-s,ey-s);ctx.lineTo(bx+bw/2+s,ey+s);ctx.moveTo(bx+bw/2+s,ey-s);ctx.lineTo(bx+bw/2-s,ey+s);ctx.stroke();ctx.globalAlpha=1;}
+          if(fixA>0){ctx.globalAlpha=fixA;ctx.strokeStyle="#fff";ctx.lineWidth=2.4;const s=Math.min(bw*0.3,10);
+            ctx.beginPath();ctx.moveTo(bx+bw/2-s,ey);ctx.lineTo(bx+bw/2-s*0.25,ey+s*0.7);ctx.lineTo(bx+bw/2+s,ey-s*0.8);ctx.stroke();ctx.globalAlpha=1;}
+        }
+      });
+      // lupa
+      const lr=Math.min(H*0.17,W*0.07), ly=H*0.42;
+      const ring=found&&!fixed?css("--ochre"):fixed?css("--teal"):css("--ink");
+      ctx.fillStyle="rgba(255,255,255,.18)";ctx.beginPath();ctx.arc(lensX,ly,lr,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle=ring;ctx.lineWidth=3;ctx.beginPath();ctx.arc(lensX,ly,lr,0,Math.PI*2);ctx.stroke();
+      ctx.lineWidth=5;ctx.lineCap="round";ctx.beginPath();ctx.moveTo(lensX+lr*0.72,ly+lr*0.72);ctx.lineTo(lensX+lr*1.55,ly+lr*1.55);ctx.stroke();ctx.lineCap="butt";
+      // leyendas
+      ctx.font=font(Math.max(10,W*0.023));ctx.textAlign="center";
+      if(found&&!fixed){ctx.globalAlpha=1-fixA*0.6;ctx.fillStyle=css("--ochre");ctx.fillText("Error detectado",lensX,ly-lr-10);ctx.globalAlpha=1;}
+      if(fixed){ctx.fillStyle=css("--teal");ctx.fillText("Corregido · versión 1.1",lensX,ly-lr-10);}
+      ctx.textAlign="left";ctx.fillStyle=css("--muted");ctx.font=font(Math.max(9,W*0.02));
+      ctx.fillText(fixed?"versión 1.1":"versión 1.0",8,H-6);
     };
     const loopF=now=>{drawFix(now);if(!reduce)requestAnimationFrame(loopF);};
     requestAnimationFrame(loopF);

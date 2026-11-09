@@ -223,7 +223,7 @@ footer.site p{opacity:.8;font-size:.9rem}
 .foot-brand b{font-family:"Times New Roman",Times,var(--f-display);font-size:1.6rem;color:var(--bg);letter-spacing:.02em}
 
 /* Quiénes somos + globo */
-.who{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--s7);align-items:center}
+.who{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--s7);align-items:start}
 @media (max-width:860px){.who{grid-template-columns:1fr;gap:var(--s5)}}
 .globe-fig{margin:0;display:grid;gap:var(--s3);justify-items:center}
 .globe-fig canvas{width:100%;max-width:320px;height:auto;aspect-ratio:1/1}
@@ -358,3 +358,11 @@ footer.site p{opacity:.8;font-size:.9rem}
 .bita-strip:hover .bita-go{text-decoration:underline}
 .bita-next{flex:1 1 18rem;font-size:.95rem}
 .bita-go{font-weight:500;color:var(--teal)}
+
+/* Definición de observatorio (Inicio) */
+.def{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem}
+.def-term{font:500 1.5rem var(--f-display);color:var(--ink)}
+.def-etym{font:400 .8rem var(--f-mono);color:var(--muted)}
+.def-text{font-size:1.05rem;color:var(--ink);max-width:40rem}
+.def-ref{font-size:.78rem;color:var(--muted);max-width:40rem}
+.quote blockquote{font-size:clamp(1.15rem,2vw,1.45rem);padding-left:var(--s4);border-left:2px solid var(--teal)}

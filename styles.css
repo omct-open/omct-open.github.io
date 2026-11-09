@@ -366,3 +366,6 @@ footer.site p{opacity:.8;font-size:.9rem}
 .def-text{font-size:1.05rem;color:var(--ink);max-width:40rem}
 .def-ref{font-size:.78rem;color:var(--muted);max-width:40rem}
 .quote blockquote{font-size:clamp(1.15rem,2vw,1.45rem);padding-left:var(--s4);border-left:2px solid var(--teal)}
+.obs-left{display:grid;gap:var(--s3);align-content:start}
+.obs-left canvas{width:100%;max-width:360px;aspect-ratio:1/1;height:auto;margin-top:var(--s4);display:block}
+@media (max-width:860px){.obs-left canvas{max-width:260px;margin-top:var(--s2)}}

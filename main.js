@@ -339,6 +339,48 @@
     requestAnimationFrame(loopF);
   }
 
+  // Observar: un haz recorre un territorio y registra datos (dibujado en código)
+  const obs=$("obscan");
+  if(obs){
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const t0=performance.now();
+    // puntos fijos (estaciones de observación), pseudoaleatorios pero estables
+    const PTS=[];let s=7;const rnd=()=>{s=(s*9301+49297)%233280;return s/233280;};
+    for(let i=0;i<26;i++){const a=rnd()*Math.PI*2,r=Math.sqrt(rnd())*0.9;PTS.push({a,r,c:["--blue","--teal","--ochre"][i%3]});}
+    const drawObs=now=>{
+      const rc=obs.getBoundingClientRect(); if(!rc.width)return;
+      const dpr=Math.min(2,window.devicePixelRatio||1), W=rc.width, R=W*0.46;
+      if(obs.width!==Math.round(W*dpr)){obs.width=W*dpr;obs.height=W*dpr;}
+      const ctx=obs.getContext("2d");ctx.setTransform(dpr,0,0,dpr,W/2*dpr,W/2*dpr);ctx.clearRect(-W/2,-W/2,W,W);
+      ctx.save();ctx.beginPath();ctx.arc(0,0,R,0,Math.PI*2);ctx.clip();
+      // territorio: curvas de nivel
+      ctx.translate(-W/2,-W/2);ctx.lineWidth=1;contours(ctx,W,W,0,2.3,[-1,-.5,0,.5,1],i=>i===2?css("--teal"):css("--contour"),9);
+      ctx.restore();
+      // anillos de alcance
+      ctx.strokeStyle=css("--line");ctx.lineWidth=1;
+      [0.33,0.66,1].forEach(k=>{ctx.beginPath();ctx.arc(0,0,R*k,0,Math.PI*2);ctx.stroke();});
+      ctx.beginPath();ctx.moveTo(-R,0);ctx.lineTo(R,0);ctx.moveTo(0,-R);ctx.lineTo(0,R);ctx.stroke();
+      // haz giratorio
+      const ang=reduce?-Math.PI/4:((now-t0)/1000)*0.9%(Math.PI*2);
+      ctx.fillStyle=css("--blue");
+      for(let k=0;k<14;k++){const a1=ang-0.95*(k+1)/14,a2=ang-0.95*k/14;ctx.globalAlpha=0.22*(1-k/14);ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,R,a1,a2+0.005);ctx.closePath();ctx.fill();}
+      ctx.globalAlpha=1;
+      ctx.strokeStyle=css("--blue");ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(Math.cos(ang)*R,Math.sin(ang)*R);ctx.stroke();
+      // puntos: se encienden al pasar el haz y se desvanecen
+      PTS.forEach(p=>{
+        let d=(ang-p.a)%(Math.PI*2);if(d<0)d+=Math.PI*2;
+        const life=reduce?0.6:Math.max(0,1-d/(Math.PI*1.6));
+        const x=Math.cos(p.a)*p.r*R,y=Math.sin(p.a)*p.r*R;
+        ctx.globalAlpha=0.18+life*0.82;ctx.fillStyle=css(p.c);ctx.beginPath();ctx.arc(x,y,2.4+life*2.2,0,Math.PI*2);ctx.fill();
+        if(life>0.85){ctx.globalAlpha=(life-0.85)/0.15*0.5;ctx.strokeStyle=css(p.c);ctx.beginPath();ctx.arc(x,y,6+(1-life)*30,0,Math.PI*2);ctx.stroke();}
+      });
+      ctx.globalAlpha=1;
+      ctx.strokeStyle=css("--blue");ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,0,R,0,Math.PI*2);ctx.stroke();
+    };
+    const loopO=now=>{drawObs(now);if(!reduce)requestAnimationFrame(loopO);};
+    requestAnimationFrame(loopO);
+  }
+
   // Menú y página actual
   const nav=$("mainNav"),menuBtn=$("menuBtn");
   const page=document.body.dataset.page;

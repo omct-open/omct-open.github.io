@@ -58,6 +58,15 @@
     ["Estado del conocimiento","Síntesis de lo que se sabe sobre un tema en México; identifica vacíos de investigación.","Estudiantes de posgrado e investigadores que inician un tema"]
   ];
   const ESFERAS = ["Atmósfera","Hidrósfera","Criósfera","Geósfera","Biósfera"];
+  const MINI={
+    "Atmósfera":'<path d="M12 12a3 3 0 1 1 3-3"/><path d="M15 9a6 6 0 1 1-6-6"/><path d="M9 3a9 9 0 1 1-6 9"/>',
+    "Hidrósfera":'<path d="M12 3c-3.5 5-5.5 8-5.5 11a5.5 5.5 0 0 0 11 0c0-3-2-6-5.5-11Z"/>',
+    "Criósfera":'<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5"/>',
+    "Geósfera":'<path d="M2 12h4l2-5 3 10 3-12 3 9 2-2h3"/>',
+    "Biósfera":'<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 21h6"/>',
+    "Todas":'<path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>'
+  };
+  const miniIcon=n=>MINI[n]?`<svg class="esf-mini" viewBox="0 0 24 24" aria-hidden="true">${MINI[n]}</svg>`:"";
 
   // ---------- Ilustraciones generativas (sin imágenes de terceros) ----------
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -112,10 +121,10 @@
   const news=$("newsCards");
   if(news){news.innerHTML=NEWS.map(o=>cardHTML(o)).join("");}
   const escH=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const chipRow=(el,label,opts,key)=>{el.innerHTML=`<span class="chip-label">${label}</span>`+["Todos",...opts].map(o=>`<button class="chip" aria-pressed="${o==="Todos"}" data-${key}="${o}">${o}</button>`).join("");};
+  const chipRow=(el,label,opts,key)=>{el.innerHTML=`<span class="chip-label">${label}</span>`+["Todos",...opts].map(o=>`<button class="chip" aria-pressed="${o==="Todos"}" data-${key}="${o}">${label==="Esfera"?miniIcon(o):""}${o}</button>`).join("");};
   const pressOne=(el,b)=>el.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b?"true":"false"));
   const typeGrid=(el,list)=>{el.innerHTML=list.map(([n,d,i])=>`<div class="type-item"><h3>${n}</h3><p>${d}</p><small>Ideal para: ${i}</small></div>`).join("");};
-  const esfTags=e=>e.map(x=>`<span class="esf-tag">${x}</span>`).join("");
+  const esfTags=e=>e.map(x=>`<span class="esf-tag">${miniIcon(x)}${x}</span>`).join("");
 
   // Productos
   const prod=$("prodCards");
@@ -166,7 +175,7 @@
     let disc="Todas";
     const TITLES={};TUTS.forEach(x=>TITLES[x.id]=x.title);
     const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-    chips.innerHTML=DISC.map(d=>`<button class="chip" aria-pressed="${d==="Todas"}" data-d="${d}">${d}</button>`).join("");
+    chips.innerHTML=DISC.map(d=>`<button class="chip" aria-pressed="${d==="Todas"}" data-d="${d}">${d==="Todas"?"":miniIcon(d)}${d}</button>`).join("");
     const learn=x=>{
       const l=[];
       if(x.inf)l.push(`<a class="learn" href="aprende.html#${x.inf}"><span class="pill blue">Infografía</span>${esc(TITLES[x.inf]||"")}</a>`);
@@ -178,7 +187,7 @@
       const rows=SOURCES.filter(x=>(disc==="Todas"||x.esf.includes(disc))&&(!s||(x.org+x.inst+x.esf.join(" ")+x.what+x.fmt).toLowerCase().includes(s)));
       body.innerHTML=rows.length?rows.map(x=>`<article class="src-card" id="f-${x.id}">
         <header><h3>${x.org}</h3><small>${x.inst}</small></header>
-        <div class="src-esf">${x.esf.length===5?'<span class="pill line">Todas las esferas</span>':x.esf.map(e=>`<span class="pill line">${e}</span>`).join("")}</div>
+        <div class="src-esf">${x.esf.length===5?`<span class="esf-tag">${miniIcon("Todas")}Todas las esferas</span>`:x.esf.map(e=>`<span class="esf-tag">${miniIcon(e)}${e}</span>`).join("")}</div>
         <p>${x.what}</p>
         <dl>
           <div><dt>Formatos</dt><dd>${x.fmt}</dd></div>

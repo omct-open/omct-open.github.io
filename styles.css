@@ -1,6 +1,7 @@
 /* OMCT · hoja de estilos */
 /* Layout: cartografía editorial. Encabezado fijo, vistas por ancla, curvas de nivel como firma visual, retícula de 12 columnas que colapsa a 1. */
 :root{
+  --esf-atm:#4167BC; --esf-hid:#40ADB8; --esf-cri:#2EA1E8; --esf-geo:#C16210; --esf-bio:#41B79D; --esf-sis:#0C193A;
   --bg:#F3F6F8;        /* papel cartográfico frío */
   --surface:#FFFFFF;
   --ink:#0C193A;       /* azul marino oficial OMCT */
@@ -369,3 +370,13 @@ footer.site p{opacity:.8;font-size:.9rem}
 .obs-left{display:grid;gap:var(--s3);align-content:start}
 .obs-left canvas{width:100%;max-width:260px;aspect-ratio:1/1;height:auto;margin-top:0;display:block}
 @media (max-width:860px){.obs-left canvas{max-width:260px;margin-top:var(--s2)}}
+
+/* Íconos de esferas (diseño del equipo OMCT) */
+.sphere-top .esf-icon{width:3.5rem;height:3.5rem;flex:none}
+.esf-mini{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.15em}
+.chip .esf-mini{margin-right:.35rem}
+.esf-tag{display:inline-flex;align-items:center;gap:.3rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--esf-sis:#9AA8BF}:root:not([data-theme="light"]) .sis-core{stroke:#9AA8BF}:root:not([data-theme="light"]) .sis-dot{fill:#9AA8BF}}
+:root[data-theme="dark"]{--esf-sis:#9AA8BF}
+:root[data-theme="dark"] .sis-core{stroke:#9AA8BF}
+:root[data-theme="dark"] .sis-dot{fill:#9AA8BF}

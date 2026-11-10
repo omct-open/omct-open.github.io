@@ -20,12 +20,12 @@
   ];
   const TUTS = [
     {id:"inf-sismo",r:["estudiante","docente"],type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Del sismograma al epicentro, paso a paso.",lvl:"Básico",time:"2 min",esf:["Geósfera"],pal:"seis"},
-    {id:"dilo-precipitacion",r:["estudiante","docente"],type:"Dilo en ciencia",cls:"ochre",title:"Lluvia → precipitación",text:"Por qué no son lo mismo y cómo se mide en milímetros.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean"},
+    {id:"dilo-precipitacion",r:["estudiante","docente"],type:"Dilo en ciencia",cls:"lav",title:"Lluvia → precipitación",text:"Por qué no son lo mismo y cómo se mide en milímetros.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean"},
     {id:"tut-ssn",r:["estudiante","investigador"],type:"Tutorial",cls:"teal",title:"Catálogo del SSN en Python",text:"Descarga, limpia y grafica la sismicidad de un estado.",lvl:"Intermedio",time:"40 min",esf:["Geósfera"],pal:"seis"},
     {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
     {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
     {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
-    {id:"articulo-mes",r:["estudiante","investigador"],type:"Artículo del mes",cls:"ochre",title:"Primer Artículo del mes · enero 2027",text:"Lectura comentada de un artículo revisado por pares, con tres preguntas a su autora o autor.",lvl:"Intermedio",time:"10 min",esf:[],pal:"geo",credit:"Próximamente"},
+    {id:"articulo-mes",r:["estudiante","investigador"],type:"Artículo del mes",cls:"lav",title:"Primer Artículo del mes · enero 2027",text:"Lectura comentada de un artículo revisado por pares, con tres preguntas a su autora o autor.",lvl:"Intermedio",time:"10 min",esf:[],pal:"geo",credit:"Próximamente"},
     {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
   ];
   const PRODS = [
@@ -59,14 +59,14 @@
   ];
   const ESFERAS = ["Atmósfera","Hidrósfera","Criósfera","Geósfera","Biósfera"];
   const MINI={
-    "Atmósfera":'<path d="M12 12a3 3 0 1 1 3-3"/><path d="M15 9a6 6 0 1 1-6-6"/><path d="M9 3a9 9 0 1 1-6 9"/>',
-    "Hidrósfera":'<path d="M12 3c-3.5 5-5.5 8-5.5 11a5.5 5.5 0 0 0 11 0c0-3-2-6-5.5-11Z"/>',
-    "Criósfera":'<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5"/>',
-    "Geósfera":'<path d="M2 12h4l2-5 3 10 3-12 3 9 2-2h3"/>',
-    "Biósfera":'<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 21h6"/>',
-    "Todas":'<path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>'
+    "Atmósfera":['m-atm','<circle cx="12" cy="12" r="2.2"/><path d="M16.8 9.6a5.5 5.5 0 1 0 .4 4.6"/><path d="M5 16.6A8.2 8.2 0 0 0 18.8 17"/>'],
+    "Hidrósfera":['m-hid','<circle cx="6.5" cy="15.5" r="1.6"/><path d="M6.5 5c3.3 0 4.6 3 6.4 6.8S16.5 18 19.5 19"/>'],
+    "Criósfera":['m-cri','<path d="M12 4v16M5.1 8l13.8 8M5.1 16l13.8-8"/>'],
+    "Geósfera":['m-geo','<path d="M2.5 12h4l1.8-4.5 3.2 10 3-12 2.6 9 1.6-2.5h2.8"/>'],
+    "Biósfera":['m-bio','<circle cx="12" cy="8.5" r="4.5"/><path d="M12 13v8"/>'],
+    "Todas":['m-all','<path d="M19.5 12a7.5 7.5 0 0 1-13.2 4.9" class="arc-o"/><path d="M4.5 12a7.5 7.5 0 0 1 13.2-4.9"/><path d="M18.4 3.6v3.8h-3.8"/><path d="M5.6 20.4v-3.8h3.8" class="arc-o"/>']
   };
-  const miniIcon=n=>MINI[n]?`<svg class="esf-mini" viewBox="0 0 24 24" aria-hidden="true">${MINI[n]}</svg>`:"";
+  const miniIcon=n=>MINI[n]?`<svg class="esf-mini ${MINI[n][0]}" viewBox="0 0 24 24" aria-hidden="true">${MINI[n][1]}</svg>`:"";
 
   // ---------- Ilustraciones generativas (sin imágenes de terceros) ----------
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();

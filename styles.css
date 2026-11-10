@@ -1,6 +1,8 @@
 /* OMCT · hoja de estilos */
 /* Layout: cartografía editorial. Encabezado fijo, vistas por ancla, curvas de nivel como firma visual, retícula de 12 columnas que colapsa a 1. */
 :root{
+  --cta:#E8762C; --naranja-calido:#F29A3D; --naranja-quemado:#D9601A; --purpura:#6A4C9C; --purpura-suave:#9B86C9; --purpura-noche:#3E2A6B; --lavanda-glaciar:#7F7BD0; --lavanda-profunda:#4B4796; --lavanda-suave:#ECEBF8;
+  --m-atm:#4167BC; --m-hid:#2E8F7A; --m-cri:#2E8F7A; --m-geo:#C16210; --m-bio:#2E8F7A; --m-all:#4167BC;
   --esf-atm:#4167BC; --esf-hid:#40ADB8; --esf-cri:#2EA1E8; --esf-geo:#C16210; --esf-bio:#41B79D; --esf-sis:#0C193A;
   --bg:#F3F6F8;        /* papel cartográfico frío */
   --surface:#FFFFFF;
@@ -380,3 +382,19 @@ footer.site p{opacity:.8;font-size:.9rem}
 :root[data-theme="dark"]{--esf-sis:#9AA8BF}
 :root[data-theme="dark"] .sis-core{stroke:#9AA8BF}
 :root[data-theme="dark"] .sis-dot{fill:#9AA8BF}
+
+/* Paleta complementaria oficial (naranjas y púrpuras) */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--purpura:#9B86C9;--purpura-noche:#D9D1F0;--lavanda-profunda:#B7A6E0;--lavanda-suave:#2A2547;--m-atm:#7F9BEA;--m-hid:#5CC4B6;--m-cri:#5CC4B6;--m-geo:#E19A55;--m-bio:#5CC4B6;--m-all:#7F9BEA}}
+:root[data-theme="dark"]{--purpura:#9B86C9;--purpura-noche:#D9D1F0;--lavanda-profunda:#B7A6E0;--lavanda-suave:#2A2547;--m-atm:#7F9BEA;--m-hid:#5CC4B6;--m-cri:#5CC4B6;--m-geo:#E19A55;--m-bio:#5CC4B6;--m-all:#7F9BEA}
+.btn.primary{background:var(--cta);color:#0C193A}
+.btn.primary:hover{filter:brightness(1.05)}
+.m-atm{color:var(--m-atm)}.m-hid{color:var(--m-hid)}.m-cri{color:var(--m-cri)}.m-geo{color:var(--m-geo)}.m-bio{color:var(--m-bio)}.m-all{color:var(--m-all)}
+.m-all .arc-o{stroke:var(--m-geo)}
+.chip[aria-pressed="true"] .esf-mini{color:inherit}
+.chip[aria-pressed="true"] .esf-mini .arc-o{stroke:currentColor}
+.pill.lav{background:var(--lavanda-suave);color:var(--lavanda-profunda)}
+.pill.naranja{background:var(--naranja-calido);color:#0C193A}
+.aotm{border-left-color:var(--purpura)}
+.aotm .eyebrow{color:var(--purpura)}
+.aotm-mark{background:var(--lavanda-suave);color:var(--purpura-noche)}
+.event-date{background:var(--naranja-calido);color:#0C193A}

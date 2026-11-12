@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Artículo del mes · Ardillas: tres formas de habitar las esferas de la Tierra · OMCT</title>
+<title>Artículo del mes · Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra · OMCT</title>
 <meta name="description" content="Reseña del OMCT sobre el artículo Ardillas mexicanas: exploradoras de tierra, árboles y aire (Therya Ixmana, 2027): 35 especies, tres formas de vida y su lugar en las esferas de la Tierra.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Artículo del mes · Ardillas: tres formas de habitar las esferas de la Tierra">
+<meta property="og:title" content="Artículo del mes · Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra">
 <meta property="og:description" content="35 especies, tres formas de vida y una lectura por esferas. Reseña del OMCT.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
@@ -16,9 +16,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=18">
+<link rel="stylesheet" href="styles.css?v=19">
 </head>
-<body data-page="aprende">
+<body data-page="aprende" class="pg-bio">
 
 <div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal</span></div></div>
 
@@ -45,13 +45,13 @@
   <div class="am-notice"><div class="wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg><p><b>Vista preliminar.</b> Las respuestas de las autoras se publicarán cuando las autoricen.</p></div></div>
 
   <div class="hero am-hero">
-    <canvas id="topo" aria-hidden="true"></canvas>
+    <canvas id="dosel" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="am-hero-grid">
         <div class="am-hero-text">
           <nav class="am-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Artículo del mes</span><span aria-hidden="true">/</span><span>Enero 2027</span></nav>
           <span class="eyebrow">Nº 01 · Artículo del mes · enero de 2027</span>
-          <h1>Ardillas: tres formas de habitar <em>las esferas de la Tierra</em></h1>
+          <h1>Trepar, cavar y planear: <em>las ardillas que conectan las esferas de la Tierra</em></h1>
           <p class="lead">Treinta y cinco especies, tres formas de vida y un recordatorio: lo que pasa en el suelo, en el dosel y en el aire forma parte de un mismo sistema.</p>
           <dl class="am-meta">
             <div><dt>Tipo</dt><dd>Reseña</dd></div>
@@ -63,7 +63,7 @@
         </div>
         <figure class="am-lamina">
           <button class="lam" id="lam" type="button" aria-label="Ver en grande la lámina: 35 especies de ardillas en México">
-            <img class="lam-base" src="articulo-mes-lamina.jpg" alt="" width="1080" height="1440">
+            <img class="lam-base" src="articulo-mes-lamina-v2.jpg" alt="" width="1080" height="1440">
             <span class="lam-zoom" aria-hidden="true">Ampliar</span>
           </button>
           <figcaption><span>Lámina del mes · diseño: OMCT con Canva · la ardilla y el paisaje son imágenes generadas con IA</span><button type="button" class="copy" id="lamReplay">↻ Armar de nuevo</button></figcaption>
@@ -174,7 +174,7 @@
           </div>
           <div class="cite am-cite-2">
             <h3>Si usas esta reseña o su lámina, cita al OMCT</h3>
-            <code id="citaResena">Fernández González, K. (2027, 1 de enero). Ardillas: tres formas de habitar las esferas de la Tierra [Reseña del artículo Ardillas mexicanas: exploradoras de tierra, árboles y aire, de L. Cab-Sulub y M. J. Morán-Gutiérrez]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/articulo-mes.html</code>
+            <code id="citaResena">Fernández González, K. (2027, 1 de enero). Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra [Reseña del artículo Ardillas mexicanas: exploradoras de tierra, árboles y aire, de L. Cab-Sulub y M. J. Morán-Gutiérrez]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/articulo-mes.html</code>
             <button class="copy" type="button" data-copy-el="citaResena">Copiar cita de la reseña</button>
             <p class="note">Texto: Katia Fernández González · Lámina: OMCT · CC BY 4.0. El artículo original conserva su licencia (CC BY-NC-ND 4.0) y no se reproduce aquí: lo citamos y enlazamos a su DOI.</p>
           </div>
@@ -194,7 +194,7 @@
     </div>
   </div>
   <dialog class="lam-dlg" id="lamDlg" aria-label="Lámina en grande">
-  <img src="articulo-mes-lamina.jpg" alt="Lámina del OMCT: 35 especies de ardillas en México; 12 solo viven aquí. Qué las amenaza: deforestación, expansión de las ciudades, fragmentación de los bosques y cambio climático. En riesgo: ardilla de Perote, perrito de la pradera mexicano y ardilla de Peters. Conservarlas es conservar bosques, matorrales y pastizales conectados." width="1080" height="1440">
+  <img src="articulo-mes-lamina-v2.jpg" alt="Lámina del OMCT, con su logotipo y un código QR al sitio: 35 especies de ardillas en México; 12 solo viven aquí. Qué las amenaza: deforestación, expansión de las ciudades, fragmentación de los bosques y cambio climático. En riesgo: ardilla de Perote, perrito de la pradera mexicano y ardilla de Peters. Conservarlas es conservar bosques, matorrales y pastizales conectados." width="1080" height="1440">
   <form method="dialog"><button class="btn ghost" type="submit">Cerrar</button></form>
 </dialog>
 </section>
@@ -219,6 +219,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=11"></script>
+<script src="main.js?v=12"></script>
 </body>
 </html>

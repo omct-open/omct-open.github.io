@@ -25,7 +25,7 @@
     {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
     {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
     {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
-    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",cls:"lav",title:"Ardillas: tres formas de habitar las esferas de la Tierra",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"},
+    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",cls:"lav",title:"Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v2.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"},
     {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
   ];
   const PRODS = [
@@ -244,6 +244,36 @@
     requestAnimationFrame(loop);
   }
 
+  // Artículo del mes: fondo "dosel" (luz que se filtra entre las hojas), solo en esta página
+  const dosel=$("dosel");
+  if(dosel){
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+    const SP=Array.from({length:46},()=>({x:rnd(),y:rnd(),r:.02+rnd()*.07,p:rnd()*6.28,s:.3+rnd()*.7,k:rnd()<.3}));
+    const LV=Array.from({length:9},()=>({x:rnd(),y:rnd(),a:rnd()*6.28,s:.6+rnd()*.6,z:10+rnd()*10}));
+    const leaf=(ctx,x,y,z,a)=>{ctx.save();ctx.translate(x,y);ctx.rotate(a);ctx.beginPath();ctx.moveTo(-z,0);ctx.quadraticCurveTo(0,-z*.55,z,0);ctx.quadraticCurveTo(0,z*.55,-z,0);ctx.fill();ctx.restore();};
+    const draw=now=>{
+      const r=dosel.getBoundingClientRect();if(!r.width)return;
+      const dpr=Math.min(2,window.devicePixelRatio||1);
+      if(dosel.width!==Math.round(r.width*dpr)){dosel.width=r.width*dpr;dosel.height=r.height*dpr;}
+      const ctx=dosel.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,r.width,r.height);
+      const t=reduce?0:now/1000,M=Math.max(r.width,r.height),dark=matchMedia("(prefers-color-scheme: dark)").matches;
+      SP.forEach(o=>{
+        const x=(o.x+Math.sin(t*.05*o.s+o.p)*.02)*r.width,y=(o.y+Math.cos(t*.04*o.s+o.p)*.02)*r.height;
+        const a=(.5+.5*Math.sin(t*.35*o.s+o.p));
+        ctx.fillStyle=o.k?(dark?`rgba(244,211,94,${.04+.05*a})`:`rgba(244,211,94,${.10+.10*a})`):(dark?`rgba(167,201,87,${.03+.04*a})`:`rgba(255,255,255,${.30+.30*a})`);
+        ctx.beginPath();ctx.arc(x,y,o.r*M*.5,0,Math.PI*2);ctx.fill();
+      });
+      ctx.fillStyle=dark?"rgba(106,153,78,.18)":"rgba(106,153,78,.16)";
+      LV.forEach(o=>{
+        const y=((o.y+t*.006*o.s)%1.1)-.05,x=o.x+Math.sin(t*.4*o.s+o.a)*.015;
+        leaf(ctx,x*r.width,y*r.height,o.z,o.a+Math.sin(t*.5*o.s)*.5);
+      });
+    };
+    const loopD=now=>{draw(now);if(!reduce)requestAnimationFrame(loopD);};
+    requestAnimationFrame(loopD);
+  }
+
   // Globo terrestre (proyección ortográfica, dibujado en código: sin material de terceros)
   const globe=$("globe");
   if(globe){
@@ -398,11 +428,11 @@
   menuBtn.addEventListener("click",()=>{const o=nav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",o);});
 
   // ---------- Tono visual (moodboard 2026-11): color por sección y movimiento en el texto ----------
-  const tick=$("esfTicker");
-  if(tick){
-    const K=[["Atmósfera","atm","el tiempo y el clima"],["Hidrósfera","hid","océanos, ríos y acuíferos"],["Criósfera","cri","el agua congelada"],["Geósfera","geo","cinco placas tectónicas"],["Biósfera","bio","un país megadiverso"],["Todas","sis","todo está conectado"]];
-    const items=K.map(([n,k,d])=>`<li class="k-${k}">${miniIcon(n)}${n==="Todas"?"Sistema Tierra":n} <i>${d}</i></li>`).join("");
-    tick.innerHTML=`<div class="track"><ul>${items}</ul><ul aria-hidden="true">${items}</ul></div>`;
+  const latest=$("latest");
+  if(latest){
+    const L=[["Artículo del mes","Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra","articulo-mes.html","k-bio"],["Bitácora","Lanzamiento del OMCT · 1 de enero de 2027 · en línea","bitacora.html","k-geo"],["Vinculación","¿Publicaste un artículo? Proponlo para el Artículo del mes","vinculacion.html#articulo","k-cri"]];
+    const items=(h)=>L.map(([k,t,u,c])=>`<li class="${c}"><a href="${u}"${h?' tabindex="-1"':''}>${k} <i>${t}</i> <span aria-hidden="true">→</span></a></li>`).join("");
+    latest.innerHTML=`<span class="lt-label">Lo último</span><div class="lt-view"><div class="track"><ul>${items(0)}</ul><ul aria-hidden="true">${items(1)}</ul></div></div>`;
   }
   (function(){
     const TONES=["t-blue","t-teal","t-ochre","t-lav"];

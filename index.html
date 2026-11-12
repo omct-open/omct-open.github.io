@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=18">
+<link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body data-page="inicio">
 
@@ -57,7 +57,7 @@
       </div>
     </div>
   </div>
-  <div class="esf-ticker" id="esfTicker" role="region" aria-label="Las esferas que estudia el OMCT"></div>
+  <div class="esf-ticker latest" id="latest" role="region" aria-label="Lo último publicado en el OMCT"></div>
 
   <div class="band tight">
     <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:var(--s5);flex-wrap:wrap">
@@ -94,11 +94,12 @@
       </div>
       <div class="cards" id="newsCards"></div>
       <article class="aotm" aria-label="Artículo del mes">
-        <a class="aotm-thumb" href="articulo-mes.html" tabindex="-1" aria-hidden="true"><img src="articulo-mes-lamina.jpg" alt="" width="180" height="240" loading="lazy"></a>
+        <a class="aotm-thumb" href="articulo-mes.html" tabindex="-1" aria-hidden="true"><img src="articulo-mes-lamina-v2.jpg" alt="" width="180" height="240" loading="lazy"></a>
         <div class="aotm-body">
           <span class="eyebrow">Artículo del mes · enero de 2027 · vista preliminar</span>
-          <h3>Ardillas: tres formas de habitar las esferas de la Tierra</h3>
-          <p>Treinta y cinco especies, tres formas de vida y una lectura por esferas. Cada mes elegimos un artículo publicado sobre Ciencias de la Tierra en México, lo explicamos en lenguaje claro y le hacemos tres preguntas a sus autoras o autores.</p>
+          <h3>Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra</h3>
+          <p class="aotm-hook">Treinta y cinco especies, tres formas de vida y una lectura por esferas.</p>
+          <p>Cada mes elegimos un artículo publicado sobre Ciencias de la Tierra en México, lo explicamos en lenguaje claro y le hacemos tres preguntas a sus autoras o autores.</p>
           <div class="cta-row"><a class="btn primary" href="articulo-mes.html">Leer el artículo del mes</a><a class="btn ghost" href="vinculacion.html#articulo">Proponer un artículo</a></div>
         </div>
       </article>
@@ -144,6 +145,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=11"></script>
+<script src="main.js?v=12"></script>
 </body>
 </html>

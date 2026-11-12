@@ -25,7 +25,7 @@
     {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
     {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
     {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
-    {id:"articulo-mes",r:["estudiante","investigador"],type:"Artículo del mes",cls:"lav",title:"Primer Artículo del mes · enero 2027",text:"Lectura comentada de un artículo revisado por pares, con tres preguntas a su autora o autor.",lvl:"Intermedio",time:"10 min",esf:[],pal:"geo",credit:"Próximamente"},
+    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",cls:"lav",title:"Ardillas: tres formas de habitar las esferas de la Tierra",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"},
     {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
   ];
   const PRODS = [
@@ -110,8 +110,9 @@
     ctx.lineWidth=.8;contours(ctx,w,h,0,seed,[-1,-.5,0,.5,1],()=> "rgba(255,255,255,.45)",8);
   }
   function cardHTML(o,extra){
-    return `<article class="card"${o.id?` id="${o.id}"`:""}><div class="fig"><canvas data-pal="${o.pal}" aria-hidden="true"></canvas><span class="credit">${o.credit||"Ilustración de maqueta"}</span></div>
-    <div class="body"><div class="meta"><span class="pill ${o.cls}">${o.type}</span>${extra||""}</div><h3>${o.title}</h3><p>${o.text}</p></div></article>`;
+    const fig=o.img?`<img src="${o.img}" alt="" loading="lazy">`:`<canvas data-pal="${o.pal}" aria-hidden="true"></canvas>`;
+    return `<article class="card${o.href?" has-link":""}"${o.id?` id="${o.id}"`:""}><div class="fig">${fig}<span class="credit">${o.credit||"Ilustración de maqueta"}</span></div>
+    <div class="body"><div class="meta"><span class="pill ${o.cls}">${o.type}</span>${extra||""}</div><h3>${o.href?`<a href="${o.href}">${o.title}</a>`:o.title}</h3><p>${o.text}</p></div></article>`;
   }
   function paintFigs(root){root.querySelectorAll(".fig canvas").forEach((c,i)=>drawFig(c,c.dataset.pal,1.7+i*1.3));}
 
@@ -237,7 +238,7 @@
       const ctx=topo.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,r.width,r.height);
       const t=reduce?0:(now-tStart)/9000;
       ctx.lineWidth=1;
-      contours(ctx,r.width,r.height,t,0.4,[-1.4,-1,-.6,-.2,.2,.6,1,1.4],i=>i===4?css("--teal"):css("--contour"),10);
+      contours(ctx,r.width,r.height,t,0.4,[-1.4,-1,-.6,-.2,.2,.6,1,1.4],i=>i===4?css("--teal"):i===1?"rgba(193,98,16,.32)":i===6?"rgba(127,123,208,.42)":css("--contour"),10);
     };
     const loop=now=>{drawTopo(now);if(!reduce)requestAnimationFrame(loop);};
     requestAnimationFrame(loop);
@@ -395,6 +396,97 @@
   const page=document.body.dataset.page;
   nav.querySelectorAll("a").forEach(a=>{if(a.dataset.p===page)a.setAttribute("aria-current","page");});
   menuBtn.addEventListener("click",()=>{const o=nav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",o);});
+
+  // ---------- Tono visual (moodboard 2026-11): color por sección y movimiento en el texto ----------
+  const tick=$("esfTicker");
+  if(tick){
+    const K=[["Atmósfera","atm","el tiempo y el clima"],["Hidrósfera","hid","océanos, ríos y acuíferos"],["Criósfera","cri","el agua congelada"],["Geósfera","geo","cinco placas tectónicas"],["Biósfera","bio","un país megadiverso"],["Todas","sis","todo está conectado"]];
+    const items=K.map(([n,k,d])=>`<li class="k-${k}">${miniIcon(n)}${n==="Todas"?"Sistema Tierra":n} <i>${d}</i></li>`).join("");
+    tick.innerHTML=`<div class="track"><ul>${items}</ul><ul aria-hidden="true">${items}</ul></div>`;
+  }
+  (function(){
+    const TONES=["t-blue","t-teal","t-ochre","t-lav"];
+    document.querySelectorAll("main .hero, main .band").forEach((el,i)=>el.classList.add(TONES[i%TONES.length]));
+    const ANIM=!window.__omctNoAnim&&"IntersectionObserver" in window&&matchMedia("(prefers-reduced-motion: no-preference)").matches;
+    if(!ANIM)return;
+    document.documentElement.classList.add("anim");
+    const io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const t=e.target;t.classList.add("in");io.unobserve(t);
+      if(t.classList.contains("rv"))setTimeout(()=>t.classList.remove("rv","in"),900+(+t.style.getPropertyValue("--d")||0)*80);
+    }),{rootMargin:"0px 0px -6% 0px",threshold:.08});
+    // 1. Títulos: palabra por palabra
+    const split=h=>{
+      let n=0;
+      const walk=node=>[...node.childNodes].forEach(c=>{
+        if(c.nodeType===3){
+          const f=document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(p=>{
+            if(!p)return;
+            if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(p));return;}
+            const w=document.createElement("span");w.className="w";w.textContent=p;w.style.setProperty("--i",n++);f.appendChild(w);
+          });
+          c.replaceWith(f);
+        }else if(c.nodeType===1)walk(c);
+      });
+      walk(h);h.style.setProperty("--n",n);h.classList.add("split");io.observe(h);
+    };
+    document.querySelectorAll("main h1, main h2").forEach(split);
+    // 2. Etiquetas: aparecen letra a letra, como una lectura de instrumento
+    const ioE=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;ioE.unobserve(e.target);(e.target.__ey||[]).forEach(x=>x.classList.add("in"));}),{rootMargin:"0px 0px -6% 0px"});
+    document.querySelectorAll("main .eyebrow").forEach(e=>{e.style.setProperty("--c",Math.max(6,e.textContent.trim().length));e.classList.add("tw");const p=e.parentElement;(p.__ey=p.__ey||[]).push(e);ioE.observe(p);});
+    // 3. Bloques: entran escalonados
+    const SEL=".door,.card,.sphere,.src-card,.panel,.fair>div,.steps li,.type-item,.event,.person,.principles>div,.aotm,.bita-strip,.launch,.ficha,.cite,.cronica,.am-forma,.am-q,.am-block";
+    const seen=new Map();
+    document.querySelectorAll(SEL).forEach(el=>{
+      const k=el.parentElement;const i=seen.get(k)||0;seen.set(k,i+1);
+      el.style.setProperty("--d",Math.min(i,6));el.classList.add("rv");io.observe(el);
+    });
+    // 4. Cifras: cuentan hacia su valor
+    const ioN=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting)return;ioN.unobserve(e.target);
+      const el=e.target,txt=el.dataset.final,m=txt.match(/\d[\d  ]*(?:\.\d+)?/);if(!m)return;
+      const raw=m[0].trim(),dec=(raw.split(".")[1]||"").length,grp=/[  ]/.test(raw),val=parseFloat(raw.replace(/[  ]/g,""));
+      const fmt=v=>{let s=v.toFixed(dec);if(grp){const [a,b]=s.split(".");s=a.replace(/\B(?=(\d{3})+(?!\d))/g," ")+(b?"."+b:"");}return s;};
+      const pre=txt.slice(0,m.index),post=txt.slice(m.index+m[0].trimEnd().length),t0=performance.now(),D=1300;
+      const step=now=>{const p=Math.min(1,(now-t0)/D),k=1-Math.pow(1-p,3);el.textContent=pre+fmt(val*k)+post;if(p<1)requestAnimationFrame(step);else el.textContent=txt;};
+      requestAnimationFrame(step);
+    }),{threshold:.6});
+    document.querySelectorAll(".coords b,.cifras dt,[data-count]").forEach(el=>{el.dataset.final=el.textContent;ioN.observe(el);});
+  })();
+
+
+  // ---------- Artículo del mes: pestañas por esfera, lámina armada e índice ----------
+  const tabs=document.querySelectorAll('.am-tablist [role="tab"]');
+  if(tabs.length){
+    const sel=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;$(x.getAttribute("aria-controls")).hidden=!on;});};
+    tabs.forEach((t,i)=>{
+      t.addEventListener("click",()=>sel(t));
+      t.addEventListener("keydown",e=>{const d=e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0;if(!d)return;e.preventDefault();const n=tabs[(i+d+tabs.length)%tabs.length];sel(n);n.focus();});
+    });
+  }
+  const lam=$("lam");
+  if(lam){
+    const dlg=$("lamDlg");
+    lam.addEventListener("click",()=>{if(dlg&&dlg.showModal)dlg.showModal();else window.open(lam.querySelector("img").src,"_blank");});
+    if(dlg)dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close();});
+    if(document.documentElement.classList.contains("anim")){
+      // Collage: la lámina se arma por piezas (recortes de la misma imagen, 1080 × 1440)
+      const W=1080,H=1440,P=[[30,0,500,105,"translate(-40px,-34px) rotate(-7deg)"],[40,100,440,470,"translate(-70px,24px) scale(.55) rotate(-12deg)"],[450,50,620,420,"translate(70px,-24px) rotate(5deg)"],[400,420,680,960,"translate(90px,70px) rotate(7deg) scale(.9)"],[780,400,280,230,"translate(30px,-40px) rotate(14deg) scale(.6)"],[20,520,450,280,"translate(-80px,0) rotate(-6deg)"],[40,790,430,300,"translate(-80px,24px) rotate(5deg)"],[20,1120,740,250,"translate(0,70px) rotate(-4deg)"],[0,1330,1080,110,"translate(0,40px)"]];
+      P.forEach(([x,y,w,h,f],k)=>{const d=document.createElement("span");d.className="lam-p";d.setAttribute("aria-hidden","true");
+        const c=`inset(${y/H*100}% ${(W-x-w)/W*100}% ${(H-y-h)/H*100}% ${x/W*100}%)`;d.style.clipPath=c;d.style.webkitClipPath=c;
+        d.style.transformOrigin=`${(x+w/2)/W*100}% ${(y+h/2)/H*100}%`;d.style.setProperty("--from",f);d.style.setProperty("--k",k);lam.insertBefore(d,lam.querySelector(".lam-zoom"));});
+      lam.style.setProperty("--bd",(P.length*160+300)+"ms");
+      const lio=new IntersectionObserver(es=>{if(es[0].isIntersecting){setTimeout(()=>lam.classList.add("on"),150);lio.disconnect();}},{threshold:.3});lio.observe(lam);
+      const rp=$("lamReplay");if(rp)rp.addEventListener("click",()=>{lam.classList.remove("on");setTimeout(()=>lam.classList.add("on"),500);});
+    }
+  }
+  const amIdx=$("amIndex");
+  if(amIdx&&"IntersectionObserver" in window){
+    const links=[...amIdx.querySelectorAll("a")];
+    const iio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.setAttribute("aria-current",a.hash==="#"+e.target.id?"true":"false"));}),{rootMargin:"-30% 0px -60% 0px"});
+    links.forEach(a=>{const t=document.getElementById(a.hash.slice(1));if(t)iio.observe(t);});
+  }
 
   paintFigs(document);
   let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>paintFigs(document),200);});

@@ -27,7 +27,7 @@
     {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
     {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
     {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
-    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",ic:"fauna",cls:"lav",title:"Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v3.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"},
+    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",ic:"biosfera",cls:"lav",title:"Trepar, cavar y planear: las ardillas en México",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v3.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"},
     {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
   ];
   const PRODS = [
@@ -48,7 +48,7 @@
     ["Dilo en ciencia","Serie breve que lleva una palabra cotidiana a su término científico preciso.","Público general, estudiantes y redes sociales"],
     ["Caso de estudio","Análisis aplicado a un lugar o evento de México, de la pregunta a la conclusión.","Estudiantes e investigadores"],
     ["Seminario web o clase grabada","Sesión en vivo con una persona especialista, que queda grabada con sus materiales.","Todo público"],
-    ["Artículo del mes|fauna","Lectura comentada de un artículo científico sobre México, con tres preguntas a su autora o autor.","Estudiantes, investigadores y público interesado"]
+    ["Artículo del mes|biosfera","Lectura comentada de un artículo científico sobre México, con tres preguntas a su autora o autor.","Estudiantes, investigadores y público interesado"]
   ];
   const TYPES_PROD = [
     ["Base de datos","Conjunto de datos organizado y documentado, generado o integrado por el OMCT, con diccionario de variables y metadatos.","Investigadores y estudiantes de posgrado"],
@@ -434,7 +434,7 @@
   document.querySelectorAll("[data-ic]").forEach(e=>{if(ICONS[e.dataset.ic])e.innerHTML=ICONS[e.dataset.ic];});
   const latest=$("latest");
   if(latest){
-    const L=[["Artículo del mes|fauna","Trepar, cavar y planear: las ardillas que conectan las esferas de la Tierra","articulo-mes.html","k-bio"],["Bitácora|comunidad","Lanzamiento del OMCT · 1 de enero de 2027 · en línea","bitacora.html","k-geo"],["Vinculación|analisis","¿Publicaste un artículo? Proponlo para el Artículo del mes","vinculacion.html#articulo","k-cri"]];
+    const L=[["Artículo del mes|biosfera","Trepar, cavar y planear: las ardillas en México","articulo-mes.html","k-bio"],["Bitácora|comunidad","Lanzamiento del OMCT · 1 de enero de 2027 · en línea","bitacora.html","k-geo"],["Vinculación|analisis","¿Publicaste un artículo? Proponlo para el Artículo del mes","vinculacion.html#articulo","k-cri"]];
     const items=(h)=>L.map(([kk,t,u,c])=>{const [k,ic]=kk.split("|");return `<li class="${c}"><a href="${u}"${h?' tabindex="-1"':''}><span class="lt-ic">${ICONS[ic]}</span>${k} <i>${t}</i> <span aria-hidden="true">→</span></a></li>`;}).join("");
     latest.innerHTML=`<span class="lt-label">Lo último</span><div class="lt-view"><div class="track"><ul>${items(0)}</ul><ul aria-hidden="true">${items(1)}</ul></div></div>`;
   }

@@ -729,3 +729,12 @@ html:not(.anim) #lamReplay{display:none}
 .am-risk{position:relative;padding-right:calc(var(--s6) + 3.5rem)}
 .am-risk .am-ic{position:absolute;right:var(--s5);top:var(--s5);margin:0}
 @media (max-width:600px){.am-sis{padding-right:var(--s5)}.am-sis .am-ic{position:static;transform:none}.am-risk{padding-right:var(--s5)}.am-risk .am-ic{position:static}}
+.am-risk{padding-right:var(--s6)}
+/* Índice del Artículo del mes en teléfono: fila fija arriba del texto, sin quedar sobrepuesto */
+@media (max-width:960px){
+  .am-index{display:grid;position:static;gap:var(--s2)}
+  .am-index ol{display:flex;gap:.4rem;overflow-x:auto;border-left:0;padding-bottom:.3rem;scrollbar-width:thin}
+  .am-index a{white-space:nowrap;padding:.35rem .7rem;margin:0;border:1px solid var(--line);border-radius:99px;background:var(--surface);font-size:.85rem}
+  .am-index a:hover{padding-left:.7rem}
+  .am-index a[aria-current="true"]{border-color:var(--b-leaf,#6A994E)}
+}

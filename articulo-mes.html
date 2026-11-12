@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body data-page="aprende" class="pg-bio">
 
@@ -63,7 +63,7 @@
         </div>
         <figure class="am-lamina">
           <button class="lam" id="lam" type="button" aria-label="Ver en grande la lámina: 35 especies de ardillas en México">
-            <img class="lam-base" src="articulo-mes-lamina-v2.jpg" alt="" width="1080" height="1440">
+            <img class="lam-base" src="articulo-mes-lamina-v3.jpg" alt="" width="1080" height="1440">
             <span class="lam-zoom" aria-hidden="true">Ampliar</span>
           </button>
           <figcaption><span>Lámina del mes · diseño: OMCT con Canva · la ardilla y el paisaje son imágenes generadas con IA</span><button type="button" class="copy" id="lamReplay">↻ Armar de nuevo</button></figcaption>
@@ -143,8 +143,8 @@
             <div class="am-panel" role="tabpanel" id="p-geo" aria-labelledby="tab-geo" hidden style="--tc:#C16210;--tt:var(--ochre);--ts:var(--ochre-soft)"><span class="am-panel-k">Geósfera</span><h3>Ingenieras bajo nuestros pies</h3><p>Al cavar túneles y cámaras, las ardillas terrestres remueven y airean el suelo. Sus madrigueras abandonadas se vuelven refugio de lagartijas, serpientes, ratas de campo, escarabajos y otros artrópodos.</p></div>
             <div class="am-panel" role="tabpanel" id="p-hid" aria-labelledby="tab-hid" hidden style="--tc:#40ADB8;--tt:var(--hid-text);--ts:var(--teal-soft)"><span class="am-panel-k">Hidrósfera</span><h3>Caminos para el agua</h3><p>El suelo removido por las madrigueras puede favorecer que el agua de lluvia se infiltre y modificar las características del sustrato.</p></div>
           </div>
-          <div class="am-sis am-block"><span class="am-sis-k">Sistema Tierra</span><p>Conservar ardillas es conservar paisajes completos y bien conectados: la Tierra funciona como sistema.</p></div>
-          <div class="am-risk am-block"><h3>Especies protegidas</h3><p>Varias especies endémicas con áreas de distribución pequeñas, como la ardilla de Perote o el perrito de la pradera mexicano, están en categorías de riesgo de la NOM-059-SEMARNAT-2010. Para ellas, perder una superficie pequeña de hábitat puede significar perder buena parte del territorio que necesitan.</p></div>
+          <div class="am-sis am-block"><span class="am-ic" data-ic="sistema_tierra" aria-hidden="true"></span><span class="am-sis-k">Sistema Tierra</span><p>Conservar ardillas es conservar paisajes completos y bien conectados: la Tierra funciona como sistema.</p></div>
+          <div class="am-risk am-block"><span class="am-ic" data-ic="fauna" aria-hidden="true"></span><h3>Especies protegidas</h3><p>Varias especies endémicas con áreas de distribución pequeñas, como la ardilla de Perote o el perrito de la pradera mexicano, están en categorías de riesgo de la NOM-059-SEMARNAT-2010. Para ellas, perder una superficie pequeña de hábitat puede significar perder buena parte del territorio que necesitan.</p></div>
         </section>
 
         <section class="am-sec" aria-labelledby="preguntas">
@@ -194,7 +194,7 @@
     </div>
   </div>
   <dialog class="lam-dlg" id="lamDlg" aria-label="Lámina en grande">
-  <img src="articulo-mes-lamina-v2.jpg" alt="Lámina del OMCT, con su logotipo y un código QR al sitio: 35 especies de ardillas en México; 12 solo viven aquí. Qué las amenaza: deforestación, expansión de las ciudades, fragmentación de los bosques y cambio climático. En riesgo: ardilla de Perote, perrito de la pradera mexicano y ardilla de Peters. Conservarlas es conservar bosques, matorrales y pastizales conectados." width="1080" height="1440">
+  <img src="articulo-mes-lamina-v3.jpg" alt="Lámina del OMCT, con su logotipo y un código QR al sitio: 35 especies de ardillas en México; 12 solo viven aquí. Qué las amenaza: deforestación, expansión de las ciudades, fragmentación de los bosques y cambio climático. En riesgo: ardilla de Perote, perrito de la pradera mexicano y ardilla de Peters. Conservarlas es conservar bosques, matorrales y pastizales conectados." width="1080" height="1440">
   <form method="dialog"><button class="btn ghost" type="submit">Cerrar</button></form>
 </dialog>
 </section>
@@ -219,6 +219,6 @@
 </footer>
 
 <div class="toast" id="toast" hidden></div>
-<script src="main.js?v=12"></script>
+<script src="main.js?v=13"></script>
 </body>
 </html>

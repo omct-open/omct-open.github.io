@@ -522,6 +522,15 @@
     links.forEach(a=>{const t=document.getElementById(a.hash.slice(1));if(t)iio.observe(t);});
   }
 
+
+  // Contador de visitas (GoatCounter: sin cookies ni datos personales). Solo en el sitio publicado.
+  if(!window.__omctNoAnim&&location.hostname==="omct-open.github.io"){
+    const gc=p=>fetch("https://omct-open.goatcounter.com/counter/"+encodeURIComponent(p)+".json").then(r=>r.ok?r.json():null).catch(()=>null);
+    const vis=$("visits");
+    if(vis)gc("TOTAL").then(d=>{if(d&&d.count){vis.textContent=d.count+" visitas al sitio";vis.hidden=false;}});
+    const rd=$("amReads");
+    if(rd)gc(location.pathname).then(d=>{if(d&&d.count){rd.textContent=" · "+d.count+" lecturas";rd.hidden=false;}});
+  }
   paintFigs(document);
   let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>paintFigs(document),200);});
 })();

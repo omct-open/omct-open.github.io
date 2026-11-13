@@ -743,3 +743,6 @@ html:not(.anim) #lamReplay{display:none}
 .legal article td:first-child{color:var(--ink)}
 .legal article h3{scroll-margin-top:6rem}
 .panel .priv-short{font-size:.78rem;line-height:1.5;padding-top:var(--s3);border-top:1px solid var(--line)}
+.legalline .visits{font-family:var(--f-mono);font-size:.78rem;opacity:.75}
+.legalline .visits::before{content:"";display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:var(--cta);margin-right:.45rem;vertical-align:.05em}
+.am-reads{font-weight:400;color:var(--muted);font-size:.85em}

@@ -738,3 +738,8 @@ html:not(.anim) #lamReplay{display:none}
   .am-index a:hover{padding-left:.7rem}
   .am-index a[aria-current="true"]{border-color:var(--b-leaf,#6A994E)}
 }
+.legal article .table-wrap{margin:0}
+.legal article td{color:var(--muted)}
+.legal article td:first-child{color:var(--ink)}
+.legal article h3{scroll-margin-top:6rem}
+.panel .priv-short{font-size:.78rem;line-height:1.5;padding-top:var(--s3);border-top:1px solid var(--line)}

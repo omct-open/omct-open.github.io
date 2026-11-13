@@ -529,7 +529,18 @@
     const vis=$("visits");
     if(vis)gc("TOTAL").then(d=>{if(d&&d.count){vis.textContent=d.count+" visitas al sitio";vis.hidden=false;}});
     const rd=$("amReads");
-    if(rd)gc(location.pathname).then(d=>{if(d&&d.count){rd.textContent=" · "+d.count+" lecturas";rd.hidden=false;}});
+    if(rd)gc(location.pathname).then(d=>{
+      const n=d&&d.count?parseInt(String(d.count).replace(/\D/g,""),10):0;if(!n)return;
+      // Contador de pinos: hasta 10 pinos; cada pino vale 1, 5, 10, 50, 100… lecturas
+      const steps=[1,5,10,25,50,100,250,500,1000,5000,10000];const u=steps.find(x=>n/x<=10)||Math.ceil(n/10);
+      const full=Math.floor(n/u),part=(n%u)/u;
+      const pine='<svg viewBox="0 0 24 32"><path d="M12 2 5 12h4l-5 7h5l-5 7h16l-5-7h5l-5-7h4z"/><rect x="10.5" y="26" width="3" height="5" rx=".6"/></svg>';
+      let h="";for(let i=0;i<full;i++)h+=`<i style="--k:${i}">${pine}</i>`;
+      if(part>0)h+=`<i class="part" style="--k:${full};--p:${Math.max(.2,part)}">${pine}</i>`;
+      rd.querySelector(".am-pinos").innerHTML=h;
+      rd.querySelector(".am-reads-t").innerHTML=`<b>${n.toLocaleString("es-MX")}</b> ${n===1?"lectura":"lecturas"}<small>${u===1?"cada pino = 1 lectura":"cada pino = "+u.toLocaleString("es-MX")+" lecturas"}</small>`;
+      rd.hidden=false;
+    });
   }
   paintFigs(document);
   let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>paintFigs(document),200);});

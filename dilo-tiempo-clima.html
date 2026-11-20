@@ -15,10 +15,195 @@
 <meta property="og:image" content="https://omct-open.github.io/omct-isotipo-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Londrina+Solid:wght@400;900&family=Barriecito&display=swap">
 <link rel="stylesheet" href="styles.css?v=25">
+<style>
+/* ===== Dilo en ciencia · Atmósfera (paleta del moodboard: cielo · sol · atardecer · nube) ===== */
+.dz{--cielo:#2B5C8A;--sol:#F2B84B;--celeste:#9CCBE8;--tarde:#E07A5F;--nube:#F4F1EA;--noche:#0C193A;--base:#4167BC;--ocre:#C16210;--disp:'Londrina Solid',Impact,sans-serif;--hand:'Barriecito','Comic Sans MS',cursive}
+.dz .wrap{position:relative}
+.dz-svg{display:block}
+.dz-ic{flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;border:3px solid var(--noche);box-shadow:5px 5px 0 var(--base)}
+.dz-tag{display:inline-block;align-self:flex-start;justify-self:start;width:max-content;max-width:100%;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--nube);color:var(--noche);transform:rotate(-3deg)}
+.dz-hand{font-family:var(--hand);font-weight:400}
+
+/* --- Portada --- */
+.dz-hero{position:relative;overflow:hidden;background:var(--cielo);color:#fff;isolation:isolate}
+.dz-hero .wrap{padding-block:clamp(2.5rem,6vw,4.5rem) clamp(3rem,7vw,5rem)}
+.dz-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.dz-bg svg{position:absolute;display:block}
+.dz-curvas{inset:0;width:100%;height:100%}
+.dz-franjas{right:-60px;top:-40px;height:calc(100% + 80px);width:min(48%,560px)}
+.dz-franjas path{animation:dzOla 9s ease-in-out infinite alternate}
+.dz-franjas path:nth-child(2){animation-delay:-2s}.dz-franjas path:nth-child(3){animation-delay:-4s}.dz-franjas path:nth-child(4){animation-delay:-6s}
+@keyframes dzOla{from{transform:translateX(0)}to{transform:translateX(-26px)}}
+.dz-sol{right:clamp(140px,26%,330px);top:28px;width:110px;height:110px;animation:dzSube 2.4s cubic-bezier(.2,.8,.2,1) both}
+.dz-sol .rayos{transform-origin:55px 55px;animation:dzGira 40s linear infinite}
+@keyframes dzSube{from{transform:translateY(80px);opacity:0}to{transform:none;opacity:1}}
+@keyframes dzGira{to{transform:rotate(360deg)}}
+.dz-nube{animation:dzNube linear infinite}
+.dz-nube.n1{top:10px;width:96px;animation-duration:38s}
+.dz-nube.n2{bottom:14px;width:110px;animation-duration:52s;animation-delay:-20s}
+@keyframes dzNube{from{left:-180px}to{left:100%}}
+.dz-hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:var(--s6);align-items:center}
+@media (max-width:900px){.dz-hero-grid{grid-template-columns:1fr}.dz-franjas{width:62%;opacity:.55}.dz-sol{right:18px}}
+.dz-hero-text{display:grid;gap:var(--s4)}
+.dz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.85rem;color:#DCE8F4}
+.dz-crumbs a{color:#fff;font-weight:500;text-decoration:none}.dz-crumbs a:hover{text-decoration:underline}
+.dz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.01em;text-transform:uppercase;color:#fff;max-width:15ch}
+.dz-h1 .sol{color:var(--sol);display:block}
+.dz-tacha{position:relative;display:inline-block;white-space:nowrap}
+.dz-tacha svg{position:absolute;left:-4%;top:42%;width:108%;height:.5em;overflow:visible}
+.dz-tacha path{stroke-dasharray:240;stroke-dashoffset:240;animation:dzTraza .7s .9s ease-out forwards}
+.dz-sub{display:block;width:min(360px,80%);height:18px;margin-top:-.3rem}
+.dz-sub path{stroke-dasharray:380;stroke-dashoffset:380;animation:dzTraza .9s 1.5s ease-out forwards}
+@keyframes dzTraza{to{stroke-dashoffset:0}}
+.dz-lead{font-size:1.15rem;max-width:34rem;color:#EAF2FA}
+.dz-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.dz-chips span{font:500 .78rem var(--f-mono);letter-spacing:.06em;padding:.4rem .75rem;border-radius:99px;background:rgba(12,25,58,.35);border:1px solid rgba(255,255,255,.35);color:#fff}
+.dz-chips b{font-weight:500;color:var(--sol)}
+.dz-by{font-size:.9rem;color:#DCE8F4}.dz-by b{color:#fff;font-weight:500}
+.dz-hero-art{position:relative;justify-self:center;width:260px;height:260px}
+.dz-hero-art .dz-ic{position:absolute;left:40px;bottom:30px;width:130px;height:130px;animation:dzFlota 5s ease-in-out infinite}
+@keyframes dzFlota{50%{transform:translateY(-10px)}}
+.dz-sello{position:absolute;right:6px;top:8px;width:128px;height:128px;transform:rotate(-10deg)}
+.dz-sello svg{position:absolute;inset:0;animation:dzGira 24s linear infinite}
+.dz-sello span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;color:var(--noche);line-height:.9;font-size:1.05rem;text-transform:uppercase;text-align:center}
+.dz-sello span b{font-size:2.3rem}
+@media (max-width:900px){.dz-hero-art{width:240px;height:200px;justify-self:start}.dz-hero-art .dz-ic{bottom:10px}}
+
+/* --- Cuerpo --- */
+.dz-body{display:grid;gap:clamp(3.5rem,7vw,5.5rem);max-width:56rem;margin-inline:auto}
+.dz-sec{display:grid;gap:var(--s5);scroll-margin-top:6rem}
+.dz-head{display:flex;align-items:flex-end;gap:var(--s4)}
+.dz-head>div{display:grid;gap:.35rem}
+.dz-num{font:900 clamp(3rem,6vw,4rem)/.8 var(--disp);color:var(--cielo)}
+.dz-sec:nth-child(2n) .dz-num{color:var(--tarde)}
+.dz-sec h2{margin:0}
+
+/* 01 · tarjetas */
+.dz-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5)}
+@media (max-width:760px){.dz-pair{grid-template-columns:1fr}}
+.dz-card{display:grid;grid-template-rows:auto 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.dz-card-fig{position:relative;height:220px;overflow:hidden}
+.dz-card-body{display:grid;gap:.5rem;align-content:start;padding:var(--s5)}
+.dz-card h3{margin:0;font:900 2rem/1 var(--disp);text-transform:uppercase;letter-spacing:.02em}
+.dz-card.t h3{color:var(--ocre)}.dz-card.c h3{color:var(--base)}
+:root[data-theme="dark"] .dz-card.c h3{color:#9CCBE8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .dz-card.c h3{color:#9CCBE8}}
+.dz-card .dz-tag{transform:rotate(-2deg)}
+/* Ventana del tiempo: cuatro estados que se suceden */
+.dz-ventana{background:var(--celeste)}
+.dz-ventana .esc{position:absolute;inset:0;opacity:0;animation:dzEstado 12s infinite}
+.dz-ventana .esc:nth-of-type(2){animation-delay:3s}.dz-ventana .esc:nth-of-type(3){animation-delay:6s}.dz-ventana .esc:nth-of-type(4){animation-delay:9s}
+@keyframes dzEstado{0%{opacity:0}4%,25%{opacity:1}29%,100%{opacity:0}}
+.dz-ventana .esc svg{width:100%;height:100%}
+.dz-ventana .lab{position:absolute;left:16px;bottom:14px;font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--noche);color:#fff;padding:.3rem .6rem;border-radius:99px}
+.dz-ventana .hora{position:absolute;right:16px;top:14px;font:500 .78rem var(--f-mono);background:#fff;color:var(--noche);padding:.25rem .55rem;border-radius:6px;border:2px solid var(--noche)}
+.dz-lluvia line{animation:dzLluvia .7s linear infinite}
+.dz-lluvia line:nth-child(2n){animation-delay:-.35s}
+@keyframes dzLluvia{from{transform:translateY(-14px)}to{transform:translateY(14px)}}
+.dz-viento path{stroke-dasharray:40 200;animation:dzViento 1.8s linear infinite}
+.dz-viento path:nth-child(2){animation-delay:-.6s}.dz-viento path:nth-child(3){animation-delay:-1.2s}
+@keyframes dzViento{from{stroke-dashoffset:240}to{stroke-dashoffset:0}}
+.dz-mueve{animation:dzMueve 6s ease-in-out infinite alternate}
+@keyframes dzMueve{to{transform:translateX(28px)}}
+/* Anillo de 30 años */
+.dz-anillo{background:var(--nube);display:flex;align-items:center;justify-content:center}
+.dz-anillo svg{width:200px;height:200px;overflow:visible}
+.dz-anillo .seg{opacity:0;transform-origin:100px 100px;transform:scale(.6);transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*55ms)}
+.dz-anillo.on .seg{opacity:1;transform:none}
+.dz-anillo text{font-family:var(--disp);font-weight:900;fill:var(--noche)}
+/* La regla */
+.dz-regla{position:relative;overflow:hidden;display:grid;gap:.4rem;padding:var(--s6) var(--s6) var(--s6) calc(var(--s6) + 96px);background:var(--cielo);color:#fff;border-radius:14px}
+.dz-regla .dz-ic{position:absolute;left:var(--s5);top:50%;margin-top:-38px;width:76px;height:76px;box-shadow:5px 5px 0 var(--sol)}
+.dz-regla small{font:500 .74rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--sol)}
+.dz-regla p{margin:0;font:500 clamp(1.25rem,2.4vw,1.6rem)/1.3 var(--f-display)}
+@media (max-width:560px){.dz-regla{padding:var(--s5);padding-top:calc(var(--s5) + 70px)}.dz-regla .dz-ic{top:var(--s5);margin-top:0;width:60px;height:60px}}
+
+/* 02 · instrumentos */
+.dz-inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:760px){.dz-inst{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dz-inst figure{margin:0;display:grid;justify-items:center;gap:.7rem;text-align:center}
+.dz-inst .dz-ic{width:96px;height:96px}
+.dz-inst figcaption{font-size:.9rem;font-weight:500}
+.dz-radar .barrido{transform-origin:32px 34px;animation:dzGira 3.2s linear infinite}
+.dz-sat .orb{transform-origin:32px 32px;animation:dzGira 7s linear infinite}
+.dz-globo .sube{animation:dzGlobo 3.6s ease-in-out infinite}
+@keyframes dzGlobo{50%{transform:translateY(-6px)}}
+.dz-est .aspas{transform-origin:40px 16px;animation:dzGira 1.6s linear infinite}
+.dz-flecha{display:flex;align-items:center;gap:var(--s4);justify-content:center}
+.dz-flecha svg{width:120px;height:46px}
+.dz-flecha .dz-hand{font-size:1.5rem;color:var(--tarde);transform:rotate(-4deg)}
+.dz-reg{display:grid;gap:.6rem;padding:var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.dz-reg-bar{display:flex;align-items:flex-end;gap:4px;height:64px}
+.dz-reg-bar i{flex:1;height:100%;border-radius:4px 4px 0 0;background:var(--c);transform:scaleY(0);transform-origin:bottom;transition:transform .5s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*35ms)}
+.dz-reg.on .dz-reg-bar i{transform:scaleY(1)}
+.dz-reg-ax{display:flex;justify-content:space-between;font:500 .78rem var(--f-mono);color:var(--muted)}
+.dz-reg p{margin:0;font-size:.98rem}
+.dz-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:760px){.dz-two{grid-template-columns:1fr}}
+.dz-two p{margin:0}.dz-two b{font-family:var(--disp);font-weight:900;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em;display:block;margin-bottom:.2rem}
+.dz-two .t b{color:var(--ocre)}.dz-two .c b{color:var(--base)}
+
+/* 03 · México: frente frío */
+.dz-mx{position:relative;overflow:hidden;border-radius:14px;background:var(--nube);color:var(--noche);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:760px){.dz-mx{grid-template-columns:1fr}}
+.dz-mx-t{position:relative;overflow:hidden;min-height:260px;padding:var(--s6);display:grid;align-content:end;gap:.5rem;background:var(--celeste)}
+.dz-frente{position:absolute;top:0;bottom:0;left:-30%;width:70px;animation:dzFrente 7s cubic-bezier(.45,0,.55,1) infinite}
+.dz-frente svg{height:100%;width:70px}
+@keyframes dzFrente{0%{left:-20%}70%,100%{left:105%}}
+.dz-mx-t .dz-tag,.dz-mx-c .dz-tag{background:var(--noche);color:#fff}
+.dz-mx p{margin:0;font-size:1.05rem;max-width:26rem;position:relative;z-index:1}
+.dz-mx-t .dz-tag{position:relative;z-index:1}
+.dz-mx-t p{background:rgba(156,203,232,.85);border-radius:6px}
+.dz-mx-c{padding:var(--s6);display:grid;gap:.6rem;align-content:center}
+.dz-cifra{display:flex;align-items:baseline;gap:.6rem}
+.dz-cifra b{font:900 clamp(4rem,9vw,5.6rem)/.85 var(--disp);color:var(--tarde);-webkit-text-stroke:2px var(--noche)}
+.dz-cifra span{font-weight:600;max-width:12rem;line-height:1.25}
+.dz-meses{display:flex;flex-wrap:wrap;gap:4px}
+.dz-meses span{font:500 .72rem var(--f-mono);padding:.3rem .45rem;border-radius:6px;background:#fff;border:2px solid var(--noche);opacity:.25;transform:translateY(6px);transition:opacity .3s,transform .3s;transition-delay:calc(var(--i)*90ms)}
+.dz-mx.on .dz-meses span{opacity:1;transform:none}
+.dz-fuente{font:400 .74rem var(--f-mono);color:#55627A}
+
+/* 04 · Dilo */
+.dz-frase{position:relative;margin:0;padding:var(--s6);padding-right:clamp(var(--s6),18%,10rem);background:var(--noche);color:#fff;border-radius:14px;overflow:hidden}
+.dz-frase p{margin:0;font:500 clamp(1.4rem,3vw,2rem)/1.3 var(--f-display)}
+.dz-frase mark{background:none;color:var(--sol);position:relative;white-space:nowrap}
+.dz-frase mark svg{position:absolute;left:0;bottom:-.25em;width:100%;height:.4em;overflow:visible}
+.dz-frase mark path{stroke-dasharray:300;stroke-dashoffset:300;transition:stroke-dashoffset 1s .3s ease-out}
+.dz-frase.on mark path{stroke-dashoffset:0}
+.dz-frase .nota{position:absolute;right:var(--s5);top:var(--s4);font-size:1.6rem;color:var(--celeste);transform:rotate(8deg)}
+.dz-frase .franja{position:absolute;right:-30px;bottom:-30px;width:180px;height:120px;opacity:.9}
+.dz-frase-acc{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.dz-quiz{display:grid;gap:var(--s3);padding:var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.dz-quiz h3{margin:0;font:900 1.6rem/1 var(--disp);text-transform:uppercase;letter-spacing:.02em}
+.dz-quiz ol{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
+.dz-q{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem var(--s4);align-items:center;padding:var(--s3) var(--s4);border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.dz-q p{margin:0}
+.dz-q .bts{display:flex;gap:.4rem}
+.dz-q button{font:600 .85rem var(--f-body);min-height:44px;padding:.4rem .9rem;border-radius:99px;border:2px solid var(--noche);background:#fff;color:var(--noche);cursor:pointer;transition:transform .15s,background .2s}
+.dz-q button:hover{transform:translateY(-2px)}
+.dz-q button[aria-pressed="true"].ok{background:var(--sol)}
+.dz-q button[aria-pressed="true"].no{background:var(--nube);text-decoration:line-through}
+.dz-q .fb{grid-column:1/-1;margin:0;font-size:.9rem;color:var(--muted)}
+.dz-q .fb:empty{display:none}
+@media (max-width:560px){.dz-q{grid-template-columns:1fr}}
+.dz-quiz-score{font:500 .85rem var(--f-mono);color:var(--muted)}
+
+.dz-refs{margin:0;padding-left:1.1rem;display:grid;gap:var(--s3);font-size:.92rem;color:var(--muted)}
+.dz-refs i{color:var(--ink)}
+.dz .cite{border-left-color:var(--cielo)}
+
+@media (prefers-reduced-motion:reduce){
+  .dz-anillo .seg,.dz-reg-bar i,.dz-meses span{opacity:1!important;transform:none!important}
+  .dz-tacha path,.dz-sub path,.dz-frase mark path{stroke-dashoffset:0!important}
+  .dz-ventana .esc{opacity:0}.dz-ventana .esc:first-of-type{opacity:1}
+  .dz-frente{left:40%}
+  .dz-sol{opacity:1}
+}
+</style>
 </head>
-<body data-page="aprende" class="pg-atm">
+<body data-page="aprende" class="dz">
 
 <div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal</span></div></div>
 
@@ -42,86 +227,142 @@
 
 <main>
 <section>
-  <div class="hero am-hero">
+  <!-- ================= PORTADA ================= -->
+  <div class="dz-hero">
+    <div class="dz-bg" aria-hidden="true">
+      <svg class="dz-curvas" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="#9CCBE8" stroke-opacity=".18" stroke-width="1.5"><path d="M-20 420c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/><path d="M-20 460c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/><path d="M-20 380c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/><path d="M-20 340c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/></g></svg>
+      <svg class="dz-nube n1" viewBox="0 0 150 60"><path d="M20 52h104a20 20 0 0 0 2-40 30 30 0 0 0-56-6A24 24 0 0 0 20 52Z" fill="#F4F1EA"/></svg>
+      <svg class="dz-nube n2" viewBox="0 0 150 60"><path d="M20 52h104a20 20 0 0 0 2-40 30 30 0 0 0-56-6A24 24 0 0 0 20 52Z" fill="#9CCBE8"/></svg>
+      <svg class="dz-sol" viewBox="0 0 110 110"><g class="rayos" stroke="#F2B84B" stroke-width="6" stroke-linecap="round"><path d="M55 4v12M55 94v12M4 55h12M94 55h12M19 19l8 8M83 83l8 8M91 19l-8 8M27 83l-8 8"/></g><circle cx="55" cy="55" r="26" fill="#F2B84B"/></svg>
+      <svg class="dz-franjas" viewBox="0 0 300 600" preserveAspectRatio="xMaxYMid slice"><g fill="none" stroke-width="40" stroke-linecap="round"><path d="M80 -60 C30 80 150 180 90 320 S130 520 80 680" stroke="#9CCBE8"/><path d="M134 -60 C84 80 204 180 144 320 S184 520 134 680" stroke="#F2B84B"/><path d="M188 -60 C138 80 258 180 198 320 S238 520 188 680" stroke="#E07A5F"/><path d="M242 -60 C192 80 312 180 252 320 S292 520 242 680" stroke="#F4F1EA"/></g></svg>
+    </div>
     <div class="wrap">
-      <div class="am-hero-grid">
-        <div class="am-hero-text">
-          <nav class="am-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Dilo en ciencia</span><span aria-hidden="true">/</span><span>N.º 01</span></nav>
-          <span class="eyebrow">N.º 01 · Dilo en ciencia · Atmósfera</span>
-          <h1>«Hoy hace buen clima»… <em>¿o buen tiempo?</em></h1>
-          <p class="lead">Lo que cambia de un día a otro es el tiempo. El clima se mide en décadas.</p>
-          <dl class="am-meta">
-            <div><dt>Tipo</dt><dd>Dilo en ciencia</dd></div>
-            <div><dt>Esfera</dt><dd class="am-esf"><svg class="esf-mini m-atm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.2"/><path d="M16.8 9.6a5.5 5.5 0 1 0 .4 4.6"/></svg>Atmósfera</dd></div>
-            <div><dt>Nivel</dt><dd>Básico</dd></div>
-            <div><dt>Lectura</dt><dd>1 min</dd></div>
-          </dl>
-          <p class="am-by">Texto de <b>Katia Fernández González</b>.</p>
+      <div class="dz-hero-grid">
+        <div class="dz-hero-text">
+          <nav class="dz-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Dilo en ciencia</span><span aria-hidden="true">/</span><span>N.º 01</span></nav>
+          <span class="dz-tag">Dilo en ciencia · Atmósfera</span>
+          <h1 class="dz-h1">«Hoy hace buen <span class="dz-tacha">clima<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C60 4 130 16 196 6" fill="none" stroke="#E07A5F" stroke-width="7" stroke-linecap="round"/></svg></span>»… <span class="sol">¿o buen tiempo?</span></h1>
+          <svg class="dz-sub" viewBox="0 0 360 18" aria-hidden="true"><path d="M4 10 C80 2 180 16 260 8 S340 6 356 10" fill="none" stroke="#9CCBE8" stroke-width="6" stroke-linecap="round"/></svg>
+          <p class="dz-lead">Lo que cambia de un día a otro es el tiempo. El clima se mide en décadas.</p>
+          <div class="dz-chips"><span><b>Tipo</b> Dilo en ciencia</span><span><b>Nivel</b> Básico</span><span><b>Lectura</b> 1 min</span></div>
+          <p class="dz-by">Texto de <b>Katia Fernández González</b>.</p>
         </div>
-
-        <figure class="dl-par" aria-labelledby="dlParCap">
-          <div class="dl-row dl-t">
-            <div class="dl-k"><b>Tiempo</b><span>un momento</span></div>
-            <div class="dl-scale" aria-hidden="true"><i class="on"></i></div>
-            <p class="dl-u"><span>Hoy, 13:00</span><span>minutos · horas · días</span></p>
-          </div>
-          <div class="dl-row dl-c">
-            <div class="dl-k"><b>Clima</b><span>muchos años</span></div>
-            <div class="dl-scale" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <p class="dl-u"><span>1991</span><span>30 años de registros</span><span>2020</span></p>
-          </div>
-          <figcaption id="dlParCap">El tiempo es un instante; el clima, la estadística de 30 años de instantes.</figcaption>
-        </figure>
+        <div class="dz-hero-art" aria-hidden="true">
+          <div class="dz-sello"><svg viewBox="0 0 100 100"><path d="M50 2 59 20 78 10 76 32 98 34 84 50 98 66 76 68 78 90 59 80 50 98 41 80 22 90 24 68 2 66 16 50 2 34 24 32 22 10 41 20Z" fill="#F2B84B"/></svg><span>N.º<b>01</b></span></div>
+          <div class="dz-ic"><svg viewBox="0 0 64 64" width="96" height="96"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g stroke="#C16210"><circle cx="40" cy="21" r="5"/><path d="M40 11.5v2.5M47 14l-1.8 1.8M49.5 21H47M33 14l1.8 1.8"/></g><path d="M20.5 37h21a6 6 0 0 0 .6-12 8.5 8.5 0 0 0-16.2-1.6A6.8 6.8 0 0 0 20.5 37Z" fill="#FFFFFF" stroke="#4167BC"/><path d="M22 43h20M27 48h15" stroke="#2EA1E8"/></g></svg></div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- ================= CUERPO ================= -->
   <div class="band">
     <div class="wrap">
-      <div class="am-body dl-body">
+      <div class="dz-body">
 
-        <section class="am-sec" aria-labelledby="diferencia">
-          <div class="am-sec-head"><span class="am-num" aria-hidden="true">01</span><div><span class="eyebrow">Dos escalas</span><h2 id="diferencia">¿Por qué no son lo mismo?</h2></div></div>
-          <div class="dl-pair">
-            <article class="am-forma dl-card">
-              <span class="dl-tag">Ahora</span>
-              <h3>Tiempo</h3>
-              <p>Lo que sientes al salir de casa —calor, lluvia, viento— es el <b>tiempo</b>: el estado de la atmósfera en un lugar y un momento dados, descrito por la temperatura, la lluvia, la presión, el viento y la humedad. Cambia en minutos u horas.</p>
+        <!-- 01 -->
+        <section class="dz-sec" aria-labelledby="diferencia">
+          <div class="dz-head"><span class="dz-num" aria-hidden="true">01</span><div><span class="eyebrow">Dos escalas</span><h2 id="diferencia">¿Por qué no son lo mismo?</h2></div></div>
+          <div class="dz-pair">
+            <article class="dz-card t">
+              <div class="dz-card-fig dz-ventana" role="img" aria-label="Ilustración: el cielo de un mismo lugar pasa de soleado a nublado, lluvioso y con viento en pocos segundos.">
+                <div class="esc"><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><circle cx="200" cy="100" r="44" fill="#F2B84B"/><g stroke="#F2B84B" stroke-width="7" stroke-linecap="round" class="dz-mueve"><path d="M200 26v-14M200 188v-14M126 100h-14M288 100h-14"/></g><path d="M0 200 Q100 180 200 200 T400 200 V220 H0Z" fill="#2B5C8A"/></svg><span class="lab">Soleado</span></div>
+                <div class="esc"><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><circle cx="250" cy="80" r="36" fill="#F2B84B"/><g class="dz-mueve"><path d="M90 150h180a32 32 0 0 0 3-64 48 48 0 0 0-90-10A38 38 0 0 0 90 150Z" fill="#F4F1EA" stroke="#0C193A" stroke-width="4"/></g><path d="M0 200 Q100 180 200 200 T400 200 V220 H0Z" fill="#2B5C8A"/></svg><span class="lab">Nublado</span></div>
+                <div class="esc"><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><path d="M100 120h180a32 32 0 0 0 3-64 48 48 0 0 0-90-10A38 38 0 0 0 100 120Z" fill="#55627A" stroke="#0C193A" stroke-width="4"/><g class="dz-lluvia" stroke="#2B5C8A" stroke-width="5" stroke-linecap="round"><line x1="130" y1="140" x2="124" y2="160"/><line x1="165" y1="146" x2="159" y2="166"/><line x1="200" y1="140" x2="194" y2="160"/><line x1="235" y1="146" x2="229" y2="166"/><line x1="270" y1="140" x2="264" y2="160"/></g><path d="M0 200 Q100 180 200 200 T400 200 V220 H0Z" fill="#2B5C8A"/></svg><span class="lab">Lluvia</span></div>
+                <div class="esc"><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><g class="dz-viento" fill="none" stroke="#F4F1EA" stroke-width="7" stroke-linecap="round"><path d="M40 80h230a26 26 0 1 0-26-26"/><path d="M40 115h300"/><path d="M40 150h200a24 24 0 1 1-24 24"/></g><path d="M0 200 Q100 180 200 200 T400 200 V220 H0Z" fill="#2B5C8A"/></svg><span class="lab">Viento</span></div>
+                <span class="hora" aria-hidden="true">mismo día</span>
+              </div>
+              <div class="dz-card-body">
+                <span class="dz-tag">Ahora</span>
+                <h3>Tiempo</h3>
+                <p>Lo que sientes al salir de casa —calor, lluvia, viento— es el <b>tiempo</b>: el estado de la atmósfera en un lugar y un momento dados, descrito por la temperatura, la lluvia, la presión, el viento y la humedad. Cambia en minutos u horas.</p>
+              </div>
             </article>
-            <article class="am-forma dl-card">
-              <span class="dl-tag">Décadas</span>
-              <h3>Clima</h3>
-              <p>El <b>clima</b> describe cómo suele comportarse ese tiempo en un lugar, con sus promedios y sus variaciones, a lo largo de muchos años.</p>
+            <article class="dz-card c">
+              <div class="dz-card-fig dz-anillo" data-dz role="img" aria-label="Ilustración: un anillo de 30 segmentos, uno por año, que representa el periodo de 30 años con el que se describe el clima. No muestra datos reales.">
+                <svg viewBox="0 0 200 200" id="dzAnillo" aria-hidden="true"><text x="100" y="98" text-anchor="middle" font-size="44">30</text><text x="100" y="124" text-anchor="middle" font-size="16" letter-spacing="1.5">AÑOS</text></svg>
+              </div>
+              <div class="dz-card-body">
+                <span class="dz-tag">Décadas</span>
+                <h3>Clima</h3>
+                <p>El <b>clima</b> describe cómo suele comportarse ese tiempo en un lugar, con sus promedios y sus variaciones, a lo largo de muchos años.</p>
+              </div>
             </article>
           </div>
-          <div class="am-sis am-block"><span class="am-sis-k">La regla</span><p>Un día frío no dice nada del clima; treinta inviernos, sí.</p></div>
-        </section>
-
-        <section class="am-sec" aria-labelledby="medir">
-          <div class="am-sec-head"><span class="am-num" aria-hidden="true">02</span><div><span class="eyebrow">Instrumentos y estadística</span><h2 id="medir">¿Cómo se mide?</h2></div></div>
-          <dl class="dl-how am-block">
-            <div><dt>Tiempo</dt><dd>Con observaciones del momento: estaciones meteorológicas, radares, satélites y globos sonda.</dd></div>
-            <div><dt>Clima</dt><dd>Con la estadística de esos mismos registros durante al menos 30 años. Hoy, el periodo de referencia internacional es <span class="mono">1991–2020</span>.</dd></div>
-          </dl>
-        </section>
-
-        <section class="am-sec" aria-labelledby="mexico">
-          <div class="am-sec-head"><span class="am-num" aria-hidden="true">03</span><div><span class="eyebrow">Temporada de frentes fríos</span><h2 id="mexico">Un ejemplo en México</h2></div></div>
-          <div class="am-risk am-block dl-mx">
-            <p><b>Tiempo:</b> el frente frío que entra esta semana y te hace sacar la chamarra.</p>
-            <p><b>Clima:</b> que a México lleguen, en promedio, unos 50 frentes fríos entre septiembre y mayo.</p>
+          <div class="dz-regla">
+            <span class="dz-ic" aria-hidden="true"><svg viewBox="0 0 64 64" width="52" height="52"><g fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10v28" stroke="#4167BC"/><circle cx="32" cy="44" r="8" stroke="#E07A5F"/><path d="M38 16h6M38 23h4M38 30h6" stroke="#0C193A"/></g></svg></span>
+            <small>La regla</small>
+            <p>Un día frío no dice nada del clima; treinta inviernos, sí.</p>
           </div>
         </section>
 
-        <section class="am-sec" aria-labelledby="dilo">
-          <div class="am-sec-head"><span class="am-num" aria-hidden="true">04</span><div><span class="eyebrow">Para practicar</span><h2 id="dilo">Dilo en ciencia</h2></div></div>
-          <blockquote class="dl-say am-block"><p id="fraseDilo">«Hoy hace buen tiempo, aunque el clima de mi ciudad es templado».</p></blockquote>
-          <p class="am-intro"><b>Tip:</b> en español, «tiempo» también es el del reloj. Si hay duda, di «tiempo atmosférico».</p>
+        <!-- 02 -->
+        <section class="dz-sec" aria-labelledby="medir">
+          <div class="dz-head"><span class="dz-num" aria-hidden="true">02</span><div><span class="eyebrow">Instrumentos y estadística</span><h2 id="medir">¿Cómo se mide?</h2></div></div>
+          <div class="dz-inst">
+            <figure class="dz-est"><span class="dz-ic" aria-hidden="true"><svg viewBox="0 0 64 64" width="70" height="70"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 56V22M24 56h16" stroke="#0C193A"/><g class="aspas" stroke="#4167BC"><path d="M40 16h-12M40 16l6-10M40 16l6 10"/></g><path d="M32 22h8" stroke="#0C193A"/><rect x="18" y="32" width="12" height="10" rx="2" stroke="#C16210"/></g></svg></span><figcaption>Estaciones meteorológicas</figcaption></figure>
+            <figure class="dz-radar"><span class="dz-ic" aria-hidden="true"><svg viewBox="0 0 64 64" width="70" height="70"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="20" stroke="#9CCBE8"/><circle cx="32" cy="34" r="11" stroke="#9CCBE8"/><path class="barrido" d="M32 34 L32 14" stroke="#4167BC" stroke-width="3.6"/><circle cx="41" cy="27" r="2.6" fill="#E07A5F" stroke="none"/><path d="M24 58h16" stroke="#0C193A"/></g></svg></span><figcaption>Radares</figcaption></figure>
+            <figure class="dz-sat"><span class="dz-ic" aria-hidden="true"><svg viewBox="0 0 64 64" width="70" height="70"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="10" fill="#9CCBE8" stroke="#4167BC"/><ellipse cx="32" cy="32" rx="24" ry="24" stroke="#D5DCE5" stroke-dasharray="3 5"/><g class="orb"><rect x="49" y="28" width="8" height="8" rx="1.5" fill="#F2B84B" stroke="#0C193A"/></g></g></svg></span><figcaption>Satélites</figcaption></figure>
+            <figure class="dz-globo"><span class="dz-ic" aria-hidden="true"><svg viewBox="0 0 64 64" width="70" height="70"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="sube"><path d="M32 8c-8 0-13 6-13 13 0 8 8 14 13 18 5-4 13-10 13-18 0-7-5-13-13-13Z" fill="#F4F1EA" stroke="#E07A5F"/><path d="M32 39v10" stroke="#0C193A"/><rect x="28" y="49" width="8" height="6" rx="1.5" stroke="#4167BC"/></g></g></svg></span><figcaption>Globos sonda</figcaption></figure>
+          </div>
+          <div class="dz-flecha" aria-hidden="true"><svg viewBox="0 0 120 46"><path d="M8 10 C40 4 70 20 96 34 M84 36 98 35 94 22" fill="none" stroke="#0C193A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="dz-hand">y luego, ¡30 años de datos!</span></div>
+          <div class="dz-reg" data-dz>
+            <div class="dz-reg-bar" aria-hidden="true" id="dzReg"></div>
+            <div class="dz-reg-ax" aria-hidden="true"><span>1991</span><span>1 barra = 1 año de registros</span><span>2020</span></div>
+          </div>
+          <div class="dz-two">
+            <p class="t"><b>Tiempo</b>Con observaciones del momento: estaciones meteorológicas, radares, satélites y globos sonda.</p>
+            <p class="c"><b>Clima</b>Con la estadística de esos mismos registros durante al menos 30 años. Hoy, el periodo de referencia internacional es <span class="mono">1991–2020</span>.</p>
+          </div>
         </section>
 
-        <section class="am-sec" aria-labelledby="fuentes-dilo">
-          <div class="am-sec-head"><span class="am-num" aria-hidden="true">05</span><div><span class="eyebrow">Definiciones con redacción propia</span><h2 id="fuentes-dilo">Fuentes</h2></div></div>
-          <ul class="dl-refs">
+        <!-- 03 -->
+        <section class="dz-sec" aria-labelledby="mexico">
+          <div class="dz-head"><span class="dz-num" aria-hidden="true">03</span><div><span class="eyebrow">Temporada de frentes fríos</span><h2 id="mexico">Un ejemplo en México</h2></div></div>
+          <div class="dz-mx" data-dz>
+            <div class="dz-mx-t">
+              <div class="dz-frente" aria-hidden="true"><svg viewBox="0 0 70 400" preserveAspectRatio="none"><path d="M20 0 C34 80 8 160 22 240 S30 360 20 400" fill="none" stroke="#2B5C8A" stroke-width="6"/><g fill="#2B5C8A"><path d="M24 30l22 12-22 12Z"/><path d="M20 110l22 12-22 12Z"/><path d="M18 190l22 12-22 12Z"/><path d="M24 270l22 12-22 12Z"/><path d="M24 350l22 12-22 12Z"/></g></svg></div>
+              <span class="dz-tag">Tiempo</span>
+              <p>El frente frío que entra esta semana y te hace sacar la chamarra.</p>
+            </div>
+            <div class="dz-mx-c">
+              <span class="dz-tag">Clima</span>
+              <div class="dz-cifra"><b>50</b><span>frentes fríos por temporada, en promedio</span></div>
+              <div class="dz-meses" aria-label="La temporada va de septiembre a mayo">
+                <span style="--i:0">SEP</span><span style="--i:1">OCT</span><span style="--i:2">NOV</span><span style="--i:3">DIC</span><span style="--i:4">ENE</span><span style="--i:5">FEB</span><span style="--i:6">MAR</span><span style="--i:7">ABR</span><span style="--i:8">MAY</span>
+              </div>
+              <p>Que a México lleguen, en promedio, unos 50 frentes fríos entre septiembre y mayo es clima.</p>
+              <span class="dz-fuente">Fuente: SMN-Conagua. El dibujo del frente usa el símbolo meteorológico de frente frío.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 -->
+        <section class="dz-sec" aria-labelledby="dilo">
+          <div class="dz-head"><span class="dz-num" aria-hidden="true">04</span><div><span class="eyebrow">Para practicar</span><h2 id="dilo">Dilo en ciencia</h2></div></div>
+          <blockquote class="dz-frase" data-dz>
+            <p id="fraseDilo">«Hoy hace <mark>buen tiempo<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 7 C60 2 130 11 197 4" fill="none" stroke="#F2B84B" stroke-width="4" stroke-linecap="round"/></svg></mark>, aunque el clima de mi ciudad es templado».</p>
+            <span class="nota dz-hand" aria-hidden="true">¡dilo así!</span>
+            <svg class="franja" viewBox="0 0 180 120" aria-hidden="true"><g fill="none" stroke-width="22" stroke-linecap="round"><path d="M40 140 C60 80 120 90 140 20" stroke="#9CCBE8"/><path d="M72 150 C92 90 152 100 172 30" stroke="#F2B84B"/><path d="M104 160 C124 100 184 110 204 40" stroke="#E07A5F"/></g></svg>
+          </blockquote>
+          <div class="dz-frase-acc"><button class="copy" type="button" data-copy-el="fraseDilo">Copiar la frase</button><p class="am-intro" style="margin:0"><b>Tip:</b> en español, «tiempo» también es el del reloj. Si hay duda, di «tiempo atmosférico».</p></div>
+
+          <div class="dz-quiz">
+            <h3>¿Tiempo o clima?</h3>
+            <p class="dz-quiz-score" id="dzScore" aria-live="polite">Elige una respuesta en cada frase.</p>
+            <ol id="dzQuiz">
+              <li class="dz-q" data-a="tiempo" data-fb="Es el estado de la atmósfera de un día concreto."><p>«Hoy amaneció nublado».</p><div class="bts"><button type="button" aria-pressed="false" data-v="tiempo">Tiempo</button><button type="button" aria-pressed="false" data-v="clima">Clima</button></div><p class="fb" aria-live="polite"></p></li>
+              <li class="dz-q" data-a="clima" data-fb="Habla de lo que suele pasar año con año: un patrón."><p>«En mi ciudad suele llover en verano».</p><div class="bts"><button type="button" aria-pressed="false" data-v="tiempo">Tiempo</button><button type="button" aria-pressed="false" data-v="clima">Clima</button></div><p class="fb" aria-live="polite"></p></li>
+              <li class="dz-q" data-a="tiempo" data-fb="Un frente frío concreto es un evento de días: tiempo."><p>«Llegó un frente frío esta semana».</p><div class="bts"><button type="button" aria-pressed="false" data-v="tiempo">Tiempo</button><button type="button" aria-pressed="false" data-v="clima">Clima</button></div><p class="fb" aria-live="polite"></p></li>
+              <li class="dz-q" data-a="clima" data-fb="Describe el comportamiento habitual de una región."><p>«En esta región los inviernos suelen ser secos».</p><div class="bts"><button type="button" aria-pressed="false" data-v="tiempo">Tiempo</button><button type="button" aria-pressed="false" data-v="clima">Clima</button></div><p class="fb" aria-live="polite"></p></li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 05 -->
+        <section class="dz-sec" aria-labelledby="fuentes-dilo">
+          <div class="dz-head"><span class="dz-num" aria-hidden="true">05</span><div><span class="eyebrow">Definiciones con redacción propia</span><h2 id="fuentes-dilo">Fuentes</h2></div></div>
+          <ul class="dz-refs">
             <li>IPCC. (2013). Glosario [S. Planton (Ed.)]. En <i>Cambio climático 2013: Bases físicas. Contribución del Grupo de trabajo I al Quinto Informe de Evaluación del Grupo Intergubernamental de Expertos sobre el Cambio Climático</i>. Cambridge University Press. <a href="https://www.ipcc.ch/site/assets/uploads/2018/08/WGI_AR5_glossary_ES.pdf" rel="noopener">Ver glosario ↗</a></li>
             <li>Organización Meteorológica Mundial. (s. f.). <i>Tiempo</i>. Recuperado el 20 de noviembre de 2026. <a href="https://wmo.int/es/themes/weather" rel="noopener">wmo.int ↗</a></li>
             <li>Organización Meteorológica Mundial. (2021). <i>Recopilación de las normales climatológicas estándares de la OMM para el período 1991-2020</i> [Carta circular 16953/2021]. <a href="https://extranet.wmo.int/edistrib_exped/grp_prs/_es/2011_2022_Archives/Archives%202021/16953-2021-S-CS-CMP-CLINO9120-es.pdf" rel="noopener">Ver carta ↗</a></li>
@@ -129,13 +370,14 @@
           </ul>
         </section>
 
-        <section class="am-sec" aria-labelledby="citar-dilo">
-          <div class="am-sec-head"><span class="am-num" aria-hidden="true">06</span><div><span class="eyebrow">APA 7</span><h2 id="citar-dilo">Cómo citar</h2></div></div>
+        <!-- 06 -->
+        <section class="dz-sec" aria-labelledby="citar-dilo">
+          <div class="dz-head"><span class="dz-num" aria-hidden="true">06</span><div><span class="eyebrow">APA 7</span><h2 id="citar-dilo">Cómo citar</h2></div></div>
           <div class="cite">
             <h3>Si usas esta pieza o su lámina, cita al OMCT</h3>
             <code id="citaDilo">Fernández González, K. (2027, 1 de enero). «Hoy hace buen clima»… ¿o buen tiempo? (Dilo en ciencia, n.º 1) [Página web]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/dilo-tiempo-clima.html</code>
             <button class="copy" type="button" data-copy-el="citaDilo">Copiar cita</button>
-            <p class="note">Texto: Katia Fernández González · CC BY 4.0. Las definiciones se basan en la OMM y el IPCC, con redacción propia.</p>
+            <p class="note">Texto: Katia Fernández González · Ilustraciones: OMCT · CC BY 4.0. Las definiciones se basan en la OMM y el IPCC, con redacción propia. Las ilustraciones son esquemas: no representan datos medidos.</p>
           </div>
         </section>
 
@@ -178,5 +420,30 @@
 <div class="toast" id="toast" hidden></div>
 <script data-goatcounter="https://omct-open.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script src="main.js?v=17"></script>
+<script>
+(function(){
+  var NS="http://www.w3.org/2000/svg", PAL=["#2B5C8A","#9CCBE8","#F2B84B","#E07A5F"];
+  // Anillo de 30 segmentos (un año cada uno): esquema, no datos
+  var a=document.getElementById("dzAnillo");
+  if(a){for(var i=0;i<30;i++){var t0=(i/30)*2*Math.PI-Math.PI/2+.02,t1=((i+1)/30)*2*Math.PI-Math.PI/2-.02,R=92,r=66;
+    var p="M"+(100+R*Math.cos(t0))+" "+(100+R*Math.sin(t0))+"A"+R+" "+R+" 0 0 1 "+(100+R*Math.cos(t1))+" "+(100+R*Math.sin(t1))+"L"+(100+r*Math.cos(t1))+" "+(100+r*Math.sin(t1))+"A"+r+" "+r+" 0 0 0 "+(100+r*Math.cos(t0))+" "+(100+r*Math.sin(t0))+"Z";
+    var e=document.createElementNS(NS,"path");e.setAttribute("d",p);e.setAttribute("fill",PAL[i%4]);e.setAttribute("class","seg");e.style.setProperty("--i",i);a.insertBefore(e,a.firstChild);}}
+  // Registro de 30 años: 30 barras de la misma altura (cada una = un año de registros)
+  var g=document.getElementById("dzReg");
+  if(g){for(var j=0;j<30;j++){var b=document.createElement("i");b.style.setProperty("--i",j);b.style.setProperty("--c",PAL[j%4]);g.appendChild(b);}}
+  // Activación al entrar en pantalla
+  var els=document.querySelectorAll("[data-dz]");
+  if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){els.forEach(function(x){x.classList.add("on")});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("on");io.unobserve(en.target);}})},{threshold:.35});els.forEach(function(x){io.observe(x)});}
+  // ¿Tiempo o clima?
+  var q=document.getElementById("dzQuiz"),sc=document.getElementById("dzScore");
+  if(q){q.addEventListener("click",function(ev){var bt=ev.target.closest("button");if(!bt)return;var li=bt.closest(".dz-q");
+    li.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed","false");x.classList.remove("ok","no")});
+    var ok=bt.dataset.v===li.dataset.a;bt.setAttribute("aria-pressed","true");bt.classList.add(ok?"ok":"no");
+    li.dataset.r=ok?"1":"0";li.querySelector(".fb").textContent=(ok?"¡Correcto! ":"Casi: es "+li.dataset.a+". ")+li.dataset.fb;
+    var all=q.querySelectorAll(".dz-q"),done=q.querySelectorAll(".dz-q[data-r]").length,good=q.querySelectorAll('.dz-q[data-r="1"]').length;
+    sc.textContent=done<all.length?("Llevas "+good+" de "+done+"."):("Resultado: "+good+" de "+all.length+(good===all.length?". ¡Ya lo dices en ciencia!":". Vuelve a intentarlo cuando quieras."));});}
+})();
+</script>
 </body>
 </html>

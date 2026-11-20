@@ -26,50 +26,40 @@
 .dz-tag{display:inline-block;align-self:flex-start;justify-self:start;width:max-content;max-width:100%;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--nube);color:var(--noche);transform:rotate(-3deg)}
 .dz-hand{font-family:var(--hand);font-weight:400}
 
-/* --- Portada --- */
-.dz-hero{position:relative;overflow:hidden;background:var(--cielo);color:#fff;isolation:isolate}
-.dz-hero .wrap{padding-block:clamp(2.5rem,6vw,4.5rem) clamp(3rem,7vw,5rem)}
-.dz-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
-.dz-bg svg{position:absolute;display:block}
-.dz-curvas{inset:0;width:100%;height:100%}
-.dz-franjas{right:-60px;top:-40px;height:calc(100% + 80px);width:min(48%,560px)}
-.dz-franjas path{animation:dzOla 9s ease-in-out infinite alternate}
-.dz-franjas path:nth-child(2){animation-delay:-2s}.dz-franjas path:nth-child(3){animation-delay:-4s}.dz-franjas path:nth-child(4){animation-delay:-6s}
-@keyframes dzOla{from{transform:translateX(0)}to{transform:translateX(-26px)}}
-.dz-sol{right:clamp(140px,26%,330px);top:28px;width:110px;height:110px;animation:dzSube 2.4s cubic-bezier(.2,.8,.2,1) both}
-.dz-sol .rayos{transform-origin:55px 55px;animation:dzGira 40s linear infinite}
-@keyframes dzSube{from{transform:translateY(80px);opacity:0}to{transform:none;opacity:1}}
-@keyframes dzGira{to{transform:rotate(360deg)}}
-.dz-nube{animation:dzNube linear infinite}
-.dz-nube.n1{top:10px;width:96px;animation-duration:38s}
-.dz-nube.n2{bottom:14px;width:110px;animation-duration:52s;animation-delay:-20s}
-@keyframes dzNube{from{left:-180px}to{left:100%}}
+/* --- Portada: fondo nube y un solo ícono que cambia (el tiempo cambia) --- */
+.dz-hero{position:relative;overflow:hidden;background:var(--nube);color:var(--noche)}
+.dz-hero .wrap{padding-block:clamp(2.5rem,6vw,4.5rem)}
 .dz-hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:var(--s6);align-items:center}
-@media (max-width:900px){.dz-hero-grid{grid-template-columns:1fr}.dz-franjas{width:62%;opacity:.55}.dz-sol{right:18px}}
+@media (max-width:900px){.dz-hero-grid{grid-template-columns:1fr}}
 .dz-hero-text{display:grid;gap:var(--s4)}
-.dz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.85rem;color:#DCE8F4}
-.dz-crumbs a{color:#fff;font-weight:500;text-decoration:none}.dz-crumbs a:hover{text-decoration:underline}
-.dz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.01em;text-transform:uppercase;color:#fff;max-width:15ch}
-.dz-h1 .sol{color:var(--sol);display:block}
+.dz-hero .dz-tag{background:var(--noche);color:#fff}
+.dz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.85rem;color:#55627A}
+.dz-crumbs a{color:var(--cielo);font-weight:500;text-decoration:none}.dz-crumbs a:hover{text-decoration:underline}
+.dz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.01em;text-transform:uppercase;color:var(--noche);max-width:15ch}
+.dz-h1 .sol{color:var(--cielo);display:block}
 .dz-tacha{position:relative;display:inline-block;white-space:nowrap}
 .dz-tacha svg{position:absolute;left:-4%;top:42%;width:108%;height:.5em;overflow:visible}
 .dz-tacha path{stroke-dasharray:240;stroke-dashoffset:240;animation:dzTraza .7s .9s ease-out forwards}
-.dz-sub{display:block;width:min(360px,80%);height:18px;margin-top:-.3rem}
-.dz-sub path{stroke-dasharray:380;stroke-dashoffset:380;animation:dzTraza .9s 1.5s ease-out forwards}
 @keyframes dzTraza{to{stroke-dashoffset:0}}
-.dz-lead{font-size:1.15rem;max-width:34rem;color:#EAF2FA}
+.dz-lead{font-size:1.15rem;max-width:34rem;color:#3A4760}
 .dz-chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.dz-chips span{font:500 .78rem var(--f-mono);letter-spacing:.06em;padding:.4rem .75rem;border-radius:99px;background:rgba(12,25,58,.35);border:1px solid rgba(255,255,255,.35);color:#fff}
-.dz-chips b{font-weight:500;color:var(--sol)}
-.dz-by{font-size:.9rem;color:#DCE8F4}.dz-by b{color:#fff;font-weight:500}
-.dz-hero-art{position:relative;justify-self:center;width:260px;height:260px}
-.dz-hero-art .dz-ic{position:absolute;left:40px;bottom:30px;width:130px;height:130px;animation:dzFlota 5s ease-in-out infinite}
-@keyframes dzFlota{50%{transform:translateY(-10px)}}
-.dz-sello{position:absolute;right:6px;top:8px;width:128px;height:128px;transform:rotate(-10deg)}
-.dz-sello svg{position:absolute;inset:0;animation:dzGira 24s linear infinite}
-.dz-sello span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;color:var(--noche);line-height:.9;font-size:1.05rem;text-transform:uppercase;text-align:center}
-.dz-sello span b{font-size:2.3rem}
-@media (max-width:900px){.dz-hero-art{width:240px;height:200px;justify-self:start}.dz-hero-art .dz-ic{bottom:10px}}
+.dz-chips span{font:500 .78rem var(--f-mono);letter-spacing:.06em;padding:.4rem .75rem;border-radius:99px;background:#fff;border:2px solid var(--noche);color:var(--noche)}
+.dz-chips b{font-weight:500;color:var(--ocre)}
+.dz-by{font-size:.9rem;color:#55627A}.dz-by b{color:var(--noche);font-weight:500}
+.dz-hero-art{position:relative;justify-self:center;display:grid;justify-items:center;gap:18px}
+.dz-circ{width:250px;height:250px;border-radius:50%;background:var(--celeste);border:3px solid var(--noche);box-shadow:10px 10px 0 var(--cielo);overflow:hidden}
+.dz-circ svg{width:100%;height:100%;display:block}
+.dz-circ .e{opacity:0;animation:dzEstado 12s infinite}
+.dz-circ .e:nth-of-type(2),.dz-lab span:nth-child(2){animation-delay:3s}.dz-circ .e:nth-of-type(3),.dz-lab span:nth-child(3){animation-delay:6s}.dz-circ .e:nth-of-type(4),.dz-lab span:nth-child(4){animation-delay:9s}
+.dz-circ .rayos{transform-origin:100px 100px;animation:dzGira 30s linear infinite}
+.dz-lab{display:grid;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;background:var(--noche);color:#fff;padding:.4rem .8rem;border-radius:99px}
+.dz-lab span{grid-area:1/1;opacity:0;animation:dzEstado 12s infinite}
+@keyframes dzGira{to{transform:rotate(360deg)}}
+.dz-sello{position:absolute;right:-26px;top:-18px;width:104px;height:104px;transform:rotate(-12deg)}
+.dz-sello svg{position:absolute;inset:0}
+.dz-sello span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;color:var(--noche);line-height:.9;font-size:1rem;text-transform:uppercase}
+.dz-sello span b{font-size:2rem}
+@media (max-width:900px){.dz-hero-art{justify-self:start;margin-left:8px}.dz-circ{width:200px;height:200px}}
 
 /* --- Cuerpo --- */
 .dz-body{display:grid;gap:clamp(3.5rem,7vw,5.5rem);max-width:56rem;margin-inline:auto}
@@ -196,10 +186,10 @@
 
 @media (prefers-reduced-motion:reduce){
   .dz-anillo .seg,.dz-reg-bar i,.dz-meses span{opacity:1!important;transform:none!important}
-  .dz-tacha path,.dz-sub path,.dz-frase mark path{stroke-dashoffset:0!important}
+  .dz-tacha path,.dz-frase mark path{stroke-dashoffset:0!important}
+  .dz-circ .e:first-of-type,.dz-lab span:first-child{opacity:1}
   .dz-ventana .esc{opacity:0}.dz-ventana .esc:first-of-type{opacity:1}
   .dz-frente{left:40%}
-  .dz-sol{opacity:1}
 }
 </style>
 </head>
@@ -229,27 +219,25 @@
 <section>
   <!-- ================= PORTADA ================= -->
   <div class="dz-hero">
-    <div class="dz-bg" aria-hidden="true">
-      <svg class="dz-curvas" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="#9CCBE8" stroke-opacity=".18" stroke-width="1.5"><path d="M-20 420c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/><path d="M-20 460c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/><path d="M-20 380c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/><path d="M-20 340c160-40 300 30 470-10s300-90 470-40 220 60 300 40"/></g></svg>
-      <svg class="dz-nube n1" viewBox="0 0 150 60"><path d="M20 52h104a20 20 0 0 0 2-40 30 30 0 0 0-56-6A24 24 0 0 0 20 52Z" fill="#F4F1EA"/></svg>
-      <svg class="dz-nube n2" viewBox="0 0 150 60"><path d="M20 52h104a20 20 0 0 0 2-40 30 30 0 0 0-56-6A24 24 0 0 0 20 52Z" fill="#9CCBE8"/></svg>
-      <svg class="dz-sol" viewBox="0 0 110 110"><g class="rayos" stroke="#F2B84B" stroke-width="6" stroke-linecap="round"><path d="M55 4v12M55 94v12M4 55h12M94 55h12M19 19l8 8M83 83l8 8M91 19l-8 8M27 83l-8 8"/></g><circle cx="55" cy="55" r="26" fill="#F2B84B"/></svg>
-      <svg class="dz-franjas" viewBox="0 0 300 600" preserveAspectRatio="xMaxYMid slice"><g fill="none" stroke-width="40" stroke-linecap="round"><path d="M80 -60 C30 80 150 180 90 320 S130 520 80 680" stroke="#9CCBE8"/><path d="M134 -60 C84 80 204 180 144 320 S184 520 134 680" stroke="#F2B84B"/><path d="M188 -60 C138 80 258 180 198 320 S238 520 188 680" stroke="#E07A5F"/><path d="M242 -60 C192 80 312 180 252 320 S292 520 242 680" stroke="#F4F1EA"/></g></svg>
-    </div>
     <div class="wrap">
       <div class="dz-hero-grid">
         <div class="dz-hero-text">
           <nav class="dz-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Dilo en ciencia</span><span aria-hidden="true">/</span><span>N.º 01</span></nav>
           <span class="dz-tag">Dilo en ciencia · Atmósfera</span>
           <h1 class="dz-h1">«Hoy hace buen <span class="dz-tacha">clima<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C60 4 130 16 196 6" fill="none" stroke="#E07A5F" stroke-width="7" stroke-linecap="round"/></svg></span>»… <span class="sol">¿o buen tiempo?</span></h1>
-          <svg class="dz-sub" viewBox="0 0 360 18" aria-hidden="true"><path d="M4 10 C80 2 180 16 260 8 S340 6 356 10" fill="none" stroke="#9CCBE8" stroke-width="6" stroke-linecap="round"/></svg>
           <p class="dz-lead">Lo que cambia de un día a otro es el tiempo. El clima se mide en décadas.</p>
           <div class="dz-chips"><span><b>Tipo</b> Dilo en ciencia</span><span><b>Nivel</b> Básico</span><span><b>Lectura</b> 1 min</span></div>
           <p class="dz-by">Texto de <b>Katia Fernández González</b>.</p>
         </div>
         <div class="dz-hero-art" aria-hidden="true">
-          <div class="dz-sello"><svg viewBox="0 0 100 100"><path d="M50 2 59 20 78 10 76 32 98 34 84 50 98 66 76 68 78 90 59 80 50 98 41 80 22 90 24 68 2 66 16 50 2 34 24 32 22 10 41 20Z" fill="#F2B84B"/></svg><span>N.º<b>01</b></span></div>
-          <div class="dz-ic"><svg viewBox="0 0 64 64" width="96" height="96"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g stroke="#C16210"><circle cx="40" cy="21" r="5"/><path d="M40 11.5v2.5M47 14l-1.8 1.8M49.5 21H47M33 14l1.8 1.8"/></g><path d="M20.5 37h21a6 6 0 0 0 .6-12 8.5 8.5 0 0 0-16.2-1.6A6.8 6.8 0 0 0 20.5 37Z" fill="#FFFFFF" stroke="#4167BC"/><path d="M22 43h20M27 48h15" stroke="#2EA1E8"/></g></svg></div>
+          <div class="dz-circ"><svg viewBox="0 0 200 200">
+            <g class="e"><circle cx="100" cy="100" r="34" fill="#F2B84B"/><g class="rayos" stroke="#F2B84B" stroke-width="7" stroke-linecap="round"><path d="M100 46v-14M100 168v-14M46 100h-14M168 100h-14M62 62l-10-10M138 138l10 10M138 62l10-10M62 138l-10 10"/></g></g>
+            <g class="e"><circle cx="122" cy="80" r="26" fill="#F2B84B"/><path class="dz-mueve" d="M52 132h92a24 24 0 0 0 2-48 36 36 0 0 0-68-8A28 28 0 0 0 52 132Z" fill="#F4F1EA" stroke="#0C193A" stroke-width="4"/></g>
+            <g class="e"><path d="M52 112h92a24 24 0 0 0 2-48 36 36 0 0 0-68-8A28 28 0 0 0 52 112Z" fill="#55627A" stroke="#0C193A" stroke-width="4"/><g class="dz-lluvia" stroke="#2B5C8A" stroke-width="5" stroke-linecap="round"><line x1="70" y1="128" x2="65" y2="144"/><line x1="92" y1="134" x2="87" y2="150"/><line x1="114" y1="128" x2="109" y2="144"/><line x1="136" y1="134" x2="131" y2="150"/></g></g>
+            <g class="e"><g class="dz-viento" fill="none" stroke="#2B5C8A" stroke-width="7" stroke-linecap="round"><path d="M40 78h90a20 20 0 1 0-20-20"/><path d="M40 104h120"/><path d="M40 130h80a18 18 0 1 1-18 18"/></g></g>
+          </svg></div>
+          <div class="dz-sello"><svg viewBox="0 0 100 100"><path d="M50 2 59 20 78 10 76 32 98 34 84 50 98 66 76 68 78 90 59 80 50 98 41 80 22 90 24 68 2 66 16 50 2 34 24 32 22 10 41 20Z" fill="#F2B84B" stroke="#0C193A" stroke-width="2"/></svg><span>N.º<b>01</b></span></div>
+          <div class="dz-lab"><span>Hoy · soleado</span><span>Hoy · nublado</span><span>Hoy · lluvia</span><span>Hoy · viento</span></div>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@
   ];
   const TUTS = [
     {id:"inf-sismo",r:["estudiante","docente"],type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Del sismograma al epicentro, paso a paso.",lvl:"Básico",time:"2 min",esf:["Geósfera"],pal:"seis"},
-    {id:"dilo-tiempo-clima",r:["estudiante","docente"],type:"Dilo en ciencia",ic:"atmosfera",cls:"lav",title:"«Hoy hace buen clima»… ¿o buen tiempo?",text:"Por qué el tiempo y el clima no son lo mismo, cómo se mide cada uno y un ejemplo en México.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean",href:"dilo-tiempo-clima.html",credit:"Ilustración OMCT"},
+    {id:"dilo-tiempo-clima",r:["estudiante","docente"],type:"Dilo en ciencia",ic:"atmosfera",cls:"lav",title:"«Hoy hace buen clima»… ¿o buen tiempo?",text:"El tiempo cambia en horas; el clima se mide en décadas. Aprende a distinguirlos en un minuto.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean",href:"dilo-tiempo-clima.html",credit:"Ilustración OMCT"},
     {id:"tut-ssn",r:["estudiante","investigador"],type:"Tutorial",cls:"teal",title:"Catálogo del SSN en Python",text:"Descarga, limpia y grafica la sismicidad de un estado.",lvl:"Intermedio",time:"40 min",esf:["Geósfera"],pal:"seis"},
     {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
     {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},

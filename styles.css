@@ -766,3 +766,69 @@ html:not(.anim) #lamReplay{display:none}
 .am-pinos i{width:1.6rem;height:2.15rem}
 .am-reads-t{display:block;line-height:1.3}
 .am-reads-t small{display:block}
+
+/* ---------- Dilo en ciencia (pg-atm: páginas de la esfera Atmósfera) ---------- */
+.pg-atm{--a-ink:#4167BC;--a-sky:#2EA1E8;--a-soft:#E4EAF7;--a-night:#0C193A;--a-ochre:#C16210}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pg-atm{--a-ink:#7F9BEA;--a-soft:#1C2848}}
+:root[data-theme="dark"] .pg-atm{--a-ink:#7F9BEA;--a-soft:#1C2848}
+.pg-atm .band,.pg-atm .hero{--acc:var(--a-ink);--acc-soft:var(--a-soft);--acc-bar:var(--a-sky)}
+.pg-atm .am-hero{background:var(--a-soft)}
+.pg-atm .am-hero h1{max-width:20ch}
+.pg-atm .am-hero h1 em{color:var(--a-ink)}
+.pg-atm .am-crumbs a{color:var(--a-ink)}
+.pg-atm .am-meta div{--mc:var(--a-ink)}
+.pg-atm .am-meta div:nth-child(2){--mc:var(--a-sky)}.pg-atm .am-meta div:nth-child(3){--mc:var(--a-ochre)}.pg-atm .am-meta div:nth-child(4){--mc:var(--a-night)}
+.pg-atm .am-num,.pg-atm .am-sec:nth-of-type(n) .am-num{--nc:var(--a-ink)}
+.pg-atm .am-sec:nth-of-type(2n) .am-num{--nc:var(--a-ochre)}
+.pg-atm .am-risk{background:var(--a-soft);border-left-color:var(--a-ink)}
+.pg-atm .am-sis::before{background:linear-gradient(90deg,#4167BC 0 50%,#2EA1E8 50% 100%)}
+.pg-atm .am-sis-k{color:#8FC2F2}
+.pg-atm .cite{border-left-color:var(--a-ink)}
+.dl-body{margin-inline:auto}
+
+/* Figura del par: un instante frente a 30 años */
+.dl-par{margin:0;display:grid;gap:var(--s5);padding:var(--s6);background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.dl-row{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:.5rem var(--s4);align-items:center}
+.dl-k{display:grid;line-height:1.15}
+.dl-k b{font:600 1.5rem var(--f-display)}
+.dl-k span{font:500 .66rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dl-t .dl-k b{color:var(--a-ochre)}.dl-c .dl-k b{color:var(--a-ink)}
+.dl-scale{display:flex;align-items:flex-end;gap:3px;height:2.6rem;border-bottom:1px solid var(--line)}
+.dl-scale i{flex:1;height:55%;background:var(--a-ink);border-radius:2px 2px 0 0;opacity:.85}
+.dl-scale i:nth-child(5n){height:85%}
+.dl-t .dl-scale{position:relative}
+.dl-t .dl-scale::before{content:"";position:absolute;inset:auto 0 0;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
+.dl-t .dl-scale i{flex:none;width:6px;height:100%;margin-left:38%;background:var(--a-ochre);opacity:1;box-shadow:0 0 0 6px color-mix(in srgb,var(--a-ochre) 18%,transparent)}
+.dl-u{grid-column:2;display:flex;justify-content:space-between;gap:var(--s3);font:400 .74rem var(--f-mono);color:var(--muted)}
+.dl-t .dl-u span:first-child{color:var(--ink);font-weight:500}
+.dl-par figcaption{font-size:.86rem;color:var(--muted);padding-top:var(--s4);border-top:1px solid var(--line)}
+@media (max-width:480px){.dl-row{grid-template-columns:1fr}.dl-u{grid-column:1}}
+
+/* Tarjetas del par */
+.dl-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:760px){.dl-pair{grid-template-columns:1fr}}
+.dl-card{--fc:var(--a-ink)}
+.dl-card:first-child{--fc:var(--a-ochre)}
+.dl-card h3{font-size:1.6rem;color:var(--fc)}
+.dl-card p{font-size:.98rem}
+.dl-tag{justify-self:start;font:500 .66rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+
+/* Cómo se mide */
+.dl-how{margin:0;display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.dl-how div{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:var(--s4);padding:var(--s5)}
+.dl-how div+div{border-top:1px solid var(--line)}
+.dl-how dt{font:600 1.15rem var(--f-display);color:var(--a-ochre)}
+.dl-how div+div dt{color:var(--a-ink)}
+.dl-how dd{margin:0}
+@media (max-width:480px){.dl-how div{grid-template-columns:1fr;gap:.3rem}}
+
+.dl-mx{gap:var(--s3)}
+.dl-mx p{font-size:1.02rem}
+
+/* Frase para practicar */
+.dl-say{margin:0;padding:var(--s6);background:var(--a-night);color:#fff;border-radius:8px;position:relative;overflow:hidden}
+.dl-say::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#4167BC 0 50%,#2EA1E8 50% 100%)}
+.dl-say p{font:500 clamp(1.3rem,2.6vw,1.8rem)/1.35 var(--f-display)}
+
+.dl-refs{margin:0;padding-left:1.1rem;display:grid;gap:var(--s3);font-size:.92rem;color:var(--muted)}
+.dl-refs i{color:var(--ink)}

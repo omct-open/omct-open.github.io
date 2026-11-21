@@ -207,12 +207,12 @@
   .fc-cite{order:-1}
 }
 /* --- Buzón de ideas: un buzón que abre el formulario en una pestaña nueva (buzon.html) --- */
-.bzx{--bzx-bg:#0C193A;--bzx-acc:#E9C46A;--bzx-flag:#B5532F;--bzx-post:#7F5539;--bzx-soft:#EADBC8;--bzx-shadow:#000;background:var(--bzx-bg);color:#fff;border-top:3px dashed rgba(255,255,255,.28);overflow:hidden;position:relative;isolation:isolate}
+.bzx{--bzx-bg:#0C193A;--bzx-acc:#E9C46A;--bzx-flag:#B5532F;--bzx-post:#7F5539;--bzx-soft:#EADBC8;--bzx-shadow:#000;--bzx-ink:#fff;--bzx-line:#EADBC8;--bzx-say:#E9C46A;background:var(--bzx-bg);color:var(--bzx-ink);overflow:hidden;position:relative;isolation:isolate}
 /* fondo: curvas de nivel sutiles que «respiran» (no compiten con el buzón) */
 .bzx-bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.8;transition:opacity .4s}
-.bzx-bg .r{stroke:var(--bzx-soft);stroke-opacity:.13;stroke-width:1.4;vector-effect:non-scaling-stroke;transform-box:view-box;transform-origin:330px 265px;animation:bzxNivel 16s ease-in-out infinite;animation-delay:calc(var(--k)*-1.8s)}
+.bzx-bg .r{stroke:var(--bzx-line);stroke-opacity:.16;stroke-width:1.4;vector-effect:non-scaling-stroke;transform-box:view-box;transform-origin:330px 265px;animation:bzxNivel 16s ease-in-out infinite;animation-delay:calc(var(--k)*-1.8s)}
 .bzx-bg .r.b{transform-origin:1080px 70px;animation-duration:19s}
-.bzx-bg .r.i{stroke-opacity:.22;stroke-width:2.2}
+.bzx-bg .r.i{stroke-opacity:.28;stroke-width:2.2}
 @keyframes bzxNivel{50%{transform:scale(1.045) rotate(.8deg)}}
 .bzx:has(.bzx-card:hover) .bzx-bg,.bzx:has(.bzx-card:focus-visible) .bzx-bg{opacity:1}
 .bzx>.wrap{padding-block:clamp(2.2rem,5vw,3.6rem)}
@@ -220,10 +220,10 @@
 .bzx-card:focus-visible{outline:3px solid var(--bzx-acc);outline-offset:8px}
 .bzx-art{position:relative;justify-self:center;width:100%;max-width:360px}
 .bzx-art svg{display:block;width:100%;height:auto;overflow:visible}
-.bzx-say{position:absolute;right:0;top:-.4rem;font:400 1.35rem 'Barriecito','Comic Sans MS',cursive;color:var(--bzx-acc);transform:rotate(8deg)}
+.bzx-say{position:absolute;right:0;top:-.4rem;font:400 1.35rem 'Barriecito','Comic Sans MS',cursive;color:var(--bzx-say);transform:rotate(8deg)}
 .bzx-txt{display:grid;gap:14px;align-content:center}
 .bzx-tag{justify-self:start;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--bzx-acc);color:#0C193A;transform:rotate(-3deg)}
-.bzx-txt h2{margin:0;font:900 clamp(2rem,4vw,3rem)/.98 'Londrina Solid',Impact,sans-serif;text-transform:uppercase;color:#fff}
+.bzx-txt h2{margin:0;font:900 clamp(2rem,4vw,3rem)/.98 'Londrina Solid',Impact,sans-serif;text-transform:uppercase;color:var(--bzx-ink)}
 .bzx-txt p{margin:0;font-size:1.05rem;color:var(--bzx-soft);max-width:32rem}
 .bzx-go{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem}
 .bzx-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.6rem 1.4rem;border-radius:99px;border:2px solid #0C193A;background:var(--bzx-acc);color:#0C193A;font:600 1rem var(--f-body);box-shadow:4px 4px 0 #0C193A;transition:transform .15s,box-shadow .15s}
@@ -245,7 +245,7 @@
 }
 @media (prefers-reduced-motion:reduce){.bzx *{animation:none!important;transition:none!important}}
 .dz .fc{--fc-bg:var(--cielo);--fc-acc:var(--sol);--fc-link:#B5532F;--fc-code:#DCEBF6;--fc-bar:var(--tarde)}
-.dz .bzx{--bzx-bg:var(--cielo);--bzx-acc:var(--sol);--bzx-flag:var(--tarde);--bzx-post:#1D3F60;--bzx-soft:#DCEBF6}
+.dz .bzx{--bzx-bg:var(--celeste);--bzx-acc:var(--sol);--bzx-flag:var(--tarde);--bzx-post:#1D3F60;--bzx-soft:#16304D;--bzx-ink:var(--noche);--bzx-line:var(--noche);--bzx-say:#1D3F60}
 
 @media (prefers-reduced-motion:reduce){
   .dz-anillo .seg,.dz-reg-bar i,.dz-meses span{opacity:1!important;transform:none!important}
@@ -465,7 +465,7 @@
               <path d="M12 44h22" stroke="var(--bzx-flag)" stroke-width="3" stroke-linecap="round"/>
             </g></g></g></g>
             <g class="flag"><rect x="304" y="80" width="8" height="72" rx="3" fill="#0C193A"/><path d="M312 80h38v26h-38z" fill="var(--bzx-flag)" stroke="#0C193A" stroke-width="3" stroke-linejoin="round"/></g>
-            <g class="spark" stroke="var(--bzx-acc)" stroke-width="4" stroke-linecap="round"><path d="M124 40l-12-10M120 66h-16M250 36l10-12"/></g>
+            <g class="spark" stroke="var(--bzx-say)" stroke-width="4" stroke-linecap="round"><path d="M124 40l-12-10M120 66h-16M250 36l10-12"/></g>
           </svg>
         <span class="bzx-say" aria-hidden="true">¡échala aquí!</span>
       </div>

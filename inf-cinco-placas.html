@@ -252,9 +252,9 @@ a.gz-mode.info{text-decoration:none}
 .bzx{--bzx-bg:#0C193A;--bzx-acc:#E9C46A;--bzx-flag:#B5532F;--bzx-post:#7F5539;--bzx-soft:#EADBC8;--bzx-shadow:#000;--bzx-ink:#fff;--bzx-line:#EADBC8;--bzx-say:#E9C46A;background:var(--bzx-bg);color:var(--bzx-ink);overflow:hidden;position:relative;isolation:isolate}
 /* fondo: curvas de nivel sutiles que «respiran» (no compiten con el buzón) */
 .bzx-bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.8;transition:opacity .4s}
-.bzx-bg .r{stroke:var(--bzx-line);stroke-opacity:.16;stroke-width:1.4;vector-effect:non-scaling-stroke;transform-box:view-box;transform-origin:330px 265px;animation:bzxNivel 16s ease-in-out infinite;animation-delay:calc(var(--k)*-1.8s)}
+.bzx-bg .r{stroke:var(--bzx-line);stroke-opacity:var(--bzx-lo,.09);stroke-width:1.4;vector-effect:non-scaling-stroke;transform-box:view-box;transform-origin:330px 265px;animation:bzxNivel 16s ease-in-out infinite;animation-delay:calc(var(--k)*-1.8s)}
 .bzx-bg .r.b{transform-origin:1080px 70px;animation-duration:19s}
-.bzx-bg .r.i{stroke-opacity:.28;stroke-width:2.2}
+.bzx-bg .r.i{stroke-opacity:var(--bzx-hi,.15);stroke-width:2.2}
 @keyframes bzxNivel{50%{transform:scale(1.045) rotate(.8deg)}}
 .bzx:has(.bzx-card:hover) .bzx-bg,.bzx:has(.bzx-card:focus-visible) .bzx-bg{opacity:1}
 .bzx>.wrap{padding-block:clamp(2.2rem,5vw,3.6rem)}
@@ -287,7 +287,7 @@ a.gz-mode.info{text-decoration:none}
 }
 @media (prefers-reduced-motion:reduce){.bzx *{animation:none!important;transition:none!important}}
 .gz .fc{--fc-bg:var(--roca);--fc-acc:var(--azufre);--fc-link:var(--oxido);--fc-code:var(--arena);--fc-bar:var(--oxido);--fc-pt:6px}
-.gz .bzx{--bzx-bg:var(--arena);--bzx-acc:var(--azufre);--bzx-flag:var(--oxido);--bzx-post:var(--cafe);--bzx-soft:#4a2f25;--bzx-ink:var(--roca);--bzx-line:var(--roca);--bzx-say:var(--oxido)}
+.gz .bzx{--bzx-bg:#F5EEE4;--bzx-acc:var(--azufre);--bzx-flag:var(--oxido);--bzx-post:var(--cafe);--bzx-soft:#4a2f25;--bzx-ink:var(--roca);--bzx-line:var(--roca);--bzx-say:var(--oxido)}
 
 @media (prefers-reduced-motion:reduce){
   .gz *{animation:none!important;transition:none!important}

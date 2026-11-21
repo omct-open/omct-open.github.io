@@ -205,20 +205,30 @@
 .gz-mapbox[data-mode="reloj"] #gzLabels,.gz-mapbox[data-mode="corte"] #gzLabels,.gz-mapbox[data-mode="reto"] #gzLabels,.gz-mapbox[data-mode="reto"] #gzArrows,.gz-mapbox[data-mode="reto"] #gzQuakes,.gz-mapbox[data-mode="reto"] #gzVolc{display:none}
 .gz-mapbox[data-mode="reto"] .gz-plate:hover{opacity:.8}
 
-/* ventana ⓘ */
-.gz-dlg{border:3px solid var(--noche);border-radius:14px;padding:0;max-width:min(44rem,calc(100vw - 24px));max-height:calc(100svh - 40px);color:var(--ink);background:var(--bg);box-shadow:8px 8px 0 #3f271f}
-.gz-dlg::backdrop{background:rgba(12,25,58,.55)}
-.gz-dlg .in{padding:clamp(1rem,3vw,1.6rem);display:grid;gap:var(--s4)}
-.gz-dlg .hd{display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.gz-dlg h2{margin:0;font:900 1.8rem/1 var(--disp);text-transform:uppercase}
-.gz-dlg h3{margin:0;font:600 1rem var(--f-body)}
-.gz-dlg .gz-x{border-color:var(--ink);color:var(--ink)}
+/* fuentes y cita (bajo el mapa) */
+.gz-fc{background:var(--roca);color:#fff;scroll-margin-top:84px}
+.gz-fc>.wrap{display:grid;gap:12px;padding-block:6px 26px}
+.gz-fc-h{margin:0;font:900 clamp(1.5rem,2.4vw,2rem)/1 var(--disp);text-transform:uppercase;letter-spacing:.01em;color:var(--azufre)}
+.gz-fc-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:stretch}
+.gz-fc-card{background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.gz-fc-card h3{margin:0;font:900 1.35rem/1 var(--disp);text-transform:uppercase;color:var(--noche)}
+.gz-fc-card h3 span{font:500 .72rem var(--f-mono);letter-spacing:.06em;color:var(--oxido);text-transform:uppercase;vertical-align:middle}
+.gz-fc-src{grid-template-rows:auto 1fr auto}
+.gz-fc-scroll{height:0;min-height:100%;overflow:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;border-block:1px dashed #c9b8a4;padding-block:8px}
+.gz-fc-scroll:focus-visible{outline:3px solid var(--azufre);outline-offset:3px}
+.gz-fc .gz-refs{color:#3a4458}.gz-fc .gz-refs i{color:var(--noche)}
+.gz-fc .gz-refs a{color:var(--oxido)}
+.gz-fc-more{margin:0;font:500 .72rem var(--f-mono);letter-spacing:.06em;color:#55627A;text-transform:uppercase}
+.gz-fc-cite code{display:block;white-space:normal;word-break:break-word;font:500 .86rem/1.45 var(--f-mono);background:var(--arena);color:var(--noche);border-left:4px solid var(--oxido);border-radius:6px;padding:10px 12px}
+.gz-fc-cite .copy{justify-self:start}
+.gz-fc-note{margin:0;font-size:.85rem;color:#3a4458}.gz-fc-note b{font-weight:600}
+.gz-fc .gz-chips span{border-color:var(--noche);color:var(--noche)}
+a.gz-mode.info{text-decoration:none}
 .gz-chips{display:flex;flex-wrap:wrap;gap:.45rem}
 .gz-chips span{font:500 .76rem var(--f-mono);letter-spacing:.05em;padding:.35rem .7rem;border-radius:99px;border:2px solid var(--ink)}
 .gz-chips b{font-weight:500;color:var(--oxido)}
 .gz-refs{margin:0;padding-left:1.1rem;display:grid;gap:.5rem;font-size:.88rem;color:var(--muted)}
 .gz-refs i{color:var(--ink)}
-.gz .cite{border-left-color:var(--oxido)}
 
 /* --- Celular y tableta --- */
 @media (max-width:900px){
@@ -233,6 +243,9 @@
   .gz-tourbar .st{grid-area:st}.gz-tourbar p{grid-area:p}.gz-tourbar .nav{grid-area:nav}
   .gz-hint,.gz-cap{display:none}
   .gz-mode .n{display:none}
+  .gz-fc-grid{grid-template-columns:1fr}
+  .gz-fc-scroll{height:auto;min-height:0;max-height:13rem}
+  .gz-fc-cite{order:-1}
 }
 @media (max-width:420px){.gz-qlist{grid-template-columns:1fr}}
 
@@ -338,7 +351,7 @@
       <button class="gz-mode" type="button" data-m="reto" aria-pressed="false"><span class="n">6</span>Reto</button>
       <span class="gz-sep" aria-hidden="true"></span>
       <button class="gz-mode tour" type="button" id="gzTourBtn" aria-pressed="false">▶ Recorrido guiado</button>
-      <button class="gz-mode info" type="button" id="gzInfoBtn" aria-label="Fuentes, cita y créditos" title="Fuentes, cita y créditos">i</button>
+      <a class="gz-mode info" href="#fuentes" id="gzInfoBtn" aria-label="Ir a fuentes y cita" title="Fuentes y cita">i</a>
     </nav>
 
     <div class="gz-stage">
@@ -360,13 +373,14 @@
   </div>
 </section>
 
-<dialog class="gz-dlg" id="gzInfo" aria-labelledby="gzInfoT">
-  <div class="in">
-    <div class="hd"><h2 id="gzInfoT">Fuentes y cita</h2><button class="gz-x" type="button" id="gzInfoClose" aria-label="Cerrar">✕</button></div>
-    <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Exploración</b> 5 min</span></div>
-    <p style="margin:0">Texto y diseño: <b>Katia Fernández González</b>. Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>
-    <h3>Fuentes (datos con redacción propia)</h3>
-    <ul class="gz-refs">
+<section class="gz-fc" id="fuentes" aria-labelledby="gzFcT">
+  <div class="wrap">
+    <h2 class="gz-fc-h" id="gzFcT">Fuentes y cita</h2>
+    <div class="gz-fc-grid">
+      <div class="gz-fc-card gz-fc-src">
+        <h3>Fuentes <span>(datos con redacción propia)</span></h3>
+        <div class="gz-fc-scroll" tabindex="0" role="region" aria-label="Lista de fuentes (se desplaza)">
+          <ul class="gz-refs">
             <li>Pardo, M. y Suárez, G. (1995). Shape of the subducted Rivera and Cocos plates in southern Mexico. <i>Journal of Geophysical Research</i>, 100(B7). <a href="https://www.geo.mtu.edu/EHaz/ConvergentPlatesClass/week%204/PardoSuarez95JB00919.pdf" rel="noopener">PDF ↗</a></li>
             <li>Velocidad Cocos–Norteamérica de 58 a 68 mm/año (modelo PVEL de DeMets et al., 2010), citada en <i>Earth, Planets and Space</i> (2019). <a href="https://link.springer.com/article/10.1186/s40623-019-1084-9" rel="noopener">Ver artículo ↗</a></li>
             <li>Modelos de convergencia Rivera–Norteamérica. <a href="https://earthref.org/ERR/40528" rel="noopener">EarthRef ↗</a> · <i>Pure and Applied Geophysics</i> (2016). <a href="https://link.springer.com/article/10.1007/s00024-016-1388-7" rel="noopener">Ver artículo ↗</a></li>
@@ -377,15 +391,20 @@
             <li>Gaceta UNAM. Cinturón Volcánico Transmexicano (≈1000 km; ≈40 % de la población). <a href="https://www.gaceta.unam.mx/continuar-estudios-en-el-cinturon-volcanico-transmexicano-propone-ekaterina-kazachkina/" rel="noopener">Ver nota ↗</a></li>
             <li>Gaceta UNAM. Sismos de magnitud 8.2 de 1932 y 2017. <a href="https://www.gaceta.unam.mx/prevenir-y-estar-alertas-la-mayor-proteccion-contra-temblores-geofisica/" rel="noopener">Ver nota ↗</a> · UNAM Global. Sismos del 19 de septiembre. <a href="https://unamglobal.unam.mx/global_revista/sismos-del-19-de-septiembre/" rel="noopener">Ver nota ↗</a></li>
             <li>Servicio Sismológico Nacional (UNAM). Catálogo de sismos. <a href="http://www.ssn.unam.mx/" rel="noopener">ssn.unam.mx ↗</a></li>
-    </ul>
-    <div class="cite">
-      <h3>Si usas esta infografía, cítala así (APA 7)</h3>
-      <code id="citaInf">Fernández González, K. (2027, 1 de enero). México en la interacción de cinco placas [Infografía interactiva]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/inf-cinco-placas.html</code>
-      <button class="copy" type="button" data-copy-el="citaInf">Copiar cita</button>
-      <p class="note">CC BY 4.0. El mapa y los cortes son esquemas con límites y ubicaciones aproximados; las cifras vienen de las fuentes citadas.</p>
+          </ul>
+        </div>
+        <p class="gz-fc-more" aria-hidden="true">↓ desliza para ver todas</p>
+      </div>
+      <div class="gz-fc-card gz-fc-cite">
+        <h3>Cómo citar <span>(APA 7)</span></h3>
+        <code id="citaInf">Fernández González, K. (2027, 1 de enero). México en la interacción de cinco placas [Infografía interactiva]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/inf-cinco-placas.html</code>
+        <button class="copy" type="button" data-copy-el="citaInf">Copiar cita</button>
+        <p class="gz-fc-note">Texto y diseño: <b>Katia Fernández González</b>. Licencia CC BY 4.0. Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados; las flechas muestran el movimiento respecto a la placa Norteamericana y su largo es proporcional a la velocidad. Las cifras vienen de las fuentes citadas.</p>
+        <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Exploración</b> 5 min</span></div>
+      </div>
     </div>
   </div>
-</dialog>
+</section>
 
 <section aria-label="Buzón de ideas">
   <div class="bz" id="buzon">
@@ -706,10 +725,6 @@ document.getElementById("gzTourNext").addEventListener("click",()=>ts===TOUR.len
 document.getElementById("gzTourEnd").addEventListener("click",endTour);
 
 // ---------- Fuentes y cita ----------
-const dlg=document.getElementById("gzInfo");
-document.getElementById("gzInfoBtn").addEventListener("click",()=>{if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","")});
-document.getElementById("gzInfoClose").addEventListener("click",()=>dlg.close?dlg.close():dlg.removeAttribute("open"));
-dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 
 // ---------- Teclado: números 1–6 cambian de modo ----------
 document.addEventListener("keydown",e=>{if(e.target.closest("input,textarea,select,[contenteditable]")||e.metaKey||e.ctrlKey||e.altKey)return;const n=+e.key;if(n>=1&&n<=6){if(tourOn)endTour();setMode(MODES[n-1])}});

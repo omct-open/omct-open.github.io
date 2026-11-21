@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buzón de ideas · OMCT</title>
+<meta name="description" content="Buzón de ideas del OMCT: sugiere una palabra o un tema para que lo expliquemos en Aprende.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Buzón de ideas · OMCT">
+<meta property="og:description" content="Sugiere una palabra o un tema para que lo expliquemos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<link rel="icon" href="favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://omct-open.github.io/omct-isotipo-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Londrina+Solid:wght@400;900&family=Barriecito&display=swap">
+<link rel="stylesheet" href="styles.css?v=25">
+<style>
+/* ===== Buzón de ideas · página propia (se abre desde el buzón al final de cada recurso de Aprende) =====
+   El color cambia con la esfera del recurso de origen (?e=geo · atm); por defecto, noche + azufre. */
+.bzp{--t-bg:#0C193A;--t-acc:#E9C46A;--t-flag:#B5532F;--t-post:#7F5539;--t-soft:#DCE3EE;--t-shadow:#000}
+[data-e="geo"] .bzp{--t-bg:#5E3A2E;--t-acc:#E9C46A;--t-flag:#B5532F;--t-post:#7F5539;--t-soft:#EADBC8;--t-shadow:#3f271f}
+[data-e="atm"] .bzp{--t-bg:#2B5C8A;--t-acc:#F2B84B;--t-flag:#E07A5F;--t-post:#1D3F60;--t-soft:#DCEBF6;--t-shadow:#1D3F60}
+.bzp .bz{--bz-bg:var(--t-bg);--bz-acc:var(--t-acc);--bz-soft:var(--t-soft);--bz-shadow:var(--t-shadow);--bz-focus:var(--t-acc);--bzx-acc:var(--t-acc);--bzx-flag:var(--t-flag);--bzx-post:var(--t-post);min-height:calc(100svh - 120px)}
+.bzp-back{margin:0 0 clamp(1.2rem,3vw,2rem)}
+.bzp-back a{color:#fff;font-weight:500;text-decoration:none;font-size:.95rem}.bzp-back a:hover{text-decoration:underline}
+.bz-intro h1{margin:0;font-family:'Londrina Solid',Impact,sans-serif;font-weight:900;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:.98;text-transform:uppercase;color:#fff}
+.bzp-art{width:100%;max-width:300px;margin-top:.4rem}
+.bzp-art svg{display:block;width:100%;height:auto;overflow:visible}
+.bzp .flag{transform-origin:308px 150px;transform:rotate(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.bzp .bob{animation:bzpBob 2.4s ease-in-out infinite}
+@keyframes bzpBob{50%{transform:translateY(-6px)}}
+.bzp .spark{opacity:0}
+.bzp .sent .env{animation:bzpDrop 2.6s ease-in-out}
+.bzp .sent .flag{transform:rotate(-90deg)}
+.bzp .sent .spark{animation:bzpSpark 2.6s ease-out}
+@keyframes bzpDrop{0%{transform:none}28%,72%{transform:translateY(74px)}100%{transform:none}}
+@keyframes bzpSpark{20%{opacity:0}35%,60%{opacity:1}80%{opacity:0}}
+@media (max-width:860px){.bzp-art{max-width:170px}}
+/* --- Buzón de ideas (fondo pleno de la esfera; envía a Google Forms del OMCT) --- */
+.bz{background:var(--bz-bg);color:#fff;position:relative;overflow:hidden}
+.bz .wrap{padding-block:clamp(2.8rem,6vw,4.5rem)}
+.bz-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+@media (max-width:860px){.bz-grid{grid-template-columns:1fr}}
+.bz-intro{display:grid;gap:var(--s4);align-content:start}
+.bz-tag{justify-self:start;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--bz-acc);color:#0C193A;transform:rotate(-3deg)}
+.bz-intro h2{margin:0;font-family:'Londrina Solid',Impact,sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);line-height:.98;text-transform:uppercase;color:#fff}
+.bz-intro p{margin:0;font-size:1.05rem;color:var(--bz-soft);max-width:30rem}
+.bz-intro .bz-hand{font-family:'Barriecito','Comic Sans MS',cursive;font-size:1.5rem;color:var(--bz-acc);transform:rotate(-4deg);justify-self:start}
+.bz-form{display:grid;gap:var(--s4);background:#fff;color:#0C193A;border:3px solid #0C193A;border-radius:14px;padding:clamp(1.1rem,3vw,1.8rem);box-shadow:8px 8px 0 var(--bz-shadow)}
+.bz-field{display:grid;gap:.4rem;border:0;margin:0;padding:0;min-width:0}
+.bz-field>span,.bz-field legend{font:500 .76rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#26324A;padding:0;margin-bottom:.4rem}
+.bz-field b{color:#B5532F;font-weight:500}.bz-field i,.bz-more i{font-style:normal;text-transform:none;letter-spacing:0;color:#55627A}
+.bz-field input,.bz-field textarea{font:400 16px/1.4 var(--f-body);color:#0C193A;background:#F7F4EF;border:2px solid #0C193A;border-radius:10px;padding:.7rem .85rem;width:100%;min-height:44px}
+.bz-field textarea{resize:vertical}
+.bz-field input:focus-visible,.bz-field textarea:focus-visible,.bz-opt input:focus-visible+span,.bz-check input:focus-visible,.bz-btn:focus-visible,.bz-more summary:focus-visible{outline:3px solid var(--bz-focus);outline-offset:2px}
+.bz-field [aria-invalid="true"]{border-color:#B5532F;background:#FBEDE7}
+.bz-opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.bz-opt{position:relative}
+.bz-opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.bz-opt span{display:inline-flex;align-items:center;min-height:44px;padding:.45rem 1rem;border-radius:99px;border:2px solid #0C193A;font:600 .88rem var(--f-body);background:#fff;transition:transform .15s,background .2s}
+.bz-opt:hover span{transform:translateY(-2px)}
+.bz-opt input:checked+span{background:var(--bz-acc)}
+.bz-more{border-top:2px dashed #D5DCE5;padding-top:var(--s3)}
+.bz-more summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center;gap:.5rem;list-style:none}
+.bz-more summary::-webkit-details-marker{display:none}
+.bz-more summary::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:2px solid #0C193A;font:600 1rem/1 var(--f-mono);flex:none}
+.bz-more[open] summary::before{content:"−"}
+.bz-more>*+*{margin-top:var(--s3)}
+.bz-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3)}
+@media (max-width:520px){.bz-two{grid-template-columns:1fr}}
+.bz-check{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;line-height:1.4}
+.bz-check input{width:22px;height:22px;flex:none;margin-top:.1rem;accent-color:#0C193A}
+.bz-check.err span{color:#B5532F}
+.bz-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.bz-send{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3)}
+.bz-btn{font:600 1rem var(--f-body);min-height:48px;padding:.6rem 1.4rem;border-radius:99px;border:2px solid #0C193A;background:var(--bz-acc);color:#0C193A;cursor:pointer;box-shadow:4px 4px 0 #0C193A;transition:transform .15s,box-shadow .15s}
+.bz-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #0C193A}
+.bz-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #0C193A}
+.bz-btn[disabled]{opacity:.6;cursor:progress}
+.bz-msg{margin:0;font-size:.95rem;font-weight:500}
+.bz-msg.ok{color:#1F6E5C}.bz-msg.no{color:#B5532F}
+.bz-legal{margin:0;font-size:.8rem;color:#55627A}
+.bz-legal a,.bz-check a{color:#0C193A}
+@media (prefers-reduced-motion:reduce){.bzp *{animation:none!important;transition:none!important}}
+</style>
+<script>(function(){try{var e=new URLSearchParams(location.search).get("e");if(/^(geo|atm)$/.test(e||""))document.documentElement.setAttribute("data-e",e)}catch(x){}})();</script>
+</head>
+<body data-page="aprende">
+
+<div class="proto"><div class="wrap"><span>SITIO EN CONSTRUCCIÓN · lanzamiento: 1 de enero de 2027</span><span>Contenido de ejemplo marcado como tal</span></div></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="omct-imagotipo.svg" alt="OMCT" width="160" height="37"><small>Observatorio Mexicano de Ciencias de la Tierra</small>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menú</button>
+    <nav class="main" id="mainNav" aria-label="Principal">
+      <a href="index.html" data-p="inicio">Inicio</a>
+      <a href="fuentes.html" data-p="fuentes">Fuentes</a>
+      <a href="aprende.html" data-p="aprende">Aprende</a>
+      <a href="productos.html" data-p="productos">Productos</a>
+      <a href="observatorio.html" data-p="observatorio">Observatorio</a>
+      <a href="vinculacion.html" data-p="vinculacion">Vinculación</a>
+      <a href="citar.html" data-p="citar">Cómo citarnos</a>
+    </nav>
+  </div>
+</header>
+
+<main class="bzp">
+<section class="bz" id="bzHero" aria-labelledby="bzT">
+  <div class="wrap">
+    <p class="bzp-back"><a id="bzBack" href="aprende.html">← Volver a Aprende</a></p>
+    <div class="bz-grid">
+      <div class="bz-intro">
+        <span class="bz-tag">Buzón de ideas</span>
+        <h1 id="bzT">¿Qué palabra o tema quieres que expliquemos?</h1>
+        <p>Puede ser una palabra para «Dilo en ciencia» o un tema para una infografía, un tutorial, una guía o material didáctico. Si quieres que te avisemos cuando la publiquemos o que tu nombre aparezca en los agradecimientos, agrega tus datos: son opcionales.</p>
+        <div class="bzp-art">
+          <svg viewBox="0 0 360 300" aria-hidden="true" focusable="false">
+            <defs><clipPath id="bzpClip"><rect x="0" y="-220" width="340" height="318"/></clipPath></defs>
+            <ellipse cx="172" cy="286" rx="112" ry="9" fill="rgba(0,0,0,.22)"/>
+            <rect x="158" y="150" width="28" height="134" rx="3" fill="var(--bzx-post)" stroke="#0C193A" stroke-width="4"/>
+            <path d="M150 284h44" stroke="#0C193A" stroke-width="5" stroke-linecap="round"/>
+            <path d="M50 170V112Q50 64 98 64H254Q302 64 302 112V170Z" fill="var(--bzx-acc)" stroke="#0C193A" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M54 152H298" stroke="rgba(12,25,58,.16)" stroke-width="16"/>
+            <path d="M34 172V116Q34 72 72 64V172Z" fill="var(--bzx-acc)" stroke="#0C193A" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M34 172V116Q34 72 72 64V172Z" fill="rgba(12,25,58,.14)"/>
+            <circle cx="50" cy="126" r="5.5" fill="#0C193A"/>
+            <text x="186" y="144" text-anchor="middle" font-family="Barriecito,'Comic Sans MS',cursive" font-size="27" fill="#0C193A">ideas</text>
+            <rect x="136" y="92" width="108" height="12" rx="6" fill="#0C193A"/>
+            <g clip-path="url(#bzpClip)"><g class="bob"><g class="env"><g transform="translate(152 22) rotate(-7 40 26)">
+              <rect width="80" height="54" rx="4" fill="#fff" stroke="#0C193A" stroke-width="3.5"/>
+              <path d="M3 4L40 31L77 4" fill="none" stroke="#0C193A" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M12 44h22" stroke="var(--bzx-flag)" stroke-width="3" stroke-linecap="round"/>
+            </g></g></g></g>
+            <g class="flag"><rect x="304" y="80" width="8" height="72" rx="3" fill="#0C193A"/><path d="M312 80h38v26h-38z" fill="var(--bzx-flag)" stroke="#0C193A" stroke-width="3" stroke-linejoin="round"/></g>
+            <g class="spark" stroke="var(--bzx-acc)" stroke-width="4" stroke-linecap="round"><path d="M124 40l-12-10M120 66h-16M250 36l10-12"/></g>
+          </svg>
+        </div>
+        <p class="bz-hand" aria-hidden="true">¡todas las ideas se leen!</p>
+      </div>
+      <form class="bz-form" id="bzForm" novalidate aria-labelledby="bzT">
+        <fieldset class="bz-field"><legend>¿Qué quieres sugerir?</legend><div class="bz-opts"><label class="bz-opt"><input type="radio" name="bzTipo" value="palabra" data-form="Una palabra para «Dilo en ciencia»" checked><span>Palabra para «Dilo en ciencia»</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="infografia" data-form="Un tema para una infografía"><span>Infografía</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="tutorial" data-form="Un tema para un tutorial"><span>Tutorial</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="guia" data-form="Un tema para una guía"><span>Guía</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="material" data-form="Un tema para material didáctico"><span>Material didáctico</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="otra" data-form="Otra idea"><span>Otra idea</span></label></div></fieldset>
+        <label class="bz-field" for="bzIdea"><span>Tu sugerencia <b>*</b></span><input id="bzIdea" name="idea" type="text" maxlength="120" required placeholder="Por ejemplo: «humedad» o «cómo se forma un huracán»"></label>
+        <label class="bz-field" for="bzPor"><span>¿Por qué te interesa? <i>(opcional)</i></span><textarea id="bzPor" name="por" rows="3" maxlength="600"></textarea></label>
+        <details class="bz-more" id="bzMore">
+          <summary>Quiero que me avisen o me den crédito <i>(opcional)</i></summary>
+          <div class="bz-two">
+            <label class="bz-field" for="bzNom"><span>Nombre</span><input id="bzNom" name="nombre" type="text" maxlength="80" autocomplete="name"></label>
+            <label class="bz-field" for="bzMail"><span>Correo electrónico</span><input id="bzMail" name="correo" type="email" maxlength="120" autocomplete="email" inputmode="email"></label>
+          </div>
+          <label class="bz-check"><input id="bzOk" type="checkbox"><span>Acepto que el OMCT use mi nombre y correo solo para avisarme cuando se publique mi idea y darme crédito, conforme al <a href="privacidad.html">Aviso de privacidad</a>.</span></label>
+        </details>
+        <input class="bz-hp" type="text" name="sitio" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="bz-send"><button class="bz-btn" type="submit" id="bzBtn">Enviar idea</button><p class="bz-msg" id="bzMsg" role="status" aria-live="polite"></p></div>
+        <p class="bz-legal">Las respuestas se guardan en una cuenta de Google del OMCT. No usamos tus datos para publicidad ni los compartimos. Responsable: Katia Fernández González. Consulta el <a href="privacidad.html">Aviso de privacidad</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="display:grid;gap:var(--s3);align-content:start">
+        <div class="brand foot-brand"><img src="omct-isotipo-128.png" alt="O" width="40" height="40"><b>MCT</b></div>
+        <p>Observatorio Mexicano de Ciencias de la Tierra. Datos abiertos, explicados y citables.</p>
+      </div>
+      <div><h4>Explorar</h4><a href="fuentes.html">Fuentes</a><a href="aprende.html">Aprende</a><a href="productos.html">Productos</a></div>
+      <div><h4>Observatorio</h4><a href="observatorio.html">Quiénes somos</a><a href="vinculacion.html">Vinculación</a><a href="citar.html">Cómo citarnos</a></div>
+      <div><h4>Legal</h4><a href="citar.html">Licencias</a><a href="privacidad.html">Aviso de privacidad</a><a href="terminos.html">Términos de uso</a></div>
+    </div>
+    <div class="legalline">
+      <p>© 2027 Observatorio Mexicano de Ciencias de la Tierra. Salvo indicación contraria, el contenido se publica bajo licencia CC BY 4.0.</p>
+      <p>El material de terceros conserva la licencia de su titular.</p>
+      <p class="visits" id="visits" hidden></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+<script data-goatcounter="https://omct-open.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="main.js?v=17"></script>
+<script>
+(function(){
+  // Buzón de ideas (página buzon.html): envía a Google Forms del OMCT (omct.contacto@gmail.com). Respuestas en «Buzón de ideas · OMCT».
+  var f=document.getElementById("bzForm");if(!f)return;
+  var URL="https://docs.google.com/forms/d/e/1FAIpQLSdu2pqyrVhjCoN4qrTV8zMOLVUixsFBgNW0pnE1fEvxaRd7pA/formResponse";
+  var E={tipo:"entry.488055283",idea:"entry.2121697076",por:"entry.1124146813",nombre:"entry.1040574841",correo:"entry.1672806866",pagina:"entry.1834509898",acepto:"entry.1901787318"};
+  // Página de origen (?desde=) y tipo sugerido (?tipo=): solo rutas internas sencillas
+  var Q=new URLSearchParams(location.search),FROM=Q.get("desde")||"",TIPO=Q.get("tipo")||"";
+  if(!/^\/[a-z0-9-]+\.html$/.test(FROM))FROM=location.pathname;
+  var NOM={"/inf-cinco-placas.html":"la infografía","/dilo-tiempo-clima.html":"Dilo en ciencia"};
+  var back=document.getElementById("bzBack");
+  if(back&&FROM!==location.pathname){back.href=FROM.slice(1);back.textContent="← Volver a "+(NOM[FROM]||"el recurso");}
+  var pre=TIPO&&f.querySelector('input[name=bzTipo][value="'+TIPO.replace(/[^a-z]/g,"")+'"]');if(pre)pre.checked=true;
+  var hero=document.getElementById("bzHero"),tmr;
+  var msg=document.getElementById("bzMsg"),btn=document.getElementById("bzBtn"),idea=document.getElementById("bzIdea"),nom=document.getElementById("bzNom"),mail=document.getElementById("bzMail"),ok=document.getElementById("bzOk"),more=document.getElementById("bzMore"),last=0;
+  function say(t,c){msg.textContent=t;msg.className="bz-msg"+(c?" "+c:"");}
+  [idea,mail].forEach(function(x){x.addEventListener("input",function(){x.removeAttribute("aria-invalid")})});
+  ok.addEventListener("change",function(){ok.closest(".bz-check").classList.remove("err")});
+  f.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    if(f.sitio.value)return;
+    var v=idea.value.trim(),n=nom.value.trim(),m=mail.value.trim();
+    if(!v){idea.setAttribute("aria-invalid","true");idea.focus();say("Escribe tu sugerencia antes de enviarla.","no");return;}
+    if(m&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){more.open=true;mail.setAttribute("aria-invalid","true");mail.focus();say("Revisa tu correo electrónico.","no");return;}
+    if((n||m)&&!ok.checked){more.open=true;ok.closest(".bz-check").classList.add("err");ok.focus();say("Para guardar tu nombre o correo, marca la casilla de aceptación.","no");return;}
+    if(Date.now()-last<20000){say("Ya recibimos una idea hace un momento. Espera unos segundos para enviar otra.","no");return;}
+    var t=f.querySelector("input[name=bzTipo]:checked"),p=new URLSearchParams();
+    p.append(E.tipo,t?t.dataset.form:"Otra idea");p.append(E.idea,v);p.append(E.por,f.por.value.trim());
+    if(n||m){p.append(E.nombre,n);p.append(E.correo,m);p.append(E.acepto,"Sí");}
+    p.append(E.pagina,FROM);
+    btn.disabled=true;say("Enviando…");
+    fetch(URL,{method:"POST",mode:"no-cors",body:p}).then(function(){
+      last=Date.now();f.reset();if(t)t.checked=true;more.open=false;say("¡Gracias! Enviamos tu idea al buzón del OMCT.","ok");hero.classList.remove("sent");void hero.offsetWidth;hero.classList.add("sent");clearTimeout(tmr);tmr=setTimeout(function(){hero.classList.remove("sent")},2600);
+    }).catch(function(){say("No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.","no");}).then(function(){btn.disabled=false;});
+  });
+})();
+</script>
+</body>
+</html>

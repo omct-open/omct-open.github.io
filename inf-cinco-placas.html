@@ -205,30 +205,7 @@
 .gz-mapbox[data-mode="reloj"] #gzLabels,.gz-mapbox[data-mode="corte"] #gzLabels,.gz-mapbox[data-mode="reto"] #gzLabels,.gz-mapbox[data-mode="reto"] #gzArrows,.gz-mapbox[data-mode="reto"] #gzQuakes,.gz-mapbox[data-mode="reto"] #gzVolc{display:none}
 .gz-mapbox[data-mode="reto"] .gz-plate:hover{opacity:.8}
 
-/* fuentes y cita (bajo el mapa) */
-.gz-fc{background:var(--roca);color:#fff;scroll-margin-top:84px}
-.gz-fc>.wrap{display:grid;gap:12px;padding-block:6px 26px}
-.gz-fc-h{margin:0;font:900 clamp(1.5rem,2.4vw,2rem)/1 var(--disp);text-transform:uppercase;letter-spacing:.01em;color:var(--azufre)}
-.gz-fc-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:stretch}
-.gz-fc-card{background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:16px 18px;display:grid;gap:10px;min-width:0}
-.gz-fc-card h3{margin:0;font:900 1.35rem/1 var(--disp);text-transform:uppercase;color:var(--noche)}
-.gz-fc-card h3 span{font:500 .72rem var(--f-mono);letter-spacing:.06em;color:var(--oxido);text-transform:uppercase;vertical-align:middle}
-.gz-fc-src{grid-template-rows:auto 1fr auto}
-.gz-fc-scroll{height:0;min-height:100%;overflow:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;border-block:1px dashed #c9b8a4;padding-block:8px}
-.gz-fc-scroll:focus-visible{outline:3px solid var(--azufre);outline-offset:3px}
-.gz-fc .gz-refs{color:#3a4458}.gz-fc .gz-refs i{color:var(--noche)}
-.gz-fc .gz-refs a{color:var(--oxido)}
-.gz-fc-more{margin:0;font:500 .72rem var(--f-mono);letter-spacing:.06em;color:#55627A;text-transform:uppercase}
-.gz-fc-cite code{display:block;white-space:normal;word-break:break-word;font:500 .86rem/1.45 var(--f-mono);background:var(--arena);color:var(--noche);border-left:4px solid var(--oxido);border-radius:6px;padding:10px 12px}
-.gz-fc-cite .copy{justify-self:start}
-.gz-fc-note{margin:0;font-size:.85rem;color:#3a4458}.gz-fc-note b{font-weight:600}
-.gz-fc .gz-chips span{border-color:var(--noche);color:var(--noche)}
 a.gz-mode.info{text-decoration:none}
-.gz-chips{display:flex;flex-wrap:wrap;gap:.45rem}
-.gz-chips span{font:500 .76rem var(--f-mono);letter-spacing:.05em;padding:.35rem .7rem;border-radius:99px;border:2px solid var(--ink)}
-.gz-chips b{font-weight:500;color:var(--oxido)}
-.gz-refs{margin:0;padding-left:1.1rem;display:grid;gap:.5rem;font-size:.88rem;color:var(--muted)}
-.gz-refs i{color:var(--ink)}
 
 /* --- Celular y tableta --- */
 @media (max-width:900px){
@@ -243,61 +220,67 @@ a.gz-mode.info{text-decoration:none}
   .gz-tourbar .st{grid-area:st}.gz-tourbar p{grid-area:p}.gz-tourbar .nav{grid-area:nav}
   .gz-hint,.gz-cap{display:none}
   .gz-mode .n{display:none}
-  .gz-fc-grid{grid-template-columns:1fr}
-  .gz-fc-scroll{height:auto;min-height:0;max-height:13rem}
-  .gz-fc-cite{order:-1}
 }
 @media (max-width:420px){.gz-qlist{grid-template-columns:1fr}}
-
-.gz .bz{--bz-bg:var(--roca);--bz-acc:var(--azufre);--bz-soft:var(--arena);--bz-shadow:#3f271f;--bz-focus:var(--azufre)}
-.gz .bz{border-top:3px dashed rgba(234,219,200,.35)}
-
-/* --- Buzón de ideas (fondo pleno de la esfera; envía a Google Forms del OMCT) --- */
-.bz{background:var(--bz-bg);color:#fff;position:relative;overflow:hidden}
-.bz .wrap{padding-block:clamp(2.8rem,6vw,4.5rem)}
-.bz-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
-@media (max-width:860px){.bz-grid{grid-template-columns:1fr}}
-.bz-intro{display:grid;gap:var(--s4);align-content:start}
-.bz-tag{justify-self:start;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--bz-acc);color:#0C193A;transform:rotate(-3deg)}
-.bz-intro h2{margin:0;font-family:'Londrina Solid',Impact,sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);line-height:.98;text-transform:uppercase;color:#fff}
-.bz-intro p{margin:0;font-size:1.05rem;color:var(--bz-soft);max-width:30rem}
-.bz-intro .bz-hand{font-family:'Barriecito','Comic Sans MS',cursive;font-size:1.5rem;color:var(--bz-acc);transform:rotate(-4deg);justify-self:start}
-.bz-form{display:grid;gap:var(--s4);background:#fff;color:#0C193A;border:3px solid #0C193A;border-radius:14px;padding:clamp(1.1rem,3vw,1.8rem);box-shadow:8px 8px 0 var(--bz-shadow)}
-.bz-field{display:grid;gap:.4rem;border:0;margin:0;padding:0;min-width:0}
-.bz-field>span,.bz-field legend{font:500 .76rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#26324A;padding:0;margin-bottom:.4rem}
-.bz-field b{color:#B5532F;font-weight:500}.bz-field i,.bz-more i{font-style:normal;text-transform:none;letter-spacing:0;color:#55627A}
-.bz-field input,.bz-field textarea{font:400 16px/1.4 var(--f-body);color:#0C193A;background:#F7F4EF;border:2px solid #0C193A;border-radius:10px;padding:.7rem .85rem;width:100%;min-height:44px}
-.bz-field textarea{resize:vertical}
-.bz-field input:focus-visible,.bz-field textarea:focus-visible,.bz-opt input:focus-visible+span,.bz-check input:focus-visible,.bz-btn:focus-visible,.bz-more summary:focus-visible{outline:3px solid var(--bz-focus);outline-offset:2px}
-.bz-field [aria-invalid="true"]{border-color:#B5532F;background:#FBEDE7}
-.bz-opts{display:flex;flex-wrap:wrap;gap:.5rem}
-.bz-opt{position:relative}
-.bz-opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-.bz-opt span{display:inline-flex;align-items:center;min-height:44px;padding:.45rem 1rem;border-radius:99px;border:2px solid #0C193A;font:600 .88rem var(--f-body);background:#fff;transition:transform .15s,background .2s}
-.bz-opt:hover span{transform:translateY(-2px)}
-.bz-opt input:checked+span{background:var(--bz-acc)}
-.bz-more{border-top:2px dashed #D5DCE5;padding-top:var(--s3)}
-.bz-more summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center;gap:.5rem;list-style:none}
-.bz-more summary::-webkit-details-marker{display:none}
-.bz-more summary::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:2px solid #0C193A;font:600 1rem/1 var(--f-mono);flex:none}
-.bz-more[open] summary::before{content:"−"}
-.bz-more>*+*{margin-top:var(--s3)}
-.bz-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3)}
-@media (max-width:520px){.bz-two{grid-template-columns:1fr}}
-.bz-check{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;line-height:1.4}
-.bz-check input{width:22px;height:22px;flex:none;margin-top:.1rem;accent-color:#0C193A}
-.bz-check.err span{color:#B5532F}
-.bz-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.bz-send{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3)}
-.bz-btn{font:600 1rem var(--f-body);min-height:48px;padding:.6rem 1.4rem;border-radius:99px;border:2px solid #0C193A;background:var(--bz-acc);color:#0C193A;cursor:pointer;box-shadow:4px 4px 0 #0C193A;transition:transform .15s,box-shadow .15s}
-.bz-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #0C193A}
-.bz-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #0C193A}
-.bz-btn[disabled]{opacity:.6;cursor:progress}
-.bz-msg{margin:0;font-size:.95rem;font-weight:500}
-.bz-msg.ok{color:#1F6E5C}.bz-msg.no{color:#B5532F}
-.bz-legal{margin:0;font-size:.8rem;color:#55627A}
-.bz-legal a,.bz-check a{color:#0C193A}
-
+/* --- Fuentes y cita (bloque común de Aprende: siempre visible, antes del buzón) --- */
+.fc{--fc-bg:#0C193A;--fc-acc:#E9C46A;--fc-link:#B5532F;--fc-code:#EADBC8;--fc-bar:#B5532F;--fc-pt:clamp(2rem,5vw,3rem);background:var(--fc-bg);color:#fff;scroll-margin-top:84px}
+.fc>.wrap{display:grid;gap:12px;padding-block:var(--fc-pt) clamp(1.8rem,4vw,2.6rem)}
+.fc-h{margin:0;font:900 clamp(1.5rem,2.4vw,2rem)/1 'Londrina Solid',Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;color:var(--fc-acc)}
+.fc-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:stretch}
+.fc-card{background:#fff;color:#0C193A;border:3px solid #0C193A;border-radius:14px;padding:16px 18px;display:grid;gap:10px;min-width:0;align-content:start}
+.fc-card h3{margin:0;font:900 1.35rem/1 'Londrina Solid',Impact,sans-serif;text-transform:uppercase;color:#0C193A}
+.fc-card h3 span{font:500 .72rem var(--f-mono);letter-spacing:.06em;color:var(--fc-link);text-transform:uppercase;vertical-align:middle}
+.fc-src{grid-template-rows:auto 1fr auto;align-content:stretch}
+.fc-scroll{height:0;min-height:100%;overflow:auto;overscroll-behavior:contain;padding:8px 6px 8px 0;scrollbar-width:thin;border-block:1px dashed #c9b8a4}
+.fc-scroll:focus-visible{outline:3px solid var(--fc-acc);outline-offset:3px}
+.fc-refs{margin:0;padding-left:1.1rem;display:grid;gap:.5rem;font-size:.88rem;color:#3a4458}
+.fc-refs i{color:#0C193A}
+.fc-refs a{color:var(--fc-link)}
+.fc-more{margin:0;font:500 .72rem var(--f-mono);letter-spacing:.06em;color:#55627A;text-transform:uppercase}
+.fc-cite code{display:block;white-space:normal;word-break:break-word;font:500 .86rem/1.45 var(--f-mono);background:var(--fc-code);color:#0C193A;border-left:4px solid var(--fc-bar);border-radius:6px;padding:10px 12px}
+.fc-cite .copy{justify-self:start}
+.fc-note{margin:0;font-size:.85rem;color:#3a4458}.fc-note b{font-weight:600}
+.fc-chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.fc-chips span{font:500 .76rem var(--f-mono);letter-spacing:.05em;padding:.35rem .7rem;border-radius:99px;border:2px solid #0C193A;color:#0C193A}
+.fc-chips b{font-weight:500;color:var(--fc-link)}
+@media (max-width:900px){
+  .fc-grid{grid-template-columns:1fr}
+  .fc-scroll{height:auto;min-height:0;max-height:13rem}
+  .fc-cite{order:-1}
+}
+/* --- Buzón de ideas: un buzón que abre el formulario en una pestaña nueva (buzon.html) --- */
+.bzx{--bzx-bg:#0C193A;--bzx-acc:#E9C46A;--bzx-flag:#B5532F;--bzx-post:#7F5539;--bzx-soft:#EADBC8;--bzx-shadow:#000;background:var(--bzx-bg);color:#fff;border-top:3px dashed rgba(255,255,255,.28);overflow:hidden}
+.bzx>.wrap{padding-block:clamp(2.2rem,5vw,3.6rem)}
+.bzx-card{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(0,1.15fr);gap:clamp(1.2rem,4vw,3.2rem);align-items:center;color:inherit;text-decoration:none;border-radius:18px}
+.bzx-card:focus-visible{outline:3px solid var(--bzx-acc);outline-offset:8px}
+.bzx-art{position:relative;justify-self:center;width:100%;max-width:360px}
+.bzx-art svg{display:block;width:100%;height:auto;overflow:visible}
+.bzx-say{position:absolute;right:0;top:-.4rem;font:400 1.35rem 'Barriecito','Comic Sans MS',cursive;color:var(--bzx-acc);transform:rotate(8deg)}
+.bzx-txt{display:grid;gap:14px;align-content:center}
+.bzx-tag{justify-self:start;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--bzx-acc);color:#0C193A;transform:rotate(-3deg)}
+.bzx-txt h2{margin:0;font:900 clamp(2rem,4vw,3rem)/.98 'Londrina Solid',Impact,sans-serif;text-transform:uppercase;color:#fff}
+.bzx-txt p{margin:0;font-size:1.05rem;color:var(--bzx-soft);max-width:32rem}
+.bzx-go{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem}
+.bzx-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.6rem 1.4rem;border-radius:99px;border:2px solid #0C193A;background:var(--bzx-acc);color:#0C193A;font:600 1rem var(--f-body);box-shadow:4px 4px 0 #0C193A;transition:transform .15s,box-shadow .15s}
+.bzx-card:hover .bzx-btn{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #0C193A}
+.bzx-card:active .bzx-btn{transform:translate(3px,3px);box-shadow:1px 1px 0 #0C193A}
+.bzx-note{font:500 .74rem var(--f-mono);letter-spacing:.05em;color:var(--bzx-soft)}
+/* animación del buzón */
+.bzx .flag{transform-origin:308px 150px;transform:rotate(-90deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.bzx .env{transition:transform .55s cubic-bezier(.5,0,.75,0)}
+.bzx .bob{animation:bzxBob 2.4s ease-in-out infinite}
+@keyframes bzxBob{50%{transform:translateY(-6px)}}
+.bzx .spark{opacity:0;transition:opacity .3s .35s}
+.bzx-card:hover .flag,.bzx-card:focus-visible .flag{transform:rotate(0)}
+.bzx-card:hover .env,.bzx-card:focus-visible .env{transform:translateY(74px)}
+.bzx-card:hover .spark,.bzx-card:focus-visible .spark{opacity:1}
+@media (max-width:760px){
+  .bzx-card{grid-template-columns:1fr}
+  .bzx-art{max-width:260px}
+}
+@media (prefers-reduced-motion:reduce){.bzx *{animation:none!important;transition:none!important}}
+.gz .fc{--fc-bg:var(--roca);--fc-acc:var(--azufre);--fc-link:var(--oxido);--fc-code:var(--arena);--fc-bar:var(--oxido);--fc-pt:6px}
+.gz .bzx{--bzx-bg:var(--roca);--bzx-acc:var(--azufre);--bzx-flag:var(--oxido);--bzx-post:var(--cafe);--bzx-soft:var(--arena)}
 
 @media (prefers-reduced-motion:reduce){
   .gz *{animation:none!important;transition:none!important}
@@ -373,14 +356,14 @@ a.gz-mode.info{text-decoration:none}
   </div>
 </section>
 
-<section class="gz-fc" id="fuentes" aria-labelledby="gzFcT">
+<section class="fc" id="fuentes" aria-labelledby="fcT">
   <div class="wrap">
-    <h2 class="gz-fc-h" id="gzFcT">Fuentes y cita</h2>
-    <div class="gz-fc-grid">
-      <div class="gz-fc-card gz-fc-src">
+    <h2 class="fc-h" id="fcT">Fuentes y cita</h2>
+    <div class="fc-grid">
+      <div class="fc-card fc-src">
         <h3>Fuentes <span>(datos con redacción propia)</span></h3>
-        <div class="gz-fc-scroll" tabindex="0" role="region" aria-label="Lista de fuentes (se desplaza)">
-          <ul class="gz-refs">
+        <div class="fc-scroll" tabindex="0" role="region" aria-label="Lista de fuentes (se desplaza)">
+          <ul class="fc-refs">
             <li>Pardo, M. y Suárez, G. (1995). Shape of the subducted Rivera and Cocos plates in southern Mexico. <i>Journal of Geophysical Research</i>, 100(B7). <a href="https://www.geo.mtu.edu/EHaz/ConvergentPlatesClass/week%204/PardoSuarez95JB00919.pdf" rel="noopener">PDF ↗</a></li>
             <li>Velocidad Cocos–Norteamérica de 58 a 68 mm/año (modelo PVEL de DeMets et al., 2010), citada en <i>Earth, Planets and Space</i> (2019). <a href="https://link.springer.com/article/10.1186/s40623-019-1084-9" rel="noopener">Ver artículo ↗</a></li>
             <li>Modelos de convergencia Rivera–Norteamérica. <a href="https://earthref.org/ERR/40528" rel="noopener">EarthRef ↗</a> · <i>Pure and Applied Geophysics</i> (2016). <a href="https://link.springer.com/article/10.1007/s00024-016-1388-7" rel="noopener">Ver artículo ↗</a></li>
@@ -393,45 +376,53 @@ a.gz-mode.info{text-decoration:none}
             <li>Servicio Sismológico Nacional (UNAM). Catálogo de sismos. <a href="http://www.ssn.unam.mx/" rel="noopener">ssn.unam.mx ↗</a></li>
           </ul>
         </div>
-        <p class="gz-fc-more" aria-hidden="true">↓ desliza para ver todas</p>
+        <p class="fc-more" aria-hidden="true">↓ desliza para ver todas</p>
       </div>
-      <div class="gz-fc-card gz-fc-cite">
+      <div class="fc-card fc-cite">
         <h3>Cómo citar <span>(APA 7)</span></h3>
         <code id="citaInf">Fernández González, K. (2027, 1 de enero). México en la interacción de cinco placas [Infografía interactiva]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/inf-cinco-placas.html</code>
         <button class="copy" type="button" data-copy-el="citaInf">Copiar cita</button>
-        <p class="gz-fc-note">Texto y diseño: <b>Katia Fernández González</b>. Licencia CC BY 4.0. Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados; las flechas muestran el movimiento respecto a la placa Norteamericana y su largo es proporcional a la velocidad. Las cifras vienen de las fuentes citadas.</p>
-        <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Exploración</b> 5 min</span></div>
+        <p class="fc-note">Texto y diseño: <b>Katia Fernández González</b>. Licencia CC BY 4.0. Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados; las flechas muestran el movimiento respecto a la placa Norteamericana y su largo es proporcional a la velocidad. Las cifras vienen de las fuentes citadas.</p>
+        <div class="fc-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Exploración</b> 5 min</span></div>
       </div>
     </div>
   </div>
 </section>
+<script>document.querySelectorAll(".fc-scroll").forEach(function(s){var m=s.parentNode.querySelector(".fc-more");function u(){if(m)m.hidden=s.scrollHeight<=s.clientHeight+2}u();addEventListener("resize",u);addEventListener("load",u)});</script>
 
-<section aria-label="Buzón de ideas">
-  <div class="bz" id="buzon">
-    <div class="wrap bz-grid">
-      <div class="bz-intro">
-        <span class="bz-tag">Buzón de ideas</span>
-        <h2 id="bzT">¿Qué palabra o tema quieres que expliquemos?</h2>
-        <p>Puede ser una palabra para «Dilo en ciencia» o un tema para una infografía, un tutorial, una guía o material didáctico. Si quieres que te avisemos cuando la publiquemos o que tu nombre aparezca en los agradecimientos, agrega tus datos: son opcionales.</p>
-        <p class="bz-hand" aria-hidden="true">¡todas las ideas se leen!</p>
+<section class="bzx" id="buzon" aria-labelledby="bzxT">
+  <div class="wrap">
+    <a class="bzx-card" href="buzon.html?desde=/inf-cinco-placas.html&amp;tipo=infografia&amp;e=geo" target="_blank" rel="noopener">
+      <div class="bzx-art">
+        <svg viewBox="0 0 360 300" aria-hidden="true" focusable="false">
+            <defs><clipPath id="bzxClip"><rect x="0" y="-220" width="340" height="318"/></clipPath></defs>
+            <ellipse cx="172" cy="286" rx="112" ry="9" fill="rgba(0,0,0,.22)"/>
+            <rect x="158" y="150" width="28" height="134" rx="3" fill="var(--bzx-post)" stroke="#0C193A" stroke-width="4"/>
+            <path d="M150 284h44" stroke="#0C193A" stroke-width="5" stroke-linecap="round"/>
+            <path d="M50 170V112Q50 64 98 64H254Q302 64 302 112V170Z" fill="var(--bzx-acc)" stroke="#0C193A" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M54 152H298" stroke="rgba(12,25,58,.16)" stroke-width="16"/>
+            <path d="M34 172V116Q34 72 72 64V172Z" fill="var(--bzx-acc)" stroke="#0C193A" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M34 172V116Q34 72 72 64V172Z" fill="rgba(12,25,58,.14)"/>
+            <circle cx="50" cy="126" r="5.5" fill="#0C193A"/>
+            <text x="186" y="144" text-anchor="middle" font-family="Barriecito,'Comic Sans MS',cursive" font-size="27" fill="#0C193A">ideas</text>
+            <rect x="136" y="92" width="108" height="12" rx="6" fill="#0C193A"/>
+            <g clip-path="url(#bzxClip)"><g class="bob"><g class="env"><g transform="translate(152 22) rotate(-7 40 26)">
+              <rect width="80" height="54" rx="4" fill="#fff" stroke="#0C193A" stroke-width="3.5"/>
+              <path d="M3 4L40 31L77 4" fill="none" stroke="#0C193A" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M12 44h22" stroke="var(--bzx-flag)" stroke-width="3" stroke-linecap="round"/>
+            </g></g></g></g>
+            <g class="flag"><rect x="304" y="80" width="8" height="72" rx="3" fill="#0C193A"/><path d="M312 80h38v26h-38z" fill="var(--bzx-flag)" stroke="#0C193A" stroke-width="3" stroke-linejoin="round"/></g>
+            <g class="spark" stroke="var(--bzx-acc)" stroke-width="4" stroke-linecap="round"><path d="M124 40l-12-10M120 66h-16M250 36l10-12"/></g>
+          </svg>
+        <span class="bzx-say" aria-hidden="true">¡échala aquí!</span>
       </div>
-      <form class="bz-form" id="bzForm" novalidate aria-labelledby="bzT">
-        <fieldset class="bz-field"><legend>¿Qué quieres sugerir?</legend><div class="bz-opts"><label class="bz-opt"><input type="radio" name="bzTipo" value="palabra" data-form="Una palabra para «Dilo en ciencia»"><span>Palabra para «Dilo en ciencia»</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="infografia" data-form="Un tema para una infografía" checked><span>Infografía</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="tutorial" data-form="Un tema para un tutorial"><span>Tutorial</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="guia" data-form="Un tema para una guía"><span>Guía</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="material" data-form="Un tema para material didáctico"><span>Material didáctico</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="otra" data-form="Otra idea"><span>Otra idea</span></label></div></fieldset>
-        <label class="bz-field" for="bzIdea"><span>Tu sugerencia <b>*</b></span><input id="bzIdea" name="idea" type="text" maxlength="120" required placeholder="Por ejemplo: «humedad» o «cómo se forma un huracán»"></label>
-        <label class="bz-field" for="bzPor"><span>¿Por qué te interesa? <i>(opcional)</i></span><textarea id="bzPor" name="por" rows="3" maxlength="600"></textarea></label>
-        <details class="bz-more" id="bzMore">
-          <summary>Quiero que me avisen o me den crédito <i>(opcional)</i></summary>
-          <div class="bz-two">
-            <label class="bz-field" for="bzNom"><span>Nombre</span><input id="bzNom" name="nombre" type="text" maxlength="80" autocomplete="name"></label>
-            <label class="bz-field" for="bzMail"><span>Correo electrónico</span><input id="bzMail" name="correo" type="email" maxlength="120" autocomplete="email" inputmode="email"></label>
-          </div>
-          <label class="bz-check"><input id="bzOk" type="checkbox"><span>Acepto que el OMCT use mi nombre y correo solo para avisarme cuando se publique mi idea y darme crédito, conforme al <a href="privacidad.html">Aviso de privacidad</a>.</span></label>
-        </details>
-        <input class="bz-hp" type="text" name="sitio" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="bz-send"><button class="bz-btn" type="submit" id="bzBtn">Enviar idea</button><p class="bz-msg" id="bzMsg" role="status" aria-live="polite"></p></div>
-        <p class="bz-legal">Las respuestas se guardan en una cuenta de Google del OMCT. No usamos tus datos para publicidad ni los compartimos. Responsable: Katia Fernández González. Consulta el <a href="privacidad.html">Aviso de privacidad</a>.</p>
-      </form>
-    </div>
+      <div class="bzx-txt">
+        <span class="bzx-tag">Buzón de ideas</span>
+        <h2 id="bzxT">¿Qué palabra o tema quieres que expliquemos?</h2>
+        <p>Una palabra para «Dilo en ciencia» o un tema para una infografía, un tutorial, una guía o material didáctico. Todas las ideas se leen.</p>
+        <span class="bzx-go"><span class="bzx-btn">Abrir el buzón <span aria-hidden="true">↗</span></span><span class="bzx-note">Se abre en una pestaña nueva</span></span>
+      </div>
+    </a>
   </div>
 </section>
 </main>
@@ -744,35 +735,6 @@ function sizeStage(){if(innerWidth<=900){stage.style.removeProperty("--gz-h");re
 addEventListener("resize",sizeStage);sizeStage();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(sizeStage);
 updClock();
 setMode((location.hash||"").slice(1));intro();
-})();
-</script>
-<script>
-(function(){
-  // Buzón de ideas: envía a Google Forms del OMCT (omct.contacto@gmail.com). Respuestas en «Buzón de ideas · OMCT».
-  var f=document.getElementById("bzForm");if(!f)return;
-  var URL="https://docs.google.com/forms/d/e/1FAIpQLSdu2pqyrVhjCoN4qrTV8zMOLVUixsFBgNW0pnE1fEvxaRd7pA/formResponse";
-  var E={tipo:"entry.488055283",idea:"entry.2121697076",por:"entry.1124146813",nombre:"entry.1040574841",correo:"entry.1672806866",pagina:"entry.1834509898",acepto:"entry.1901787318"};
-  var msg=document.getElementById("bzMsg"),btn=document.getElementById("bzBtn"),idea=document.getElementById("bzIdea"),nom=document.getElementById("bzNom"),mail=document.getElementById("bzMail"),ok=document.getElementById("bzOk"),more=document.getElementById("bzMore"),last=0;
-  function say(t,c){msg.textContent=t;msg.className="bz-msg"+(c?" "+c:"");}
-  [idea,mail].forEach(function(x){x.addEventListener("input",function(){x.removeAttribute("aria-invalid")})});
-  ok.addEventListener("change",function(){ok.closest(".bz-check").classList.remove("err")});
-  f.addEventListener("submit",function(ev){
-    ev.preventDefault();
-    if(f.sitio.value)return;
-    var v=idea.value.trim(),n=nom.value.trim(),m=mail.value.trim();
-    if(!v){idea.setAttribute("aria-invalid","true");idea.focus();say("Escribe tu sugerencia antes de enviarla.","no");return;}
-    if(m&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){more.open=true;mail.setAttribute("aria-invalid","true");mail.focus();say("Revisa tu correo electrónico.","no");return;}
-    if((n||m)&&!ok.checked){more.open=true;ok.closest(".bz-check").classList.add("err");ok.focus();say("Para guardar tu nombre o correo, marca la casilla de aceptación.","no");return;}
-    if(Date.now()-last<20000){say("Ya recibimos una idea hace un momento. Espera unos segundos para enviar otra.","no");return;}
-    var t=f.querySelector("input[name=bzTipo]:checked"),p=new URLSearchParams();
-    p.append(E.tipo,t?t.dataset.form:"Otra idea");p.append(E.idea,v);p.append(E.por,f.por.value.trim());
-    if(n||m){p.append(E.nombre,n);p.append(E.correo,m);p.append(E.acepto,"Sí");}
-    p.append(E.pagina,location.pathname);
-    btn.disabled=true;say("Enviando…");
-    fetch(URL,{method:"POST",mode:"no-cors",body:p}).then(function(){
-      last=Date.now();f.reset();if(t)t.checked=true;more.open=false;say("¡Gracias! Enviamos tu idea al buzón del OMCT.","ok");
-    }).catch(function(){say("No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.","no");}).then(function(){btn.disabled=false;});
-  });
 })();
 </script>
 </body>

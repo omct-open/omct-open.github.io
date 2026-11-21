@@ -29,34 +29,37 @@
 /* --- Portada: fondo roca con el mapa como protagonista --- */
 .gz-hero{position:relative;overflow:hidden;background:var(--roca);color:#fff}
 .gz-hero .wrap{padding-block:clamp(2.2rem,5vw,3.6rem) clamp(2.5rem,5vw,4rem)}
-.gz-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s6);align-items:start}
+.gz-hgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.5rem,3.5vw,3rem);align-items:start}
+.gz-col{display:grid;gap:clamp(1.25rem,2.5vw,1.75rem);align-content:start}
+@media (max-width:960px){.gz-hgrid{grid-template-columns:1fr;gap:var(--s5)}.gz-col{display:contents}.gz-top-text{order:1}.gz-mapbox{order:2}.gz-panel{order:3}.gz-tools{order:4}}
+@media (max-width:560px){.gz-hint{display:none}}
 .gz-top-text{display:grid;gap:var(--s4)}
 .gz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.85rem;color:var(--arena)}
 .gz-crumbs a{color:#fff;font-weight:500;text-decoration:none}.gz-crumbs a:hover{text-decoration:underline}
-.gz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2.5rem,5.6vw,4.4rem);line-height:.95;letter-spacing:.01em;text-transform:uppercase;color:#fff;max-width:17ch}
+.gz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2.4rem,4.2vw,3.6rem);line-height:.95;letter-spacing:.01em;text-transform:uppercase;color:#fff;text-wrap:balance}
 .gz-h1 .az{color:var(--azufre);position:relative;display:inline-block;white-space:nowrap}
 .gz-h1 .az svg{position:absolute;left:-2%;bottom:-.2em;width:104%;height:.32em;overflow:visible}
 .gz-h1 .az path{stroke-dasharray:420;stroke-dashoffset:420;animation:gzTraza .8s 1s ease-out forwards}
 @keyframes gzTraza{to{stroke-dashoffset:0}}
-.gz-lead{font-size:1.15rem;max-width:40rem;color:var(--arena);margin:0}
+.gz-lead{font-size:1.1rem;color:var(--arena);margin:0}
+.gz-live{display:grid;gap:.35rem;background:var(--noche);color:#fff;border-radius:6px;padding:.9rem 1.1rem 1rem;transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--base);justify-self:start;max-width:30rem}
+.gz-live-k{display:inline-flex;align-items:center;gap:.45rem;font:500 .7rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--azufre)}
+.gz-live-k i{width:9px;height:9px;border-radius:50%;background:var(--azufre);animation:gzBlink 1.2s ease-in-out infinite}
+@keyframes gzBlink{50%{opacity:.2}}
+.gz-live p{margin:0;font-size:1rem;line-height:1.35}
+.gz-live b{font:500 1.15rem var(--f-mono);color:var(--azufre);white-space:nowrap;font-variant-numeric:tabular-nums}
+.gz-live small{font-size:.78rem;color:#B9C3D6}
 .gz-chips{display:flex;flex-wrap:wrap;gap:.5rem}
 .gz-chips span{font:500 .78rem var(--f-mono);letter-spacing:.06em;padding:.4rem .75rem;border-radius:99px;background:#fff;border:2px solid var(--noche);color:var(--noche)}
 .gz-chips b{font-weight:500;color:var(--oxido)}
 .gz-by{font-size:.9rem;color:var(--arena);margin:0}.gz-by b{color:#fff;font-weight:500}
-.gz-sello{position:relative;width:132px;height:132px;transform:rotate(-10deg);margin:6px 10px 0 0;filter:drop-shadow(6px 6px 0 var(--base))}
-.gz-sello svg{position:absolute;inset:0}
-.gz-sello span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;color:var(--noche);line-height:.85;text-transform:uppercase;font-size:1rem}
-.gz-sello span b{font-size:3.1rem}
-@media (max-width:700px){.gz-top{grid-template-columns:1fr}.gz-sello{position:absolute;right:4px;top:-6px;width:92px;height:92px}.gz-sello span b{font-size:2.1rem}.gz-sello span{font-size:.8rem}}
 
-.gz-stage{display:grid;grid-template-columns:minmax(0,1fr) 330px;grid-template-areas:"map panel" "tools panel";column-gap:var(--s5);align-items:start;margin-top:clamp(1.8rem,4vw,2.8rem)}
-.gz-mapbox{grid-area:map}.gz-panel{grid-area:panel}.gz-tools{grid-area:tools}
-@media (max-width:960px){.gz-stage{grid-template-columns:1fr;grid-template-areas:"map" "panel" "tools";row-gap:var(--s4)}}
-@media (max-width:560px){.gz-hint{display:none}}
 .gz-mapbox{position:relative;background:var(--arena);border:3px solid var(--noche);border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 #3f271f}
 #gzMap{display:block;width:100%;height:auto;touch-action:manipulation}
 .gz-hint{position:absolute;left:14px;bottom:10px;font-size:1.25rem;color:var(--noche);transform:rotate(-4deg);pointer-events:none;background:var(--arena);padding:0 .4rem;border-radius:6px}
-.gz-ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s4)}
+.gz-ctrl{display:flex;flex-wrap:wrap;gap:8px}
+.gz-tools{display:grid;gap:var(--s4)}
+.gz-tools .gz-legend{margin-top:0}
 .gz-btn{font:600 .88rem var(--f-body);min-height:44px;padding:.45rem .95rem;border-radius:99px;border:2px solid var(--noche);background:#fff;color:var(--noche);cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:transform .15s,background .2s}
 .gz-btn:hover{transform:translateY(-2px)}
 .gz-btn:focus-visible{outline:3px solid var(--azufre);outline-offset:2px}
@@ -68,13 +71,12 @@
 .gz-legend span{display:inline-flex;align-items:center;gap:.5rem}
 .gz-legend svg{flex:none}
 .gz-note{font-size:.82rem;color:var(--arena);margin:var(--s3) 0 0;max-width:46rem}
-.gz-panel{background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:var(--s5);display:grid;gap:.6rem;position:sticky;top:5.5rem}
-@media (max-width:960px){.gz-panel{position:static}}
+.gz-panel{background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:var(--s5);display:grid;gap:.6rem}
 .gz-panel .k{font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#55627A}
 .gz-panel h3{margin:0;font:900 1.9rem/1 var(--disp);text-transform:uppercase;letter-spacing:.01em;color:var(--noche);display:flex;align-items:center;gap:.6rem}
 .gz-panel h3 i{width:20px;height:20px;border-radius:50%;border:2px solid var(--noche);flex:none}
 .gz-panel p{margin:0;font-size:.98rem;color:#26324A}
-.gz-facts{list-style:none;margin:.2rem 0 0;padding:0;display:grid;gap:.55rem}
+.gz-facts{list-style:none;margin:.2rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.55rem 1.2rem}
 .gz-facts li{border-top:2px dashed #D9B48F;padding-top:.5rem;font-size:.92rem;color:#26324A}
 .gz-facts b{display:block;font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--oxido);margin-bottom:.1rem}
 .gz-facts .num{font:500 1rem var(--f-mono);color:var(--noche)}
@@ -197,6 +199,53 @@
 .gz-refs i{color:var(--ink)}
 .gz .cite{border-left-color:var(--oxido)}
 
+.gz .bz{--bz-bg:var(--roca);--bz-acc:var(--azufre);--bz-soft:var(--arena);--bz-shadow:#3f271f;--bz-focus:var(--azufre)}
+/* --- Buzón de ideas (fondo pleno de la esfera; envía a Google Forms del OMCT) --- */
+.bz{background:var(--bz-bg);color:#fff;position:relative;overflow:hidden}
+.bz .wrap{padding-block:clamp(2.8rem,6vw,4.5rem)}
+.bz-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+@media (max-width:860px){.bz-grid{grid-template-columns:1fr}}
+.bz-intro{display:grid;gap:var(--s4);align-content:start}
+.bz-tag{justify-self:start;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--bz-acc);color:#0C193A;transform:rotate(-3deg)}
+.bz-intro h2{margin:0;font-family:'Londrina Solid',Impact,sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);line-height:.98;text-transform:uppercase;color:#fff}
+.bz-intro p{margin:0;font-size:1.05rem;color:var(--bz-soft);max-width:30rem}
+.bz-intro .bz-hand{font-family:'Barriecito','Comic Sans MS',cursive;font-size:1.5rem;color:var(--bz-acc);transform:rotate(-4deg);justify-self:start}
+.bz-form{display:grid;gap:var(--s4);background:#fff;color:#0C193A;border:3px solid #0C193A;border-radius:14px;padding:clamp(1.1rem,3vw,1.8rem);box-shadow:8px 8px 0 var(--bz-shadow)}
+.bz-field{display:grid;gap:.4rem;border:0;margin:0;padding:0;min-width:0}
+.bz-field>span,.bz-field legend{font:500 .76rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#26324A;padding:0;margin-bottom:.4rem}
+.bz-field b{color:#B5532F;font-weight:500}.bz-field i,.bz-more i{font-style:normal;text-transform:none;letter-spacing:0;color:#55627A}
+.bz-field input,.bz-field textarea{font:400 16px/1.4 var(--f-body);color:#0C193A;background:#F7F4EF;border:2px solid #0C193A;border-radius:10px;padding:.7rem .85rem;width:100%;min-height:44px}
+.bz-field textarea{resize:vertical}
+.bz-field input:focus-visible,.bz-field textarea:focus-visible,.bz-opt input:focus-visible+span,.bz-check input:focus-visible,.bz-btn:focus-visible,.bz-more summary:focus-visible{outline:3px solid var(--bz-focus);outline-offset:2px}
+.bz-field [aria-invalid="true"]{border-color:#B5532F;background:#FBEDE7}
+.bz-opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.bz-opt{position:relative}
+.bz-opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.bz-opt span{display:inline-flex;align-items:center;min-height:44px;padding:.45rem 1rem;border-radius:99px;border:2px solid #0C193A;font:600 .88rem var(--f-body);background:#fff;transition:transform .15s,background .2s}
+.bz-opt:hover span{transform:translateY(-2px)}
+.bz-opt input:checked+span{background:var(--bz-acc)}
+.bz-more{border-top:2px dashed #D5DCE5;padding-top:var(--s3)}
+.bz-more summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center;gap:.5rem;list-style:none}
+.bz-more summary::-webkit-details-marker{display:none}
+.bz-more summary::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:2px solid #0C193A;font:600 1rem/1 var(--f-mono);flex:none}
+.bz-more[open] summary::before{content:"−"}
+.bz-more>*+*{margin-top:var(--s3)}
+.bz-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3)}
+@media (max-width:520px){.bz-two{grid-template-columns:1fr}}
+.bz-check{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;line-height:1.4}
+.bz-check input{width:22px;height:22px;flex:none;margin-top:.1rem;accent-color:#0C193A}
+.bz-check.err span{color:#B5532F}
+.bz-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.bz-send{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3)}
+.bz-btn{font:600 1rem var(--f-body);min-height:48px;padding:.6rem 1.4rem;border-radius:99px;border:2px solid #0C193A;background:var(--bz-acc);color:#0C193A;cursor:pointer;box-shadow:4px 4px 0 #0C193A;transition:transform .15s,box-shadow .15s}
+.bz-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #0C193A}
+.bz-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #0C193A}
+.bz-btn[disabled]{opacity:.6;cursor:progress}
+.bz-msg{margin:0;font-size:.95rem;font-weight:500}
+.bz-msg.ok{color:#1F6E5C}.bz-msg.no{color:#B5532F}
+.bz-legal{margin:0;font-size:.8rem;color:#55627A}
+.bz-legal a,.bz-check a{color:#0C193A}
+
 @media (prefers-reduced-motion:reduce){
   .gz *{animation:none!important;transition:none!important}
   .gz-in{opacity:1}.gz-draw,.gz-h1 .az path{stroke-dashoffset:0!important}
@@ -231,24 +280,21 @@
   <!-- ================= PORTADA + MAPA ================= -->
   <div class="gz-hero">
     <div class="wrap">
-      <div class="gz-top">
+      <div class="gz-hgrid">
+        <div class="gz-col">
         <div class="gz-top-text">
           <nav class="gz-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Infografía</span><span aria-hidden="true">/</span><span>Geósfera</span></nav>
           <span class="gz-tag">Infografía · Geósfera</span>
           <h1 class="gz-h1">México en la interacción de <span class="az">cinco placas<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C80 4 190 18 296 7" fill="none" stroke="#E9C46A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
           <p class="gz-lead">Bajo el territorio mexicano se encuentran cinco placas tectónicas. Se mueven unos pocos centímetros al año, y eso basta para explicar nuestros sismos, nuestros volcanes y hasta la forma del país.</p>
-          <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Lectura</b> 5 min</span></div>
-          <p class="gz-by">Elaboración: <b>Observatorio Mexicano de Ciencias de la Tierra</b>.</p>
-        </div>
-        <div class="gz-sello" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 2 59 20 78 10 76 32 98 34 84 50 98 66 76 68 78 90 59 80 50 98 41 80 22 90 24 68 2 66 16 50 2 34 24 32 22 10 41 20Z" fill="#E9C46A" stroke="#0C193A" stroke-width="2"/></svg><span><b>5</b>placas</span></div>
-      </div>
-
-      <div class="gz-stage">
-          <div class="gz-mapbox">
-            <svg id="gzMap" role="img" aria-label="Mapa esquemático de México con las cinco placas tectónicas, sus fronteras, la dirección en que se mueven, los principales volcanes y seis grandes sismos"></svg>
-            <span class="gz-hint gz-hand" id="gzHint" aria-hidden="true">¡toca una placa!</span>
+          <div class="gz-live" role="group" aria-label="Contador en vivo">
+            <span class="gz-live-k"><i aria-hidden="true"></i>En vivo</span>
+            <p>Desde que abriste esta página, la placa de Cocos avanzó <b id="gzLive">0.0 nm</b> bajo México.</p>
+            <small>Cálculo con su velocidad media frente a la costa: 6.3 cm/año, unos 2 nanómetros por segundo.</small>
           </div>
-          <aside class="gz-panel" id="gzPanel" aria-live="polite"></aside>
+          <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Lectura</b> 5 min</span></div>
+          <p class="gz-by">Texto y diseño de <b>Katia Fernández González</b>.</p>
+        </div>
           <div class="gz-tools">
           <div class="gz-ctrl" id="gzPlates" role="group" aria-label="Elegir placa"></div>
           <div class="gz-ctrl layers" id="gzLayers" role="group" aria-label="Capas del mapa">
@@ -266,6 +312,14 @@
           </div>
           <p class="gz-note">Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>
           </div>
+        </div>
+        <div class="gz-col">
+          <div class="gz-mapbox">
+            <svg id="gzMap" role="img" aria-label="Mapa esquemático de México con las cinco placas tectónicas, sus fronteras, la dirección en que se mueven, los principales volcanes y seis grandes sismos"></svg>
+            <span class="gz-hint gz-hand" id="gzHint" aria-hidden="true">¡toca una placa!</span>
+          </div>
+          <aside class="gz-panel" id="gzPanel" aria-live="polite"></aside>
+        </div>
       </div>
     </div>
   </div>
@@ -362,10 +416,10 @@
         <section class="gz-sec" aria-labelledby="citar-inf">
           <div class="gz-head"><span class="gz-num" aria-hidden="true">07</span><div><span class="eyebrow">APA 7</span><h2 id="citar-inf">Cómo citar</h2></div></div>
           <div class="cite">
-            <h3>Si usas esta infografía, cita al OMCT</h3>
-            <code id="citaInf">Observatorio Mexicano de Ciencias de la Tierra. (2027). México en la interacción de cinco placas [Infografía interactiva]. https://omct-open.github.io/inf-cinco-placas.html</code>
+            <h3>Si usas esta infografía, cítala así</h3>
+            <code id="citaInf">Fernández González, K. (2027, 1 de enero). México en la interacción de cinco placas [Infografía interactiva]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/inf-cinco-placas.html</code>
             <button class="copy" type="button" data-copy-el="citaInf">Copiar cita</button>
-            <p class="note">Elaboración: OMCT · CC BY 4.0. El mapa y los cortes son esquemas con límites y ubicaciones aproximados; las cifras vienen de las fuentes citadas.</p>
+            <p class="note">Texto y diseño: Katia Fernández González · CC BY 4.0. El mapa y los cortes son esquemas con límites y ubicaciones aproximados; las cifras vienen de las fuentes citadas.</p>
           </div>
         </section>
 
@@ -373,14 +427,31 @@
     </div>
   </div>
 
-  <div class="band alt">
-    <div class="wrap am-propose">
-      <div style="display:grid;gap:var(--s3)">
-        <span class="eyebrow">Geósfera</span>
-        <h2>¿Qué tema de la Tierra sólida quieres que expliquemos?</h2>
-        <p class="lead">Escríbenos con el asunto <b style="color:var(--ink)">Infografía: [tema]</b> a <span class="mono" style="color:var(--ink)">omct.contacto@gmail.com</span>.</p>
+  <!-- ================= BUZÓN DE IDEAS ================= -->
+  <div class="bz" id="buzon">
+    <div class="wrap bz-grid">
+      <div class="bz-intro">
+        <span class="bz-tag">Buzón de ideas</span>
+        <h2 id="bzT">¿Qué palabra o tema quieres que expliquemos?</h2>
+        <p>Déjanos tu idea. Si quieres que te avisemos cuando la publiquemos o que tu nombre aparezca en los agradecimientos, agrega tus datos: son opcionales.</p>
+        <p class="bz-hand" aria-hidden="true">¡todas las ideas se leen!</p>
       </div>
-      <div class="cta-row"><a class="btn primary" href="mailto:omct.contacto@gmail.com?subject=Infograf%C3%ADa%3A%20">Proponer un tema</a><a class="btn ghost" href="aprende.html">Más en Aprende</a></div>
+      <form class="bz-form" id="bzForm" novalidate aria-labelledby="bzT">
+        <fieldset class="bz-field"><legend>¿Qué quieres sugerir?</legend><div class="bz-opts"><label class="bz-opt"><input type="radio" name="bzTipo" value="palabra" data-form="Una palabra para «Dilo en ciencia»"><span>Una palabra</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="tema" data-form="Un tema para una infografía" checked><span>Un tema</span></label><label class="bz-opt"><input type="radio" name="bzTipo" value="otra" data-form="Otra idea"><span>Otra idea</span></label></div></fieldset>
+        <label class="bz-field" for="bzIdea"><span>Tu sugerencia <b>*</b></span><input id="bzIdea" name="idea" type="text" maxlength="120" required placeholder="Por ejemplo: «humedad» o «cómo se forma un huracán»"></label>
+        <label class="bz-field" for="bzPor"><span>¿Por qué te interesa? <i>(opcional)</i></span><textarea id="bzPor" name="por" rows="3" maxlength="600"></textarea></label>
+        <details class="bz-more" id="bzMore">
+          <summary>Quiero que me avisen o me den crédito <i>(opcional)</i></summary>
+          <div class="bz-two">
+            <label class="bz-field" for="bzNom"><span>Nombre</span><input id="bzNom" name="nombre" type="text" maxlength="80" autocomplete="name"></label>
+            <label class="bz-field" for="bzMail"><span>Correo electrónico</span><input id="bzMail" name="correo" type="email" maxlength="120" autocomplete="email" inputmode="email"></label>
+          </div>
+          <label class="bz-check"><input id="bzOk" type="checkbox"><span>Acepto que el OMCT use mi nombre y correo solo para avisarme cuando se publique mi idea y darme crédito, conforme al <a href="privacidad.html">Aviso de privacidad</a>.</span></label>
+        </details>
+        <input class="bz-hp" type="text" name="sitio" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="bz-send"><button class="bz-btn" type="submit" id="bzBtn">Enviar idea</button><p class="bz-msg" id="bzMsg" role="status" aria-live="polite"></p></div>
+        <p class="bz-legal">Las respuestas se guardan en una cuenta de Google del OMCT. No usamos tus datos para publicidad ni los compartimos. Responsable: Katia Fernández González. Consulta el <a href="privacidad.html">Aviso de privacidad</a>.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -438,7 +509,7 @@ const ORDER=["na","pa","ri","co","ca"];
 const INFO={
  na:{k:"Placa continental · el piso de casi todo el país",t:"Norteamericana",p:"Desde Chihuahua hasta Chiapas, incluida Yucatán, casi todo México está sobre ella. Es la placa «de arriba»: bajo ella se hunden Cocos y Rivera.",f:[["Fronteras con México","Trinchera Mesoamericana, Golfo de California y Motagua–Polochic"],["Dato GPS","Las estaciones de Oaxaca hacia el norte se mueven con ella; Yucatán se desplaza unos <span class='num'>3 ± 1 mm/año</span> al este respecto a ella"],["En este mapa","Es la referencia: las flechas muestran cómo se mueven las demás respecto a ella"]]},
  pa:{k:"Placa oceánica · la más grande del planeta",t:"Pacífico",p:"Baja California no viaja con el resto del país: va montada en la placa del Pacífico. Su frontera con Norteamérica corre por el Golfo de California y sigue al norte como la falla de San Andrés.",f:[["Velocidad","<span class='num'>≈ 5.1 cm/año</span> respecto a Norteamérica en el sur del Golfo (GPS)"],["Historia","El límite se concentró en el Golfo hace unos 6 millones de años"],["Dato curioso","Las islas Socorro y Clarión, del archipiélago de Revillagigedo, se mueven con la placa del Pacífico"]]},
- ri:{k:"Microplaca oceánica · la más pequeña",t:"Rivera",p:"Se separó de la placa de Cocos hace unos 10 millones de años y se hunde con fuerte inclinación bajo el Bloque de Jalisco. A su subducción se asocia el Volcán de Colima.",f:[["Velocidad","<span class='num'>≈ 2 a 5 cm/año</span>: los modelos publicados no coinciden, y es más lenta hacia el norte"],["Inclinación","Muy pronunciada: cerca de 50° por debajo de los 40 km"],["Sismos","1932 (M 8.2) y 1995 (M 8.0), en las costas de Jalisco y Colima"]]},
+ ri:{k:"Microplaca oceánica · la más pequeña",t:"Rivera",p:"Se separó de la placa de Cocos hace unos 10 millones de años y se hunde con fuerte inclinación bajo el Bloque de Jalisco. A su subducción se asocia el Volcán de Colima.",f:[["Velocidad","Su convergencia respecto a Norteamérica se estima entre <span class='num'>2 y 5 cm/año</span>, porque los distintos modelos geofísicos arrojan resultados diferentes. Es más lenta hacia el norte"],["Inclinación","Muy pronunciada: cerca de 50° por debajo de los 40 km"],["Sismos","1932 (M 8.2) y 1995 (M 8.0), en las costas de Jalisco y Colima"]]},
  co:{k:"Placa oceánica · fragmento de la antigua placa Farallón",t:"Cocos",p:"La protagonista del Pacífico mexicano. Se hunde bajo Norteamérica de Colima a Chiapas, y más al sureste bajo el Caribe. Provoca la mayoría de los grandes sismos y, con Rivera, alimenta la Faja Volcánica Transmexicana.",f:[["Velocidad","<span class='num'>≈ 5.8 a 6.8 cm/año</span>, más rápida hacia el sureste (modelo PVEL)"],["Edad al llegar a la trinchera","De unos 10 millones de años en el oeste a unos 23 millones en el este"],["Geometría","Casi horizontal bajo Guerrero y Oaxaca; más inclinada hacia Michoacán y el Istmo"]]},
  ca:{k:"Placa mayormente oceánica",t:"Caribe",p:"Toca a México por el sur. Su frontera con Norteamérica es el sistema de fallas Motagua–Polochic, en Guatemala, donde las placas se deslizan de lado. Más al sur, Cocos también se hunde bajo ella.",f:[["Velocidad","<span class='num'>≈ 1.7 a 2 cm/año</span> respecto a Norteamérica (GPS)"],["Tipo de frontera","Transformante, con desplazamiento lateral izquierdo"],["Zona compleja","El encuentro de Norteamérica, Caribe y Cocos, cerca de Chiapas y Guatemala, sigue en estudio"]]}
 };
@@ -539,6 +610,10 @@ function intro(){if(RM)return;
  Object.values(bEls).forEach((b,i)=>{const L=b.getTotalLength();if(!b.getAttribute("stroke-dasharray")){b.style.strokeDasharray=L;b.style.strokeDashoffset=L;re(b,"gz-draw",1.3+i*.18)}else re(b,"gz-in",1.3+i*.18);if(b.inner)re(b.inner,"gz-in",2.4)});
  re(document.getElementById("gzTeeth"),"gz-in",2.4);[gF,gA,gV,gQ,gT].forEach((x,i)=>re(x,"gz-in",2.2+i*.3))}
 document.getElementById("gzReplay").addEventListener("click",intro);
+// contador en vivo: 6.3 cm/año = 6.3e7 nm / 31 557 600 s
+const live=document.getElementById("gzLive"),t0=performance.now(),NMS=6.3e7/31557600;
+function tick(){const nm=(performance.now()-t0)/1000*NMS;live.textContent=nm<1000?nm.toFixed(1)+" nm":(nm/1000).toFixed(3)+" µm"}
+tick();setInterval(tick,RM?1000:100);
 show(INTRO);intro();
 
 // ---------- Corte de subducción ----------
@@ -600,6 +675,35 @@ qol.addEventListener("click",e=>{const bt=e.target.closest("button");if(!bt)retu
  li.querySelector(".fb").textContent=(ok?"¡Correcto! ":"Casi: es "+PL[li.dataset.a].name+". ")+li.dataset.fb;
  const all=qol.children.length,done=qol.querySelectorAll("[data-r]").length,good=qol.querySelectorAll('[data-r="1"]').length;
  qs.textContent=done<all?`Llevas ${good} de ${done}.`:`Resultado: ${good} de ${all}.`+(good===all?" ¡Ya conoces las cinco placas!":" Vuelve al mapa y repasa.")});
+})();
+</script>
+<script>
+(function(){
+  // Buzón de ideas: envía a Google Forms del OMCT (omct.contacto@gmail.com). Respuestas en «Buzón de ideas · OMCT».
+  var f=document.getElementById("bzForm");if(!f)return;
+  var URL="https://docs.google.com/forms/d/e/1FAIpQLSdu2pqyrVhjCoN4qrTV8zMOLVUixsFBgNW0pnE1fEvxaRd7pA/formResponse";
+  var E={tipo:"entry.488055283",idea:"entry.2121697076",por:"entry.1124146813",nombre:"entry.1040574841",correo:"entry.1672806866",pagina:"entry.1834509898",acepto:"entry.1901787318"};
+  var msg=document.getElementById("bzMsg"),btn=document.getElementById("bzBtn"),idea=document.getElementById("bzIdea"),nom=document.getElementById("bzNom"),mail=document.getElementById("bzMail"),ok=document.getElementById("bzOk"),more=document.getElementById("bzMore"),last=0;
+  function say(t,c){msg.textContent=t;msg.className="bz-msg"+(c?" "+c:"");}
+  [idea,mail].forEach(function(x){x.addEventListener("input",function(){x.removeAttribute("aria-invalid")})});
+  ok.addEventListener("change",function(){ok.closest(".bz-check").classList.remove("err")});
+  f.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    if(f.sitio.value)return;
+    var v=idea.value.trim(),n=nom.value.trim(),m=mail.value.trim();
+    if(!v){idea.setAttribute("aria-invalid","true");idea.focus();say("Escribe tu sugerencia antes de enviarla.","no");return;}
+    if(m&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){more.open=true;mail.setAttribute("aria-invalid","true");mail.focus();say("Revisa tu correo electrónico.","no");return;}
+    if((n||m)&&!ok.checked){more.open=true;ok.closest(".bz-check").classList.add("err");ok.focus();say("Para guardar tu nombre o correo, marca la casilla de aceptación.","no");return;}
+    if(Date.now()-last<20000){say("Ya recibimos una idea hace un momento. Espera unos segundos para enviar otra.","no");return;}
+    var t=f.querySelector("input[name=bzTipo]:checked"),p=new URLSearchParams();
+    p.append(E.tipo,t?t.dataset.form:"Otra idea");p.append(E.idea,v);p.append(E.por,f.por.value.trim());
+    if(n||m){p.append(E.nombre,n);p.append(E.correo,m);p.append(E.acepto,"Sí");}
+    p.append(E.pagina,location.pathname);
+    btn.disabled=true;say("Enviando…");
+    fetch(URL,{method:"POST",mode:"no-cors",body:p}).then(function(){
+      last=Date.now();f.reset();if(t)t.checked=true;more.open=false;say("¡Gracias! Enviamos tu idea al buzón del OMCT.","ok");
+    }).catch(function(){say("No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.","no");}).then(function(){btn.disabled=false;});
+  });
 })();
 </script>
 </body>

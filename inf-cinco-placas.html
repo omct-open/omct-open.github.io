@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Infografía · México en la interacción de cinco placas · OMCT</title>
-<meta name="description" content="Infografía interactiva: las placas Norteamericana, del Pacífico, de Cocos, de Rivera y del Caribe, y cómo explican los sismos, los volcanes y la forma de México.">
+<meta name="description" content="Infografía interactiva en un solo mapa: las placas Norteamericana, del Pacífico, de Cocos, de Rivera y del Caribe, y cómo explican los sismos, los volcanes y la forma de México.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="México en la interacción de cinco placas · OMCT">
 <meta property="og:description" content="Infografía interactiva sobre las cinco placas tectónicas que rodean a México.">
@@ -18,188 +18,227 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Londrina+Solid:wght@400;900&family=Barriecito&display=swap">
 <link rel="stylesheet" href="styles.css?v=25">
 <style>
-/* ===== Infografía · Geósfera (paleta del moodboard: roca · lava · arena · azufre) =====
-   Fondo pleno: roca. Acento: azufre (solo en el título y en el sello). Toque de base: ocre del símbolo (sombra del sello).
-   Familias de elementos: sellos y etiquetas · trazos a mano · tramas. Más la lámina con líneas guía en el corte. */
+/* ===== Infografía · Geósfera · versión «todo en el mapa» (una sola pantalla) =====
+   Paleta del moodboard: roca · lava · arena · azufre. Fondo pleno: roca. Acento: azufre.
+   Familias de elementos: sellos y etiquetas · trazos a mano · tramas. */
 .gz{--roca:#5E3A2E;--azufre:#E9C46A;--arena:#EADBC8;--oxido:#B5532F;--arenaF:#D9B48F;--ceniza:#8A8A7B;--cafe:#7F5539;--noche:#0C193A;--base:#C16210;--disp:'Londrina Solid',Impact,sans-serif;--hand:'Barriecito','Comic Sans MS',cursive}
-.gz .wrap{position:relative}
-.gz-tag{display:inline-block;align-self:flex-start;justify-self:start;width:max-content;max-width:100%;font:500 .78rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;background:var(--arena);color:var(--noche);transform:rotate(-3deg)}
 .gz-hand{font-family:var(--hand);font-weight:400}
 
-/* --- Portada: fondo roca con el mapa como protagonista --- */
-.gz-hero{position:relative;overflow:hidden;background:var(--roca);color:#fff}
-.gz-hero .wrap{padding-block:clamp(2.2rem,5vw,3.6rem) clamp(2.5rem,5vw,4rem)}
-.gz-hgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.5rem,3.5vw,3rem);align-items:start}
-.gz-col{display:grid;gap:clamp(1.25rem,2.5vw,1.75rem);align-content:start}
-@media (max-width:960px){.gz-hgrid{grid-template-columns:1fr;gap:var(--s5)}.gz-col{display:contents}.gz-top-text{order:1}.gz-mapbox{order:2}.gz-panel{order:3}.gz-note{order:4;margin:0}.gz-tools{order:5}}
-@media (max-width:560px){.gz-hint{display:none}}
-.gz-top-text{display:grid;gap:var(--s4)}
-.gz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.85rem;color:var(--arena)}
+/* --- Escenario --- */
+.gz-app{background:var(--roca);color:#fff;position:relative}
+.gz-app>.wrap{display:grid;gap:12px;padding-block:14px 20px}
+.gz-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
+.gz-titles{display:grid;gap:4px;min-width:0}
+.gz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.82rem;color:var(--arena)}
 .gz-crumbs a{color:#fff;font-weight:500;text-decoration:none}.gz-crumbs a:hover{text-decoration:underline}
-.gz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2.4rem,4.2vw,3.6rem);line-height:.95;letter-spacing:.01em;text-transform:uppercase;color:#fff;text-wrap:balance}
+.gz-h1{margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(1.7rem,2.9vw,2.5rem);line-height:1;letter-spacing:.01em;text-transform:uppercase;color:#fff}
 .gz-h1 .az{color:var(--azufre);position:relative;display:inline-block;white-space:nowrap}
-.gz-h1 .az svg{position:absolute;left:-2%;bottom:-.2em;width:104%;height:.32em;overflow:visible}
-.gz-h1 .az path{stroke-dasharray:420;stroke-dashoffset:420;animation:gzTraza .8s 1s ease-out forwards}
+.gz-h1 .az svg{position:absolute;left:-2%;bottom:-.22em;width:104%;height:.3em;overflow:visible}
+.gz-h1 .az path{stroke-dasharray:420;stroke-dashoffset:420;animation:gzTraza .8s .8s ease-out forwards}
 @keyframes gzTraza{to{stroke-dashoffset:0}}
-.gz-lead{font-size:1.1rem;color:var(--arena);margin:0}
-.gz-live{display:grid;gap:.35rem;background:var(--noche);color:#fff;border-radius:6px;padding:.9rem 1.1rem 1rem;transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--base);justify-self:start;max-width:30rem}
-.gz-live-k{display:inline-flex;align-items:center;gap:.45rem;font:500 .7rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--azufre)}
-.gz-live-k i{width:9px;height:9px;border-radius:50%;background:var(--azufre);animation:gzBlink 1.2s ease-in-out infinite}
+.gz-by{font-size:.85rem;color:var(--arena);margin:0}.gz-by b{color:#fff;font-weight:500}
+.gz-live{display:flex;align-items:center;gap:.55rem;background:var(--noche);color:#fff;border-radius:6px;padding:.45rem .8rem;transform:rotate(-1.2deg);box-shadow:4px 4px 0 var(--base);font-size:.86rem;line-height:1.25;max-width:24rem}
+.gz-live i{width:9px;height:9px;border-radius:50%;background:var(--azufre);flex:none;animation:gzBlink 1.2s ease-in-out infinite}
 @keyframes gzBlink{50%{opacity:.2}}
-.gz-live p{margin:0;font-size:1rem;line-height:1.35}
-.gz-live b{font:500 1.15rem var(--f-mono);color:var(--azufre);white-space:nowrap;font-variant-numeric:tabular-nums}
-.gz-live small{font-size:.78rem;color:#B9C3D6}
-.gz-chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.gz-chips span{font:500 .78rem var(--f-mono);letter-spacing:.06em;padding:.4rem .75rem;border-radius:99px;background:#fff;border:2px solid var(--noche);color:var(--noche)}
-.gz-chips b{font-weight:500;color:var(--oxido)}
-.gz-by{font-size:.9rem;color:var(--arena);margin:0}.gz-by b{color:#fff;font-weight:500}
+.gz-live-top{display:none}
+.gz-live-map{position:absolute;left:12px;bottom:14px;font-size:.8rem;max-width:min(20rem,calc(100% - 24px));pointer-events:none}
+.gz-mapcol.touring .gz-live-map{display:none}
+.gz-live b{font:500 1rem var(--f-mono);color:var(--azufre);white-space:nowrap;font-variant-numeric:tabular-nums}
 
-.gz-mapbox{position:relative;background:var(--arena);border:3px solid var(--noche);border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 #3f271f}
-#gzMap{display:block;width:100%;height:auto;touch-action:manipulation}
-.gz-hint{position:absolute;left:14px;bottom:10px;font-size:1.25rem;color:var(--noche);transform:rotate(-4deg);pointer-events:none;background:var(--arena);padding:0 .4rem;border-radius:6px}
-.gz-ctrl{display:flex;flex-wrap:wrap;gap:8px}
-.gz-tools{display:grid;gap:var(--s4)}
-.gz-tools .gz-legend{margin-top:0}
-.gz-btn{font:600 .88rem var(--f-body);min-height:44px;padding:.45rem .95rem;border-radius:99px;border:2px solid var(--noche);background:#fff;color:var(--noche);cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:transform .15s,background .2s}
+/* barra de modos */
+.gz-modes{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 4px;margin:0 -2px}
+.gz-modes::-webkit-scrollbar{display:none}
+.gz-mode{flex:none;font:600 .9rem var(--f-body);min-height:44px;padding:.4rem .95rem;border-radius:99px;border:2px solid var(--arena);background:transparent;color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:transform .15s,background .2s}
+.gz-mode:hover{transform:translateY(-2px)}
+.gz-mode[aria-pressed="true"]{background:var(--azufre);border-color:var(--noche);color:var(--noche)}
+.gz-mode .n{font:500 .7rem var(--f-mono);opacity:.75}
+.gz-mode:focus-visible,.gz-btn:focus-visible,.gz-x:focus-visible{outline:3px solid var(--azufre);outline-offset:2px}
+.gz-sep{flex:1 0 8px}
+.gz-mode.tour{border-color:var(--azufre);color:var(--azufre)}
+.gz-mode.tour[aria-pressed="true"]{color:var(--noche)}
+.gz-mode.info{width:44px;justify-content:center;padding:0;font:600 1.05rem var(--f-mono)}
+
+/* mapa + panel */
+.gz-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,390px);gap:14px;height:var(--gz-h,clamp(430px,calc(100svh - 300px),800px))}
+.gz-mapcol{position:relative;height:100%;min-height:0}
+.gz-mapbox{position:relative;height:100%;min-height:0;background:var(--arena);border:3px solid var(--noche);border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 #3f271f}
+#gzMap{display:block;width:100%;height:100%;touch-action:manipulation}
+.gz-cap{position:absolute;left:12px;top:12px;max-width:calc(100% - 24px);font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--noche);color:#fff;padding:.35rem .65rem;border-radius:4px;transform:rotate(-2deg);pointer-events:none}
+.gz-hint{position:absolute;right:14px;top:12px;font-size:1.2rem;color:var(--noche);transform:rotate(3deg);pointer-events:none;background:var(--arena);padding:0 .4rem;border-radius:6px}
+.gz-panel{height:100%;min-height:0;overflow:auto;overscroll-behavior:contain;background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:18px;display:grid;gap:12px;align-content:start;scrollbar-width:thin}
+.gz-panel .k{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#55627A}
+.gz-panel h2,.gz-panel h3{margin:0;font:900 1.75rem/1 var(--disp);text-transform:uppercase;letter-spacing:.01em;color:var(--noche);display:flex;align-items:center;gap:.55rem}
+.gz-panel h3 i{width:18px;height:18px;border-radius:50%;border:2px solid var(--noche);flex:none}
+.gz-panel p{margin:0;font-size:.95rem;color:#26324A}
+.gz-panel .sub{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--oxido);margin:4px 0 -4px}
+.gz-detail{display:grid;gap:.5rem;padding-bottom:12px;border-bottom:2px dashed #D9B48F}
+.gz-facts{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.gz-facts li{border-top:2px dashed #EADBC8;padding-top:.45rem;font-size:.9rem;color:#26324A}
+.gz-facts b{display:block;font:500 .7rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--oxido);margin-bottom:.1rem}
+.gz-facts .num{font:500 .98rem var(--f-mono);color:var(--noche)}
+.gz-note{font-size:.8rem!important;color:#55627A!important;line-height:1.45}
+
+/* botones del panel */
+.gz-ctrl{display:flex;flex-wrap:wrap;gap:6px}
+.gz-btn{font:600 .84rem var(--f-body);min-height:40px;padding:.35rem .8rem;border-radius:99px;border:2px solid var(--noche);background:#fff;color:var(--noche);cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:transform .15s,background .2s;text-align:left}
 .gz-btn:hover{transform:translateY(-2px)}
-.gz-btn:focus-visible{outline:3px solid var(--azufre);outline-offset:2px}
 .gz-btn[aria-pressed="true"]{background:var(--azufre)}
-.gz-btn .sw{width:14px;height:14px;border-radius:50%;border:2px solid var(--noche);flex:none}
-.gz-ctrl.layers .gz-btn{background:transparent;color:#fff;border-color:var(--arena)}
-.gz-ctrl.layers .gz-btn[aria-pressed="true"]{background:var(--arena);color:var(--noche)}
-.gz-legend{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:var(--s4);font-size:.85rem;color:var(--arena)}
-.gz-legend span{display:inline-flex;align-items:center;gap:.5rem}
+.gz-btn .sw{width:13px;height:13px;border-radius:50%;border:2px solid var(--noche);flex:none}
+.gz-btn.soft{background:#F7F4EF;border-color:#C9CFD9}
+.gz-btn.soft[aria-pressed="true"]{background:var(--arena);border-color:var(--noche)}
+.gz-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem .8rem;font-size:.8rem;color:#26324A}
+.gz-legend span{display:inline-flex;align-items:center;gap:.45rem}
 .gz-legend svg{flex:none}
-.gz-note{font-size:.82rem;color:var(--arena);margin:0;max-width:46rem;line-height:1.5}
-.gz-panel{background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:var(--s5);display:grid;gap:.6rem}
-.gz-panel .k{font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#55627A}
-.gz-panel h3{margin:0;font:900 1.9rem/1 var(--disp);text-transform:uppercase;letter-spacing:.01em;color:var(--noche);display:flex;align-items:center;gap:.6rem}
-.gz-panel h3 i{width:20px;height:20px;border-radius:50%;border:2px solid var(--noche);flex:none}
-.gz-panel p{margin:0;font-size:.98rem;color:#26324A}
-.gz-facts{list-style:none;margin:.2rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.55rem 1.2rem}
-.gz-facts li{border-top:2px dashed #D9B48F;padding-top:.5rem;font-size:.92rem;color:#26324A}
-.gz-facts b{display:block;font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--oxido);margin-bottom:.1rem}
-.gz-facts .num{font:500 1rem var(--f-mono);color:var(--noche)}
 
-/* mapa */
-.gz-plate{cursor:pointer;transition:opacity .5s}
-.gz-plate.dim{opacity:.35}
-.gz-plate.sel{stroke:#fff;stroke-width:4}
-.gz-bnd{fill:none;stroke:var(--noche);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
-.gz-bnd.div{stroke-width:7}
-.gz-hit{fill:none;stroke:transparent;stroke-width:20;cursor:pointer}
-.gz-hit:hover+.gz-bnd,.gz-bnd.on{stroke-width:5}.gz-hit:hover+.gz-bnd.div,.gz-bnd.div.on{stroke-width:10}
-.gz-arr{fill:none;stroke-linecap:round}
-.gz-arr .flow{stroke:#fff;stroke-width:4;stroke-dasharray:5 10;animation:gzFlow 1s linear infinite}
-@keyframes gzFlow{to{stroke-dashoffset:-15}}
-.gz-q,.gz-v{cursor:pointer}
-.gz-q .ring{fill:none;stroke:var(--noche);stroke-width:2.2;transform-box:fill-box;transform-origin:center;animation:gzPulse 2.6s ease-out infinite}
-@keyframes gzPulse{0%{transform:scale(.4);opacity:1}100%{transform:scale(2.8);opacity:0}}
-.gz-q:focus-visible circle,.gz-v:focus-visible path{stroke:#fff;stroke-width:3}
-.gz-lab text{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.02em}
-.gz-sm{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;fill:var(--noche);paint-order:stroke;stroke:var(--arena);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
-.gz-off{display:none}
-.gz-in{opacity:0;animation:gzIn .7s ease forwards}
-@keyframes gzIn{to{opacity:1}}
-.gz-draw{animation:gzDraw 1.5s ease forwards}
-@keyframes gzDraw{to{stroke-dashoffset:0}}
-
-/* --- Cuerpo --- */
-.gz-body{display:grid;gap:clamp(3.5rem,7vw,5.5rem);max-width:60rem;margin-inline:auto}
-.gz-sec{display:grid;gap:var(--s5);scroll-margin-top:6rem}
-.gz-head{display:flex;align-items:flex-end;gap:var(--s4)}
-.gz-head>div{display:grid;gap:.35rem}
-.gz-num{font:900 clamp(3rem,6vw,4rem)/.8 var(--disp);color:var(--oxido)}
-.gz-sec:nth-child(2n) .gz-num{color:var(--base)}
-.gz-sec h2{margin:0}
-.gz-intro{margin:0;max-width:44rem;color:var(--muted)}
-
-/* 01 · fronteras */
-.gz-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
-@media (max-width:820px){.gz-three{grid-template-columns:1fr}}
-.gz-card{display:grid;grid-template-rows:auto 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.gz-card-fig{height:170px;background:var(--arena);position:relative;overflow:hidden}
-.gz-card-fig svg{width:100%;height:100%;display:block}
-.gz-card-body{display:grid;gap:.45rem;align-content:start;padding:var(--s5)}
-.gz-card h3{margin:0;font:900 1.7rem/1 var(--disp);text-transform:uppercase;letter-spacing:.02em;color:var(--oxido)}
-:root[data-theme="dark"] .gz-card h3{color:var(--azufre)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .gz-card h3{color:var(--azufre)}}
-.gz-card p{margin:0;font-size:.96rem}
-.gz-card .where{font:500 .74rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+/* fronteras */
+.gz-types{display:grid;gap:8px}
+.gz-type{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:center;text-align:left;font:inherit;color:var(--noche);background:#F7F4EF;border:2px solid #C9CFD9;border-radius:12px;padding:8px;cursor:pointer;transition:border-color .2s,transform .15s}
+.gz-type:hover{transform:translateY(-2px)}
+.gz-type[aria-pressed="true"]{border-color:var(--noche);background:#FFF6DD}
+.gz-type svg{width:96px;height:68px;display:block;border-radius:8px;background:var(--arena)}
+.gz-type b{display:block;font:900 1.15rem/1 var(--disp);text-transform:uppercase;color:var(--oxido)}
+.gz-type small{display:block;font:500 .66rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#55627A;margin:.15rem 0 .2rem}
+.gz-type span{font-size:.84rem;color:#26324A;line-height:1.35}
 .gz-l{animation:gzL 3s ease-in-out infinite alternate}.gz-r{animation:gzR 3s ease-in-out infinite alternate}
 .gz-dive{animation:gzDive 3s ease-in-out infinite alternate}.gz-up{animation:gzUp 2.6s ease-in infinite}
 @keyframes gzL{to{transform:translateX(-14px)}}@keyframes gzR{to{transform:translateX(14px)}}
 @keyframes gzDive{to{transform:translate(14px,9px)}}
 @keyframes gzUp{0%{transform:translateY(22px);opacity:0}40%{opacity:1}100%{transform:translateY(-14px);opacity:0}}
 
-/* 02 · corte (lámina con líneas guía) */
-.gz-xs{display:grid;gap:var(--s4)}
-.gz-xsfig{position:relative;background:var(--arena);border:3px solid var(--noche);border-radius:14px;overflow:hidden}
+/* corte */
+.gz-xsfig{background:var(--arena);border:2px solid var(--noche);border-radius:10px;overflow:hidden}
 #gzXs{display:block;width:100%;height:auto}
-.gz-xs .slab-flow{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:3 15;animation:gzSlab 1.3s linear infinite}
+#gzXs .slab-flow{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:3 15;animation:gzSlab 1.3s linear infinite}
 @keyframes gzSlab{to{stroke-dashoffset:-18}}
-.gz-xs .mag{fill:var(--azufre);stroke:var(--noche);stroke-width:1.5;animation:gzMag 2.6s ease-in infinite}
+#gzXs .mag{fill:var(--azufre);stroke:var(--noche);stroke-width:1.5;animation:gzMag 2.6s ease-in infinite}
 @keyframes gzMag{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(var(--h));opacity:0}}
-.gz-xs .star{fill:var(--azufre);stroke:var(--noche);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:gzStar 2.4s ease-in-out infinite}
+#gzXs .star{fill:var(--azufre);stroke:var(--noche);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:gzStar 2.4s ease-in-out infinite}
 @keyframes gzStar{0%,65%,100%{opacity:0;transform:scale(.4)}78%{opacity:1;transform:scale(1.15)}}
-.gz-xs .guide{font:500 13px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;fill:var(--noche)}
-.gz-xs .guide-l{stroke:var(--noche);stroke-width:1.2;fill:none}
-.gz-xstext{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s4);align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:var(--s5)}
-.gz-xstext .big{font:900 3.4rem/.85 var(--disp);color:var(--oxido)}
-.gz-xstext .big small{display:block;font:500 .7rem var(--f-mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-top:.4rem}
-.gz-xstext h3{margin:0 0 .3rem;font:900 1.5rem/1 var(--disp);text-transform:uppercase}
-.gz-xstext p{margin:0}
+#gzXs .guide{font:500 30px var(--f-mono);letter-spacing:.02em;text-transform:uppercase;fill:var(--noche);paint-order:stroke;stroke:#EADBC8;stroke-width:6px;stroke-linejoin:round}
+#gzXs .guide-l{stroke:var(--noche);stroke-width:2;fill:none}
+.gz-ang{display:flex;align-items:baseline;gap:.6rem}
+.gz-ang b{font:900 2.8rem/.85 var(--disp);color:var(--oxido)}
+.gz-ang small{font:500 .7rem var(--f-mono);letter-spacing:.08em;color:#55627A;text-transform:uppercase}
 
-/* 03 · reloj */
-.gz-clock{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:var(--s6);align-items:start}
-@media (max-width:820px){.gz-clock{grid-template-columns:1fr}}
-.gz-yrs{font:900 clamp(2.6rem,6vw,4rem)/.95 var(--disp);text-transform:uppercase;color:var(--ink)}
-.gz-range{width:100%;height:44px;accent-color:var(--oxido)}
-.gz-pre{display:flex;flex-wrap:wrap;gap:.45rem}
-.gz-pre .gz-btn{font-size:.82rem}
-.gz-rows{display:grid;gap:var(--s4);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:var(--s5)}
-.gz-row .t{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline;font-size:.95rem}
-.gz-row .t b{font:500 1rem var(--f-mono);white-space:nowrap}
-.gz-row .t small{color:var(--muted);font-size:.8rem}
-.gz-bar{height:16px;border-radius:99px;background:var(--line);margin-top:.35rem;overflow:hidden}
-.gz-bar i{display:block;height:100%;border-radius:99px;border:2px solid var(--noche);transition:width .4s cubic-bezier(.2,.8,.2,1)}
-.gz-golfo{display:none;align-items:center;gap:var(--s3);margin:0}
+/* reloj */
+.gz-yrs{font:900 2rem/.95 var(--disp);text-transform:uppercase;color:var(--noche)}
+.gz-range{width:100%;height:40px;accent-color:var(--oxido)}
+.gz-rows{display:grid;gap:10px}
+.gz-row .t{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;font-size:.86rem}
+.gz-row .t b{font:500 .95rem var(--f-mono);white-space:nowrap}
+.gz-row .t small{color:#55627A;font-size:.74rem}
+.gz-bar{height:12px;border-radius:99px;background:#EEF1F5;margin-top:.3rem;overflow:hidden}
+.gz-bar i{display:block;height:100%;border-radius:99px;border:2px solid var(--noche)}
+.gz-golfo{display:none;align-items:center;gap:8px;margin:0;color:var(--oxido)}
 .gz-golfo.on{display:flex}
-.gz-golfo .gz-hand{font-size:1.35rem;color:var(--oxido);transform:rotate(-3deg)}
-:root[data-theme="dark"] .gz-golfo .gz-hand{color:var(--azufre)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .gz-golfo .gz-hand{color:var(--azufre)}}
+.gz-golfo .gz-hand{font-size:1.2rem;transform:rotate(-3deg)}
+.gz-livebox{background:var(--noche);color:#fff;border-radius:8px;padding:10px 12px;font-size:.88rem}
+.gz-livebox b{font:500 1rem var(--f-mono);color:var(--azufre)}
 
-/* 04 · sismos */
-.gz-quakes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
-@media (max-width:820px){.gz-quakes{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:480px){.gz-quakes{grid-template-columns:1fr}}
-.gz-qc{display:grid;gap:.25rem;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:var(--s4);cursor:pointer;transition:transform .15s,border-color .2s;min-height:44px}
-.gz-qc:hover{transform:translateY(-2px);border-color:var(--oxido)}
-.gz-qc:focus-visible{outline:3px solid var(--oxido);outline-offset:2px}
-.gz-qc .m{font:900 2.2rem/1 var(--disp);color:var(--oxido)}
-.gz-qc b{font-weight:600}
-.gz-qc small{font:500 .74rem var(--f-mono);color:var(--muted)}
-.gz-qc .ty{justify-self:start;font:500 .68rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:.2rem .5rem;border-radius:99px;background:var(--arena);color:var(--noche)}
-.gz-ssn{font:400 .78rem var(--f-mono);color:var(--muted);margin:0}
+/* sismos */
+.gz-qlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.gz-qc{display:grid;gap:.1rem;text-align:left;font:inherit;color:var(--noche);background:#F7F4EF;border:2px solid #C9CFD9;border-radius:10px;padding:.5rem .6rem;cursor:pointer;min-height:44px;transition:border-color .2s,transform .15s}
+.gz-qc:hover{transform:translateY(-2px)}
+.gz-qc[aria-pressed="true"]{border-color:var(--noche);background:#FFF6DD}
+.gz-qc .m{font:900 1.35rem/1 var(--disp);color:var(--oxido)}
+.gz-qc small{font:500 .68rem var(--f-mono);color:#55627A}
 
-/* 05 · practicar */
-.gz-quiz{display:grid;gap:var(--s3);padding:var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:14px}
-.gz-quiz h3{margin:0;font:900 1.6rem/1 var(--disp);text-transform:uppercase;letter-spacing:.02em}
-.gz-quiz ol{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
-.gz-qq{display:grid;gap:.6rem;padding:var(--s3) var(--s4);border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.gz-qq p{margin:0;font-weight:500}
-.gz-qq .bts{display:flex;flex-wrap:wrap;gap:.4rem}
-.gz-qq .gz-btn{font-size:.85rem}
-.gz-qq .gz-btn.ok[aria-pressed="true"]{background:var(--azufre)}
-.gz-qq .gz-btn.no[aria-pressed="true"]{background:var(--arena);text-decoration:line-through}
-.gz-qq .fb{margin:0;font-size:.9rem;color:var(--muted)}.gz-qq .fb:empty{display:none}
-.gz-score{font:500 .85rem var(--f-mono);color:var(--muted);margin:0}
+/* reto */
+.gz-clue{font:900 1.45rem/1.05 var(--disp)!important;text-transform:uppercase;color:var(--noche)!important}
+.gz-fb{min-height:1.2em}
+.gz-fb.ok{color:#1F6E5C!important}.gz-fb.no{color:var(--oxido)!important}
+.gz-dots{display:flex;gap:6px}
+.gz-dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--noche);background:#fff}
+.gz-dots i.ok{background:#2E8B6E}.gz-dots i.no{background:var(--oxido)}.gz-dots i.cur{background:var(--azufre)}
 
-.gz-refs{margin:0;padding-left:1.1rem;display:grid;gap:var(--s3);font-size:.92rem;color:var(--muted)}
+/* recorrido guiado */
+.gz-tourbar{position:absolute;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--noche);color:#fff;border-radius:10px;padding:10px 12px;box-shadow:5px 5px 0 var(--base)}
+.gz-tourbar[hidden]{display:none}
+.gz-tourbar .st{font:500 .72rem var(--f-mono);letter-spacing:.08em;color:var(--azufre);white-space:nowrap}
+.gz-tourbar p{margin:0;font-size:.95rem;line-height:1.35}
+.gz-tourbar .nav{display:flex;gap:6px}
+.gz-x{min-width:40px;min-height:40px;border-radius:99px;border:2px solid var(--arena);background:transparent;color:#fff;font:600 1rem var(--f-body);cursor:pointer;padding:0 .7rem}
+.gz-x.pri{background:var(--azufre);border-color:var(--azufre);color:var(--noche)}
+
+/* mapa */
+.gz-plate{cursor:pointer;transition:opacity .45s}
+.gz-plate.dim{opacity:.35}
+.gz-plate.sel{stroke:#fff;stroke-width:4}
+.gz-bnd{fill:none;stroke:var(--noche);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;transition:stroke-width .3s}
+.gz-bnd.div{stroke-width:7}
+.gz-hit{fill:none;stroke:transparent;stroke-width:20;cursor:pointer}
+.gz-hit:hover+.gz-bnd,.gz-bnd.on{stroke-width:6}.gz-hit:hover+.gz-bnd.div,.gz-bnd.div.on{stroke-width:11}
+.gz-bnd.on{filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #E9C46A)}
+.gz-arr{fill:none;stroke-linecap:round}
+.gz-arr .flow{stroke:#fff;stroke-width:4;stroke-dasharray:5 10;animation:gzFlow 1s linear infinite}
+@keyframes gzFlow{to{stroke-dashoffset:-15}}
+.gz-q,.gz-v,.gz-cut{cursor:pointer}
+.gz-q .ring{fill:none;stroke:var(--noche);stroke-width:2.2;transform-box:fill-box;transform-origin:center;animation:gzPulse 2.6s ease-out infinite}
+@keyframes gzPulse{0%{transform:scale(.4);opacity:1}100%{transform:scale(2.8);opacity:0}}
+.gz-q.on circle:last-child{fill:#fff;stroke-width:3.5}
+.gz-q:focus-visible circle,.gz-v:focus-visible path,.gz-cut:focus-visible .ln{stroke:#fff;stroke-width:3}
+.gz-lab text{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.02em}
+.gz-sm{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;fill:var(--noche);paint-order:stroke;stroke:var(--arena);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+.gz-cut .ln{fill:none;stroke:var(--noche);stroke-width:3.5;stroke-dasharray:10 6}
+.gz-cut .hit{fill:none;stroke:transparent;stroke-width:26}
+.gz-cut .tag rect{fill:var(--noche)}.gz-cut .tag text{fill:#fff;font:900 19px var(--disp);text-transform:uppercase;letter-spacing:.03em}
+.gz-cut.on .ln{stroke:var(--oxido);stroke-width:6;stroke-dasharray:none}
+.gz-cut.on .tag rect{fill:var(--oxido)}
+.gz-dist text{font-family:var(--f-mono);font-weight:500;fill:var(--noche);paint-order:stroke;stroke:var(--arena);stroke-width:5px;stroke-linejoin:round}
+.gz-dist .big{font-family:var(--disp);font-weight:900}
+.gz-off{display:none}
+.gz-in{opacity:0;animation:gzIn .7s ease forwards}
+@keyframes gzIn{to{opacity:1}}
+.gz-draw{animation:gzDraw 1.5s ease forwards}
+@keyframes gzDraw{to{stroke-dashoffset:0}}
+
+/* lo que muestra el mapa en cada modo */
+#gzCuts,#gzDist{display:none}
+.gz-mapbox[data-mode="corte"] #gzCuts,.gz-mapbox[data-mode="reloj"] #gzDist{display:inline}
+.gz-mapbox[data-mode="fronteras"] .gz-plate{opacity:.5}
+.gz-mapbox[data-mode="fronteras"] #gzArrows,.gz-mapbox[data-mode="fronteras"] #gzQuakes,.gz-mapbox[data-mode="fronteras"] #gzVolc{opacity:.25;pointer-events:none}
+.gz-mapbox[data-mode="corte"] #gzQuakes,.gz-mapbox[data-mode="corte"] #gzArrows{opacity:.2;pointer-events:none}
+.gz-mapbox[data-mode="reloj"] #gzQuakes,.gz-mapbox[data-mode="reloj"] #gzVolc,.gz-mapbox[data-mode="reloj"] #gzFvtm{opacity:.2;pointer-events:none}
+.gz-mapbox[data-mode="sismos"] .gz-plate{opacity:.6}
+.gz-mapbox[data-mode="sismos"] #gzArrows,.gz-mapbox[data-mode="sismos"] #gzVolc{opacity:.2;pointer-events:none}
+.gz-mapbox[data-mode="sismos"] #gzQuakes{display:inline!important}
+.gz-mapbox[data-mode="reloj"] #gzLabels,.gz-mapbox[data-mode="corte"] #gzLabels,.gz-mapbox[data-mode="reto"] #gzLabels,.gz-mapbox[data-mode="reto"] #gzArrows,.gz-mapbox[data-mode="reto"] #gzQuakes,.gz-mapbox[data-mode="reto"] #gzVolc{display:none}
+.gz-mapbox[data-mode="reto"] .gz-plate:hover{opacity:.8}
+
+/* ventana ⓘ */
+.gz-dlg{border:3px solid var(--noche);border-radius:14px;padding:0;max-width:min(44rem,calc(100vw - 24px));max-height:calc(100svh - 40px);color:var(--ink);background:var(--bg);box-shadow:8px 8px 0 #3f271f}
+.gz-dlg::backdrop{background:rgba(12,25,58,.55)}
+.gz-dlg .in{padding:clamp(1rem,3vw,1.6rem);display:grid;gap:var(--s4)}
+.gz-dlg .hd{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.gz-dlg h2{margin:0;font:900 1.8rem/1 var(--disp);text-transform:uppercase}
+.gz-dlg h3{margin:0;font:600 1rem var(--f-body)}
+.gz-dlg .gz-x{border-color:var(--ink);color:var(--ink)}
+.gz-chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.gz-chips span{font:500 .76rem var(--f-mono);letter-spacing:.05em;padding:.35rem .7rem;border-radius:99px;border:2px solid var(--ink)}
+.gz-chips b{font-weight:500;color:var(--oxido)}
+.gz-refs{margin:0;padding-left:1.1rem;display:grid;gap:.5rem;font-size:.88rem;color:var(--muted)}
 .gz-refs i{color:var(--ink)}
 .gz .cite{border-left-color:var(--oxido)}
 
+/* --- Celular y tableta --- */
+@media (max-width:900px){
+  .gz-app>.wrap{gap:10px;padding-block:12px 16px}
+  .gz-live{font-size:.8rem}
+  .gz-live-top{display:flex}.gz-live-map{display:none}
+  .gz-stage{grid-template-columns:1fr;height:auto;gap:10px}
+  .gz-mapcol{height:auto}
+  .gz-mapbox{height:auto;aspect-ratio:1000/713}
+  .gz-panel{height:auto;max-height:none;overflow:visible;padding:14px}
+  .gz-tourbar{position:static;margin-top:10px;grid-template-columns:1fr auto;grid-template-areas:"st nav" "p p";border-radius:10px}
+  .gz-tourbar .st{grid-area:st}.gz-tourbar p{grid-area:p}.gz-tourbar .nav{grid-area:nav}
+  .gz-hint,.gz-cap{display:none}
+  .gz-mode .n{display:none}
+}
+@media (max-width:420px){.gz-qlist{grid-template-columns:1fr}}
+
 .gz .bz{--bz-bg:var(--roca);--bz-acc:var(--azufre);--bz-soft:var(--arena);--bz-shadow:#3f271f;--bz-focus:var(--azufre)}
+.gz .bz{border-top:3px dashed rgba(234,219,200,.35)}
+
 /* --- Buzón de ideas (fondo pleno de la esfera; envía a Google Forms del OMCT) --- */
 .bz{background:var(--bz-bg);color:#fff;position:relative;overflow:hidden}
 .bz .wrap{padding-block:clamp(2.8rem,6vw,4.5rem)}
@@ -246,10 +285,11 @@
 .bz-legal{margin:0;font-size:.8rem;color:#55627A}
 .bz-legal a,.bz-check a{color:#0C193A}
 
+
 @media (prefers-reduced-motion:reduce){
   .gz *{animation:none!important;transition:none!important}
   .gz-in{opacity:1}.gz-draw,.gz-h1 .az path{stroke-dashoffset:0!important}
-  .gz-xs .mag,.gz-xs .star{opacity:0}
+  #gzXs .mag,#gzXs .star{opacity:0}
 }
 </style>
 </head>
@@ -275,130 +315,58 @@
   </div>
 </header>
 
+
 <main>
-<section>
-  <!-- ================= PORTADA + MAPA ================= -->
-  <div class="gz-hero">
-    <div class="wrap">
-      <div class="gz-hgrid">
-        <div class="gz-col">
-        <div class="gz-top-text">
-          <nav class="gz-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Infografía</span><span aria-hidden="true">/</span><span>Geósfera</span></nav>
-          <span class="gz-tag">Infografía · Geósfera</span>
-          <h1 class="gz-h1">México en la interacción de <span class="az">cinco placas<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C80 4 190 18 296 7" fill="none" stroke="#E9C46A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
-          <p class="gz-lead">Bajo el territorio mexicano se encuentran cinco placas tectónicas. Se mueven unos pocos centímetros al año, y eso basta para explicar nuestros sismos, nuestros volcanes y hasta la forma del país.</p>
-          <div class="gz-live" role="group" aria-label="Contador en vivo">
-            <span class="gz-live-k"><i aria-hidden="true"></i>En vivo</span>
-            <p>Desde que abriste esta página, la placa de Cocos avanzó <b id="gzLive">0.0 nm</b> bajo México.</p>
-            <small>Cálculo con su velocidad media frente a la costa: 6.3 cm/año, unos 2 nanómetros por segundo.</small>
-          </div>
-          <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Lectura</b> 5 min</span></div>
-          <p class="gz-by">Texto y diseño de <b>Katia Fernández González</b>.</p>
+<!-- ================= INFOGRAFÍA: TODO EN EL MAPA ================= -->
+<section class="gz-app" aria-labelledby="gzTitle">
+  <div class="wrap">
+    <div class="gz-top">
+      <div class="gz-titles">
+        <nav class="gz-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Infografía</span><span aria-hidden="true">/</span><span>Geósfera</span></nav>
+        <h1 class="gz-h1" id="gzTitle">México en la interacción de <span class="az">cinco placas<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C80 4 190 18 296 7" fill="none" stroke="#E9C46A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
+        <p class="gz-by">Texto y diseño de <b>Katia Fernández González</b></p>
+      </div>
+      <p class="gz-live gz-live-top" role="group" aria-label="Contador en vivo"><i aria-hidden="true"></i><span>Desde que abriste esta página, la placa de Cocos avanzó <b data-live>0.0 nm</b> bajo México.</span></p>
+    </div>
+
+    <nav class="gz-modes" id="gzModes" aria-label="Qué mostrar en el mapa">
+      <button class="gz-mode" type="button" data-m="placas" aria-pressed="true"><span class="n">1</span>Placas</button>
+      <button class="gz-mode" type="button" data-m="fronteras" aria-pressed="false"><span class="n">2</span>Fronteras</button>
+      <button class="gz-mode" type="button" data-m="corte" aria-pressed="false"><span class="n">3</span>Corte</button>
+      <button class="gz-mode" type="button" data-m="reloj" aria-pressed="false"><span class="n">4</span>Reloj</button>
+      <button class="gz-mode" type="button" data-m="sismos" aria-pressed="false"><span class="n">5</span>Sismos</button>
+      <button class="gz-mode" type="button" data-m="reto" aria-pressed="false"><span class="n">6</span>Reto</button>
+      <span class="gz-sep" aria-hidden="true"></span>
+      <button class="gz-mode tour" type="button" id="gzTourBtn" aria-pressed="false">▶ Recorrido guiado</button>
+      <button class="gz-mode info" type="button" id="gzInfoBtn" aria-label="Fuentes, cita y créditos" title="Fuentes, cita y créditos">i</button>
+    </nav>
+
+    <div class="gz-stage">
+      <div class="gz-mapcol">
+        <div class="gz-mapbox" id="gzMapbox" data-mode="placas">
+          <svg id="gzMap" role="img" aria-label="Mapa esquemático de México con las cinco placas tectónicas, sus fronteras, la dirección en que se mueven, los principales volcanes y seis grandes sismos"></svg>
+          <span class="gz-cap" id="gzCap" aria-hidden="true">Toca una placa</span>
+          <span class="gz-hint gz-hand" id="gzHint" aria-hidden="true">¡toca el mapa!</span>
+          <p class="gz-live gz-live-map" aria-hidden="true"><i></i><span>Desde que abriste esta página, Cocos avanzó <b data-live>0.0 nm</b></span></p>
         </div>
-          <div class="gz-tools">
-          <div class="gz-ctrl" id="gzPlates" role="group" aria-label="Elegir placa"></div>
-          <div class="gz-ctrl layers" id="gzLayers" role="group" aria-label="Capas del mapa">
-            <button class="gz-btn" type="button" data-layer="gzArrows" aria-pressed="true">Movimiento</button>
-            <button class="gz-btn" type="button" data-layer="gzVolc" aria-pressed="true">Volcanes</button>
-            <button class="gz-btn" type="button" data-layer="gzQuakes" aria-pressed="true">Grandes sismos</button>
-            <button class="gz-btn" type="button" data-layer="gzFvtm" aria-pressed="true">Faja Volcánica</button>
-            <button class="gz-btn" type="button" id="gzReplay">↻ Repetir animación</button>
-          </div>
-          <div class="gz-legend">
-            <span><svg width="40" height="16" aria-hidden="true"><path d="M2 12H38" stroke="#EADBC8" stroke-width="2.5"/><path d="M9 12l4-7 4 7zM23 12l4-7 4 7z" fill="#EADBC8"/></svg>Convergente (subducción)</span>
-            <span><svg width="40" height="16" aria-hidden="true"><path d="M2 8H38" stroke="#EADBC8" stroke-width="7"/><path d="M2 8H38" stroke="#5E3A2E" stroke-width="2"/></svg>Divergente</span>
-            <span><svg width="40" height="16" aria-hidden="true"><path d="M2 8H38" stroke="#EADBC8" stroke-width="2.5" stroke-dasharray="7 4"/></svg>Transformante o difusa</span>
-            <span><svg width="40" height="16" aria-hidden="true"><path d="M2 8H38" stroke="#EADBC8" stroke-width="1.2"/><path d="M2 16 10 0M10 16 18 0M18 16 26 0M26 16 34 0" stroke="#EADBC8" stroke-width="1.2"/></svg>Mar (trama)</span>
-          </div>
-          </div>
-        </div>
-        <div class="gz-col">
-          <div class="gz-mapbox">
-            <svg id="gzMap" role="img" aria-label="Mapa esquemático de México con las cinco placas tectónicas, sus fronteras, la dirección en que se mueven, los principales volcanes y seis grandes sismos"></svg>
-            <span class="gz-hint gz-hand" id="gzHint" aria-hidden="true">¡toca una placa!</span>
-          </div>
-          <aside class="gz-panel" id="gzPanel" aria-live="polite"></aside>
-          <p class="gz-note">Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>
+        <div class="gz-tourbar" id="gzTour" hidden role="region" aria-label="Recorrido guiado" aria-live="polite">
+          <span class="st" id="gzTourSt">PASO 1 DE 7</span>
+          <p id="gzTourTx"></p>
+          <div class="nav"><button class="gz-x" type="button" id="gzTourPrev" aria-label="Paso anterior">←</button><button class="gz-x pri" type="button" id="gzTourNext">Siguiente →</button><button class="gz-x" type="button" id="gzTourEnd" aria-label="Terminar recorrido">✕</button></div>
         </div>
       </div>
+      <aside class="gz-panel" id="gzPanel" aria-live="polite" aria-label="Información"></aside>
     </div>
   </div>
+</section>
 
-  <!-- ================= CUERPO ================= -->
-  <div class="band">
-    <div class="wrap">
-      <div class="gz-body">
-
-        <!-- 01 -->
-        <section class="gz-sec" aria-labelledby="fronteras">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">01</span><div><span class="eyebrow">Cómo se tocan las placas</span><h2 id="fronteras">Tres maneras de encontrarse, y México tiene las tres</h2></div></div>
-          <div class="gz-three">
-            <article class="gz-card">
-              <div class="gz-card-fig" role="img" aria-label="Esquema: una placa oceánica se hunde bajo una continental y el magma sube a un volcán."><svg viewBox="0 0 240 170" aria-hidden="true"><rect width="240" height="56" fill="#9CCBE8"/><g class="gz-dive"><path d="M-30 64H112L168 180H100L70 92H-30z" fill="#B5532F" stroke="#0C193A" stroke-width="2.5"/></g><path d="M106 56H260V180H176z" fill="#D9B48F" stroke="#0C193A" stroke-width="2.5"/><path d="M182 56l13-22 13 22z" fill="#D9B48F" stroke="#0C193A" stroke-width="2.5"/><circle class="gz-up" cx="195" cy="100" r="5" fill="#E9C46A" stroke="#0C193A" stroke-width="1.5"/><circle class="gz-up" cx="195" cy="120" r="4" fill="#E9C46A" stroke="#0C193A" stroke-width="1.5" style="animation-delay:1.2s"/></svg></div>
-              <div class="gz-card-body"><span class="where">Trinchera Mesoamericana</span><h3>Convergente</h3><p>Una placa oceánica se hunde bajo otra: es la <b>subducción</b>. Así entran Cocos y Rivera bajo Norteamérica, frente a la costa del Pacífico. De ahí vienen los grandes sismos y la Faja Volcánica Transmexicana.</p></div>
-            </article>
-            <article class="gz-card">
-              <div class="gz-card-fig" role="img" aria-label="Esquema: dos placas se separan y el magma rellena el hueco."><svg viewBox="0 0 240 170" aria-hidden="true"><rect width="240" height="170" fill="#E9C46A"/><rect width="240" height="56" fill="#9CCBE8"/><g class="gz-l"><path d="M-30 56H114V180H-30z" fill="#8A8A7B" stroke="#0C193A" stroke-width="2.5"/></g><g class="gz-r"><path d="M126 56H270V180H126z" fill="#D9B48F" stroke="#0C193A" stroke-width="2.5"/></g><circle class="gz-up" cx="120" cy="110" r="5" fill="#B5532F" stroke="#0C193A" stroke-width="1.5"/><circle class="gz-up" cx="120" cy="140" r="4" fill="#B5532F" stroke="#0C193A" stroke-width="1.5" style="animation-delay:1.3s"/></svg></div>
-              <div class="gz-card-body"><span class="where">Golfo de California · dorsal del Pacífico</span><h3>Divergente</h3><p>Dos placas se separan y el magma crea corteza nueva. Pasa en la dorsal del Pacífico Oriental y en el Golfo de California, que separa la península de Baja California del resto del país.</p></div>
-            </article>
-            <article class="gz-card">
-              <div class="gz-card-fig" role="img" aria-label="Esquema: dos placas se deslizan una junto a la otra en sentidos opuestos."><svg viewBox="0 0 240 170" aria-hidden="true"><g class="gz-l"><path d="M-30 18H270V83H-30z" fill="#D9B48F" stroke="#0C193A" stroke-width="2.5"/></g><g class="gz-r"><path d="M-30 87H270V152H-30z" fill="#7F5539" stroke="#0C193A" stroke-width="2.5"/></g><path d="M0 85H240" stroke="#0C193A" stroke-width="2.5" stroke-dasharray="8 5"/></svg></div>
-              <div class="gz-card-body"><span class="where">Motagua–Polochic · Golfo de California</span><h3>Transformante</h3><p>Las placas se deslizan de lado. El sistema de fallas Motagua–Polochic, en Guatemala, separa Norteamérica del Caribe. En el Golfo de California, fallas así conectan con la falla de San Andrés.</p></div>
-            </article>
-          </div>
-        </section>
-
-        <!-- 02 -->
-        <section class="gz-sec" aria-labelledby="corte">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">02</span><div><span class="eyebrow">Corte de subducción</span><h2 id="corte">La misma trinchera, tres ángulos</h2></div></div>
-          <p class="gz-intro">La placa que se hunde no lo hace igual en todo el Pacífico mexicano. Ese cambio de inclinación explica por qué la Faja Volcánica Transmexicana no corre paralela a la costa, como en casi todas las zonas de subducción, sino en diagonal.</p>
-          <div class="gz-xs">
-            <div class="gz-ctrl" id="gzXsBtns" role="group" aria-label="Elegir corte"></div>
-            <div class="gz-xsfig"><svg id="gzXs" viewBox="0 0 900 380" role="img" aria-label="Corte esquemático de la subducción, no está a escala"></svg></div>
-            <div class="gz-xstext" id="gzXsText" aria-live="polite"></div>
-          </div>
-        </section>
-
-        <!-- 03 -->
-        <section class="gz-sec" aria-labelledby="reloj">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">03</span><div><span class="eyebrow">Reloj tectónico</span><h2 id="reloj">¿Cuánto se mueven en el tiempo que tú elijas?</h2></div></div>
-          <div class="gz-clock">
-            <div style="display:grid;gap:var(--s3)">
-              <div class="gz-yrs" id="gzYrs" aria-live="polite">1 año</div>
-              <label for="gzT" class="mono" style="font-size:.8rem;color:var(--muted)">Desliza: de 1 año a 10 millones de años (escala logarítmica)</label>
-              <input id="gzT" class="gz-range" type="range" min="0" max="7" step="0.01" value="0">
-              <div class="gz-pre" id="gzPre"></div>
-            </div>
-            <div style="display:grid;gap:var(--s3)">
-              <div class="gz-rows" id="gzRows"></div>
-              <p class="gz-golfo" id="gzGolfo"><svg width="60" height="34" viewBox="0 0 60 34" aria-hidden="true"><path d="M4 6 C22 2 40 14 52 26 M42 28 54 27 51 16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="gz-hand">¡así se abrió el Golfo de California!</span></p>
-            </div>
-          </div>
-          <p class="gz-intro" id="gzGolfoTxt" style="font-size:.95rem">Cálculo ilustrativo: supone velocidades constantes, pero las placas acumulan energía y se desplazan de golpe en los sismos. Para comparar, la geología del norte del Golfo de California registra al menos 276 ± 13 km de desplazamiento entre las placas del Pacífico y Norteamérica en unos 6 millones de años.</p>
-        </section>
-
-        <!-- 04 -->
-        <section class="gz-sec" aria-labelledby="sismos">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">04</span><div><span class="eyebrow">Lo que nos recuerdan las placas</span><h2 id="sismos">Seis grandes sismos</h2></div></div>
-          <p class="gz-intro">Seis de los sismos más fuertes del registro instrumental en México. Toca uno para verlo en el mapa.</p>
-          <div class="gz-quakes" id="gzQkList"></div>
-          <p class="gz-ssn">Magnitudes según el Servicio Sismológico Nacional (SSN, UNAM). Epicentros aproximados.</p>
-        </section>
-
-        <!-- 05 -->
-        <section class="gz-sec" aria-labelledby="practicar">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">05</span><div><span class="eyebrow">Para practicar</span><h2 id="practicar">¿Qué placa es?</h2></div></div>
-          <div class="gz-quiz">
-            <h3>Cuatro pistas</h3>
-            <p class="gz-score" id="gzScore" aria-live="polite">Elige una placa en cada pista.</p>
-            <ol id="gzQuiz"></ol>
-          </div>
-        </section>
-
-        <!-- 06 -->
-        <section class="gz-sec" aria-labelledby="fuentes-inf">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">06</span><div><span class="eyebrow">Datos con redacción propia</span><h2 id="fuentes-inf">Fuentes</h2></div></div>
-          <ul class="gz-refs">
+<dialog class="gz-dlg" id="gzInfo" aria-labelledby="gzInfoT">
+  <div class="in">
+    <div class="hd"><h2 id="gzInfoT">Fuentes y cita</h2><button class="gz-x" type="button" id="gzInfoClose" aria-label="Cerrar">✕</button></div>
+    <div class="gz-chips"><span><b>Tipo</b> Infografía interactiva</span><span><b>Nivel</b> Básico</span><span><b>Exploración</b> 5 min</span></div>
+    <p style="margin:0">Texto y diseño: <b>Katia Fernández González</b>. Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>
+    <h3>Fuentes (datos con redacción propia)</h3>
+    <ul class="gz-refs">
             <li>Pardo, M. y Suárez, G. (1995). Shape of the subducted Rivera and Cocos plates in southern Mexico. <i>Journal of Geophysical Research</i>, 100(B7). <a href="https://www.geo.mtu.edu/EHaz/ConvergentPlatesClass/week%204/PardoSuarez95JB00919.pdf" rel="noopener">PDF ↗</a></li>
             <li>Velocidad Cocos–Norteamérica de 58 a 68 mm/año (modelo PVEL de DeMets et al., 2010), citada en <i>Earth, Planets and Space</i> (2019). <a href="https://link.springer.com/article/10.1186/s40623-019-1084-9" rel="noopener">Ver artículo ↗</a></li>
             <li>Modelos de convergencia Rivera–Norteamérica. <a href="https://earthref.org/ERR/40528" rel="noopener">EarthRef ↗</a> · <i>Pure and Applied Geophysics</i> (2016). <a href="https://link.springer.com/article/10.1007/s00024-016-1388-7" rel="noopener">Ver artículo ↗</a></li>
@@ -409,25 +377,17 @@
             <li>Gaceta UNAM. Cinturón Volcánico Transmexicano (≈1000 km; ≈40 % de la población). <a href="https://www.gaceta.unam.mx/continuar-estudios-en-el-cinturon-volcanico-transmexicano-propone-ekaterina-kazachkina/" rel="noopener">Ver nota ↗</a></li>
             <li>Gaceta UNAM. Sismos de magnitud 8.2 de 1932 y 2017. <a href="https://www.gaceta.unam.mx/prevenir-y-estar-alertas-la-mayor-proteccion-contra-temblores-geofisica/" rel="noopener">Ver nota ↗</a> · UNAM Global. Sismos del 19 de septiembre. <a href="https://unamglobal.unam.mx/global_revista/sismos-del-19-de-septiembre/" rel="noopener">Ver nota ↗</a></li>
             <li>Servicio Sismológico Nacional (UNAM). Catálogo de sismos. <a href="http://www.ssn.unam.mx/" rel="noopener">ssn.unam.mx ↗</a></li>
-          </ul>
-        </section>
-
-        <!-- 07 -->
-        <section class="gz-sec" aria-labelledby="citar-inf">
-          <div class="gz-head"><span class="gz-num" aria-hidden="true">07</span><div><span class="eyebrow">APA 7</span><h2 id="citar-inf">Cómo citar</h2></div></div>
-          <div class="cite">
-            <h3>Si usas esta infografía, cítala así</h3>
-            <code id="citaInf">Fernández González, K. (2027, 1 de enero). México en la interacción de cinco placas [Infografía interactiva]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/inf-cinco-placas.html</code>
-            <button class="copy" type="button" data-copy-el="citaInf">Copiar cita</button>
-            <p class="note">Texto y diseño: Katia Fernández González · CC BY 4.0. El mapa y los cortes son esquemas con límites y ubicaciones aproximados; las cifras vienen de las fuentes citadas.</p>
-          </div>
-        </section>
-
-      </div>
+    </ul>
+    <div class="cite">
+      <h3>Si usas esta infografía, cítala así (APA 7)</h3>
+      <code id="citaInf">Fernández González, K. (2027, 1 de enero). México en la interacción de cinco placas [Infografía interactiva]. Observatorio Mexicano de Ciencias de la Tierra. https://omct-open.github.io/inf-cinco-placas.html</code>
+      <button class="copy" type="button" data-copy-el="citaInf">Copiar cita</button>
+      <p class="note">CC BY 4.0. El mapa y los cortes son esquemas con límites y ubicaciones aproximados; las cifras vienen de las fuentes citadas.</p>
     </div>
   </div>
+</dialog>
 
-  <!-- ================= BUZÓN DE IDEAS ================= -->
+<section aria-label="Buzón de ideas">
   <div class="bz" id="buzon">
     <div class="wrap bz-grid">
       <div class="bz-intro">
@@ -456,6 +416,7 @@
   </div>
 </section>
 </main>
+
 
 <footer class="site">
   <div class="wrap">
@@ -568,7 +529,7 @@ ARR.forEach(([k,lo,la,az,v],i)=>{const[x,y]=P([lo,la]);const L=v*15,r=az*Math.PI
 // volcanes
 VOL.forEach(v=>{const[x,y]=P([v[1],v[2]]);const g=el("g",{class:"gz-v",transform:`translate(${x} ${y})`,tabindex:0,role:"button","aria-label":"Volcán "+v[0]},gV);
  el("path",{d:"M-8 6L0 -8L8 6Z",fill:"#B5532F",stroke:"#0C193A","stroke-width":1.8,"stroke-linejoin":"round"},g);
- const go=()=>{clearSel();show({k:"Volcán",t:v[0],p:v[3],f:[["Ubicación",`<span class='num'>${v[2].toFixed(2)}° N, ${Math.abs(v[1]).toFixed(2)}° O</span>`]]},"#B5532F")};
+ const go=()=>selVolc(v);
  g.addEventListener("click",go);g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})});
 // sismos
 const qEls=[];
@@ -588,93 +549,186 @@ function fit(){const w=svg.getBoundingClientRect().width||W,k=W/w,small=w<560;
 const roMap=new ResizeObserver(fit);roMap.observe(svg);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 
-// ---------- Panel ----------
-const panel=document.getElementById("gzPanel");
-function show(o,col){panel.innerHTML=`<span class="k">${o.k}</span><h3>${col?`<i style="background:${col}"></i>`:""}${o.t}</h3><p>${o.p}</p>${o.f.length?`<ul class="gz-facts">${o.f.map(([a,b])=>`<li><b>${a}</b>${b}</li>`).join("")}</ul>`:""}`}
-const INTRO={k:"Cómo leer el mapa",t:"Cinco placas",p:"El color indica la placa y la trama rayada, el mar. Baja California tiene el color de la placa del Pacífico porque viaja sobre ella.",f:[["Flechas","Hacia dónde y qué tan rápido se mueve cada placa respecto a Norteamérica"],["Triángulos","Volcanes de la Faja Volcánica Transmexicana y de Chiapas"],["Círculos amarillos","Grandes sismos; el tamaño crece con la magnitud"]]};
-const pb=document.getElementById("gzPlates");
-pb.innerHTML=ORDER.map(k=>`<button class="gz-btn" type="button" data-k="${k}" aria-pressed="false"><span class="sw" style="background:${C[k]}"></span>${PL[k].name}</button>`).join("")+`<button class="gz-btn" type="button" data-k="all" aria-pressed="false">Ver todas</button>`;
-function clearSel(){ORDER.forEach(k=>plateEls[k].classList.remove("dim","sel"));Object.values(bEls).forEach(b=>b.classList.remove("on"));pb.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed","false"))}
-const hint=document.getElementById("gzHint");
-function used(){if(hint)hint.style.display="none"}
-function selPlate(k){used();clearSel();ORDER.forEach(j=>{if(j!==k)plateEls[j].classList.add("dim")});plateEls[k].classList.add("sel");pb.querySelector(`[data-k="${k}"]`).setAttribute("aria-pressed","true");show(INFO[k],C[k])}
-function selBound(id){used();clearSel();bEls[id].classList.add("on");show(BND.find(b=>b.id===id))}
-function selQuake(i){used();clearSel();const q=QK[i];show({k:"Gran sismo · "+q.ty,t:"M "+q.m,p:`<b>${q.w}</b>. ${q.why}`,f:[["Fecha",q.d],["Epicentro aproximado",`<span class='num'>${q.la.toFixed(2)}° N, ${Math.abs(q.lo).toFixed(2)}° O</span>`]]},"#E9C46A");
- const c=qEls[i].querySelector(".ring");c.style.animation="none";void c.getBBox();c.style.animation=""}
-pb.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.k==="all"){clearSel();b.setAttribute("aria-pressed","true");show(INTRO)}else selPlate(b.dataset.k)});
-document.getElementById("gzLayers").addEventListener("click",e=>{const b=e.target.closest("button[data-layer]");if(!b)return;const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));document.getElementById(b.dataset.layer).classList.toggle("gz-off",!on)});
-// animación de entrada
-function intro(){if(RM)return;
- const re=(e,cls,delay)=>{e.classList.remove(cls);void e.getBBox();e.style.animationDelay=delay+"s";e.classList.add(cls)};
- ORDER.forEach((k,i)=>re(plateEls[k],"gz-in",i*.22));re(gS,"gz-in",.9);re(gL,"gz-in",.9);
- Object.values(bEls).forEach((b,i)=>{const L=b.getTotalLength();if(!b.getAttribute("stroke-dasharray")){b.style.strokeDasharray=L;b.style.strokeDashoffset=L;re(b,"gz-draw",1.3+i*.18)}else re(b,"gz-in",1.3+i*.18);if(b.inner)re(b.inner,"gz-in",2.4)});
- re(document.getElementById("gzTeeth"),"gz-in",2.4);[gF,gA,gV,gQ,gT].forEach((x,i)=>re(x,"gz-in",2.2+i*.3))}
-document.getElementById("gzReplay").addEventListener("click",intro);
-// contador en vivo: 6.3 cm/año = 6.3e7 nm / 31 557 600 s
-const live=document.getElementById("gzLive"),t0=performance.now(),NMS=6.3e7/31557600;
-function tick(){const nm=(performance.now()-t0)/1000*NMS;live.textContent=nm<1000?nm.toFixed(1)+" nm":(nm/1000).toFixed(3)+" µm"}
-tick();setInterval(tick,RM?1000:100);
-show(INTRO);intro();
-
-// ---------- Corte de subducción ----------
+// ---------- Líneas de corte y distancias (capas propias de cada modo) ----------
 const XS={
  ja:{b:"Jalisco",pl:"Placa de Rivera",col:"#E9C46A",ang:"≈ 50°",angL:"bajo los 40 km",slab:"M20 104 L200 116 C250 130 285 162 315 212 L420 380",vx:300,vh:150,vol:"Volcán de Colima",t:"Bajo el Bloque de Jalisco, la placa de Rivera se hunde muy inclinada. Por eso los volcanes quedan relativamente cerca de la costa, como el de Colima."},
  gu:{b:"Guerrero",pl:"Placa de Cocos",col:"#B5532F",ang:"≈ 0°",angL:"tramo casi horizontal",slab:"M20 104 L200 116 C240 130 265 152 300 162 L560 172 C610 177 640 212 700 380",vx:630,vh:112,vol:"Popocatépetl",t:"Bajo Guerrero, Cocos se desliza casi horizontal entre unos 110 y 275 km de la trinchera antes de hundirse. Los volcanes quedan muy tierra adentro: por eso la faja volcánica cruza el centro del país."},
  ch:{b:"Chiapas",pl:"Placa de Cocos",col:"#B5532F",ang:"≈ 30°",angL:"cerca del Istmo",slab:"M20 104 L200 116 C260 137 330 172 400 212 L620 380",vx:470,vh:160,vol:"El Chichón",t:"Hacia el Istmo de Tehuantepec la inclinación vuelve a crecer y se parece a la de Centroamérica. Aquí el arco volcánico es otro: el de Chiapas, con El Chichón y el Tacaná."}
 };
-const xs=document.getElementById("gzXs"),xb=document.getElementById("gzXsBtns"),xt=document.getElementById("gzXsText");
-xb.innerHTML=Object.entries(XS).map(([k,v])=>`<button class="gz-btn" type="button" data-x="${k}" aria-pressed="false">${v.b} · ${v.pl.replace("Placa de ","")}</button>`).join("");
-const guide=(x1,y1,x2,y2,txt,anchor)=>`<circle cx="${x1}" cy="${y1}" r="4" fill="#0C193A"/><path class="guide-l" d="M${x1} ${y1}L${x2} ${y2}"/><text class="guide" x="${x2+(anchor==="end"?-6:anchor==="middle"?0:6)}" y="${anchor==="middle"?y2-8:y2+4}" text-anchor="${anchor||"start"}">${txt}</text>`;
-function drawXS(k){const v=XS[k];const crustBottom=k==="gu"?"560 150":"420 152";
- xs.innerHTML=`<rect width="900" height="380" fill="#EADBC8"/><rect width="900" height="82" fill="#F6EFE4"/><path d="M0 0H330L345 82H0Z" fill="#9CCBE8"/>
- <path d="M205 116 C260 100 300 86 340 82 L${v.vx-30} 82 L${v.vx} 30 L${v.vx+30} 82 L900 82 V124 C760 130 600 128 ${crustBottom} C300 152 250 132 205 116Z" fill="#D9B48F" stroke="#0C193A" stroke-width="2.5" stroke-linejoin="round"/>
- <path d="${v.slab}" fill="none" stroke="#0C193A" stroke-width="32" stroke-linecap="round"/>
- <path d="${v.slab}" fill="none" stroke="${v.col}" stroke-width="26" stroke-linecap="round"/>
- <path d="${v.slab}" class="slab-flow"/>
- ${[0,1,2,3].map(i=>`<circle class="mag" cx="${v.vx+(i%2?7:-7)}" cy="${82+v.vh}" r="${5-i*.6}" style="--h:-${v.vh}px;animation-delay:${i*.6}s"/>`).join("")}
- <path class="star" d="M230 124l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z"/>
- <path class="star" d="M264 140l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" style="animation-delay:1.2s"/>
- ${guide(200,90,200,52,"Trinchera","middle")}
- ${guide(v.vx,40,v.vx+70,20,v.vol)}
- ${guide(760,104,800,60,"Norteamericana","end")}
- ${guide(110,110,90,170,v.pl)}
- ${guide(250,132,330,250,"Aquí se generan los sismos")}
- <text class="guide" x="40" y="62">Océano Pacífico</text>
- <text class="guide" x="30" y="362" style="fill:#5E3A2E">Manto · esquema, no está a escala</text>`;
- xt.innerHTML=`<div class="big">${v.ang}<small>${v.angL}</small></div><div><h3>${v.b} · ${v.pl}</h3><p>${v.t}</p></div>`;
- xb.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.x===k)))}
-xb.addEventListener("click",e=>{const b=e.target.closest("button");if(b)drawXS(b.dataset.x)});
-drawXS("gu");
-
-// ---------- Reloj tectónico ----------
+XS.ja.line=[[-105.45,18.75],[-103.1,20.35]];XS.gu.line=[[-100.6,16.35],[-98.4,19.55]];XS.ch.line=[[-94.35,14.45],[-92.75,17.6]];
+const gC=G("gzCuts"),cutEls={};
+Object.entries(XS).forEach(([k,v])=>{const[a,b]=v.line.map(P);const g=el("g",{class:"gz-cut",tabindex:0,role:"button","aria-label":"Corte de "+v.b},gC);
+ const d=`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`;el("path",{d,class:"hit"},g);el("path",{d,class:"ln"},g);
+ const tg=el("g",{class:"tag",transform:`translate(${b[0]} ${b[1]-14})`},g);const r=el("rect",{rx:3},tg);const t=el("text",{"text-anchor":"middle","dominant-baseline":"central"},tg);t.textContent=v.b;
+ g._fit=()=>{const bb=t.getBBox();r.setAttribute("x",bb.x-7);r.setAttribute("y",bb.y-4);r.setAttribute("width",bb.width+14);r.setAttribute("height",bb.height+8)};
+ const go=()=>{setMode("corte");drawXS(k)};g.addEventListener("click",go);g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}});cutEls[k]=g});
 const RT=[["Cocos bajo Norteamérica",6.3,"#B5532F","5.8–6.8 cm/año"],["Pacífico · Golfo de California",5.08,"#8A8A7B","5.1 cm/año"],["Rivera bajo Norteamérica",3.5,"#E9C46A","2–5 cm/año"],["Caribe · Motagua–Polochic",1.85,"#7F5539","1.7–2 cm/año"]];
-const rows=document.getElementById("gzRows"),tin=document.getElementById("gzT"),yrs=document.getElementById("gzYrs"),golfo=document.getElementById("gzGolfo");
+const DPOS=[[-101.9,13.3,"Cocos"],[-112.3,22.2,"Pacífico"],[-108.9,18.0,"Rivera"],[-88.3,12.3,"Caribe"]];
+const gD=G("gzDist"),dEls=DPOS.map(([lo,la,n])=>{const[x,y]=P([lo,la]);const g=el("g",{class:"gz-dist",transform:`translate(${x} ${y})`},gD);
+ const a=el("text",{"text-anchor":"middle",y:-4},g);a.textContent=n;const b=el("text",{"text-anchor":"middle",y:20,class:"big"},g);return b});
+svg.appendChild(gT);
+const fitCuts=()=>{const w=svg.getBoundingClientRect().width||W,k=Math.min(W/w,2.2);dEls.forEach(b=>{b.style.fontSize=(22*k)+"px";b.previousSibling.style.fontSize=(14*k)+"px";b.setAttribute("y",20*k);b.previousSibling.setAttribute("y",-4*k);b.parentNode.querySelectorAll("text").forEach(t=>t.style.strokeWidth=(5*k)+"px")});
+ Object.values(cutEls).forEach(g=>{g.querySelector(".tag text").style.fontSize=(19*Math.min(k,1.8))+"px";g._fit&&g._fit()})};
+new ResizeObserver(fitCuts).observe(svg);setTimeout(fitCuts,300);
+
+// ---------- Estado y panel ----------
+const box=document.getElementById("gzMapbox"),panel=document.getElementById("gzPanel"),cap=document.getElementById("gzCap"),hint=document.getElementById("gzHint");
+const modeBtns=[...document.querySelectorAll("#gzModes [data-m]")];
+const MODES=["placas","fronteras","corte","reloj","sismos","reto"];
+const CAPS={placas:"Toca una placa, un volcán o una frontera",fronteras:"Toca una frontera en el mapa",corte:"Toca una línea de corte",reloj:"Distancia recorrida en el tiempo elegido",sismos:"Toca un sismo",reto:"Responde tocando una placa"};
+let mode="placas",selP=null,selB=null,selT=null,selQ=null,selX="gu",years=1,qi=0,qres=[];
+const used=()=>{if(hint)hint.style.display="none"};
+const facts=f=>f&&f.length?`<ul class="gz-facts">${f.map(([a,b])=>`<li><b>${a}</b>${b}</li>`).join("")}</ul>`:"";
+const detail=(o,col)=>`<div class="gz-detail"><span class="k">${o.k}</span><h3>${col?`<i style="background:${col}"></i>`:""}${o.t}</h3><p>${o.p}</p>${facts(o.f)}</div>`;
+const INTRO={k:"Cómo leer el mapa",t:"Cinco placas",p:"Bajo el territorio mexicano se encuentran cinco placas tectónicas. Se mueven unos pocos centímetros al año, y eso basta para explicar nuestros sismos, nuestros volcanes y hasta la forma del país. El color indica la placa y la trama rayada, el mar.",f:[["Flechas","Hacia dónde y qué tan rápido se mueve cada placa respecto a Norteamérica"],["Triángulos","Volcanes de la Faja Volcánica Transmexicana y de Chiapas"],["Círculos amarillos","Grandes sismos; el tamaño crece con la magnitud"]]};
+function clearMap(){ORDER.forEach(k=>plateEls[k].classList.remove("dim","sel"));Object.values(bEls).forEach(b=>b.classList.remove("on"));qEls.forEach(q=>q.classList.remove("on"));Object.values(cutEls).forEach(c=>c.classList.remove("on"))}
+const plateBtns=(attr)=>ORDER.map(k=>`<button class="gz-btn" type="button" ${attr}="${k}" aria-pressed="${selP===k}"><span class="sw" style="background:${C[k]}"></span>${PL[k].name}</button>`).join("");
+const LAYERS=[["gzArrows","Movimiento"],["gzVolc","Volcanes"],["gzQuakes","Grandes sismos"],["gzFvtm","Faja Volcánica"]];
+const LEG=`<div class="gz-legend"><span><svg width="34" height="14" aria-hidden="true"><path d="M2 11H32" stroke="#0C193A" stroke-width="2.5"/><path d="M7 11l4-7 4 7zM19 11l4-7 4 7z" fill="#0C193A"/></svg>Convergente</span><span><svg width="34" height="14" aria-hidden="true"><path d="M2 7H32" stroke="#0C193A" stroke-width="7"/><path d="M2 7H32" stroke="#EADBC8" stroke-width="2"/></svg>Divergente</span><span><svg width="34" height="14" aria-hidden="true"><path d="M2 7H32" stroke="#0C193A" stroke-width="2.5" stroke-dasharray="7 4"/></svg>Transformante o difusa</span><span><svg width="34" height="14" aria-hidden="true"><path d="M2 14 9 0M9 14 16 0M16 14 23 0M23 14 30 0" stroke="#5E3A2E" stroke-width="1.2"/></svg>Mar (trama)</span></div>`;
+const NOTE=`<p class="gz-note">Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>`;
+let custom=null; // detalle mostrado en Placas (volcán)
+
+const RND={};
+RND.placas=()=>{const o=custom?custom:selP?INFO[selP]:INTRO;const col=custom?"#B5532F":selP?C[selP]:null;
+ return `${detail(o,col)}<span class="sub">Elige una placa</span><div class="gz-ctrl" data-act="plate">${plateBtns("data-k")}<button class="gz-btn" type="button" data-k="all" aria-pressed="${!selP&&!custom}">Ver todas</button></div>
+ <span class="sub">Capas del mapa</span><div class="gz-ctrl" data-act="layer">${LAYERS.map(([id,n])=>`<button class="gz-btn soft" type="button" data-layer="${id}" aria-pressed="${!document.getElementById(id).classList.contains("gz-off")}">${n}</button>`).join("")}<button class="gz-btn soft" type="button" data-act="replay">↻ Repetir animación</button></div>${LEG}${NOTE}`};
+const TYPES=[["conv",["tr"],"Convergente","Trinchera Mesoamericana","Una placa oceánica se hunde bajo otra: es la subducción. De ahí vienen los grandes sismos y los volcanes.",`<rect width="240" height="56" fill="#9CCBE8"/><g class="gz-dive"><path d="M-30 64H112L168 180H100L70 92H-30z" fill="#B5532F" stroke="#0C193A" stroke-width="3"/></g><path d="M106 56H260V180H176z" fill="#D9B48F" stroke="#0C193A" stroke-width="3"/><path d="M182 56l13-22 13 22z" fill="#D9B48F" stroke="#0C193A" stroke-width="3"/><circle class="gz-up" cx="195" cy="100" r="6" fill="#E9C46A" stroke="#0C193A" stroke-width="2"/>`],
+ ["div",["gc","ep"],"Divergente","Golfo de California · dorsal","Dos placas se separan y el magma crea corteza nueva. Así se abre el Golfo de California.",`<rect width="240" height="170" fill="#E9C46A"/><rect width="240" height="56" fill="#9CCBE8"/><g class="gz-l"><path d="M-30 56H114V180H-30z" fill="#8A8A7B" stroke="#0C193A" stroke-width="3"/></g><g class="gz-r"><path d="M126 56H270V180H126z" fill="#D9B48F" stroke="#0C193A" stroke-width="3"/></g><circle class="gz-up" cx="120" cy="115" r="6" fill="#B5532F" stroke="#0C193A" stroke-width="2"/>`],
+ ["tr",["mp"],"Transformante","Motagua–Polochic","Las placas se deslizan de lado. En Guatemala, Norteamérica y el Caribe se rozan así.",`<g class="gz-l"><path d="M-30 18H270V83H-30z" fill="#D9B48F" stroke="#0C193A" stroke-width="3"/></g><g class="gz-r"><path d="M-30 87H270V152H-30z" fill="#7F5539" stroke="#0C193A" stroke-width="3"/></g><path d="M0 85H240" stroke="#0C193A" stroke-width="3" stroke-dasharray="8 5"/>`]];
+RND.fronteras=()=>{const b=selB?BND.find(x=>x.id===selB):null;
+ const head=b?detail(b):`<div class="gz-detail"><span class="k">Cómo se tocan las placas</span><h2>Tres maneras de encontrarse</h2><p>Y México tiene las tres. Elige un tipo para verlo en el mapa, o toca cualquier frontera.</p></div>`;
+ return head+`<div class="gz-types" data-act="type">${TYPES.map(([id,ids,t,w,p,s])=>`<button class="gz-type" type="button" data-t="${id}" aria-pressed="${selT?selT===id:!!b&&ids.includes(b.id)}"><svg viewBox="0 0 240 170" aria-hidden="true">${s}</svg><div><b>${t}</b><small>${w}</small><span>${p}</span></div></button>`).join("")}</div>${LEG}`};
+RND.corte=()=>`<div class="gz-detail" style="padding-bottom:0;border:0"><span class="k">Corte de subducción · esquema sin escala</span><h2>La misma trinchera, tres ángulos</h2></div>
+ <div class="gz-ctrl" data-act="xs">${Object.entries(XS).map(([k,v])=>`<button class="gz-btn" type="button" data-x="${k}" aria-pressed="${k===selX}">${v.b}</button>`).join("")}</div>
+ <div class="gz-xsfig"><svg id="gzXs" viewBox="0 0 900 380" role="img" aria-label="Corte esquemático de la subducción bajo ${XS[selX].b}"></svg></div>
+ <div class="gz-ang"><b>${XS[selX].ang}</b><small>${XS[selX].angL}</small></div>
+ <p><b>${XS[selX].b} · ${XS[selX].pl}.</b> ${XS[selX].t}</p>
+ <p class="gz-note">Ese cambio de inclinación explica por qué la Faja Volcánica Transmexicana no corre paralela a la costa, como en casi todas las zonas de subducción, sino en diagonal.</p>`;
+const now=new Date().getFullYear();
+const PRE=[["1 año",1],["Una vida · 75 años",75],[`Desde 1985`,now-1985],["Desde Tenochtitlan · 1325",now-1325],["Golfo · 6 millones",6e6]];
 const nf=n=>n.toLocaleString("es-MX",{maximumFractionDigits:n<10?1:0});
 const dist=cm=>cm<100?nf(cm)+" cm":cm<100000?nf(cm/100)+" m":nf(cm/100000)+" km";
 const yfmt=y=>y<1.5?"1 año":y>=1e6?nf(y/1e6)+(y<2e6?" millón de años":" millones de años"):nf(Math.round(y))+" años";
-rows.innerHTML=RT.map((r,i)=>`<div class="gz-row"><div class="t"><span>${r[0]} <small>(${r[3]})</small></span><b id="gzD${i}"></b></div><div class="gz-bar"><i style="width:${(r[1]/RT[0][1]*100).toFixed(1)}%;background:${r[2]}"></i></div></div>`).join("");
-function upd(){const y=10**(+tin.value);yrs.textContent=yfmt(y);RT.forEach((r,i)=>{document.getElementById("gzD"+i).textContent=dist(r[1]*y)});golfo.classList.toggle("on",y>=3e6)}
-const now=new Date().getFullYear();
-const PRE=[["1 año",1],["Una vida (75 años)",75],[`Desde 1985 (${now-1985} años)`,now-1985],["Desde la fundación de México-Tenochtitlan (1325)",now-1325],["Apertura del Golfo (~6 millones)",6e6]];
-const pre=document.getElementById("gzPre");pre.innerHTML=PRE.map(p=>`<button class="gz-btn" type="button" data-y="${p[1]}">${p[0]}</button>`).join("");
-pre.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;tin.value=Math.log10(+b.dataset.y);upd()});
-tin.addEventListener("input",upd);upd();
-
-// ---------- Sismos ----------
-const qz=document.getElementById("gzQkList");
-qz.innerHTML=QK.map((q,i)=>`<button class="gz-qc" type="button" data-q="${i}"><span class="m">M ${q.m}</span><b>${q.w}</b><small>${q.d}</small><span class="ty">${q.ty}</span></button>`).join("");
-qz.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const lb=document.querySelector('[data-layer="gzQuakes"]');lb.setAttribute("aria-pressed","true");gQ.classList.remove("gz-off");selQuake(+b.dataset.q);document.querySelector(".gz-mapbox").scrollIntoView({behavior:RM?"auto":"smooth",block:"center"})});
-
-// ---------- ¿Qué placa es? ----------
+RND.reloj=()=>`<div class="gz-detail" style="padding-bottom:6px;border:0"><span class="k">Reloj tectónico</span><h2>¿Cuánto se mueven?</h2><p>Elige un tiempo y mira en el mapa cuánto avanza cada placa respecto a Norteamérica.</p></div>
+ <div class="gz-yrs" id="gzYrs" aria-live="polite"></div>
+ <label for="gzT" class="k">Desliza de 1 año a 10 millones (escala logarítmica)</label>
+ <input id="gzT" class="gz-range" type="range" min="0" max="7" step="0.01" value="${Math.log10(years)}">
+ <div class="gz-ctrl" data-act="pre">${PRE.map(p=>`<button class="gz-btn soft" type="button" data-y="${p[1]}">${p[0]}</button>`).join("")}</div>
+ <div class="gz-rows">${RT.map((r,i)=>`<div class="gz-row"><div class="t"><span>${r[0]} <small>(${r[3]})</small></span><b id="gzD${i}"></b></div><div class="gz-bar"><i style="width:${(r[1]/RT[0][1]*100).toFixed(1)}%;background:${r[2]}"></i></div></div>`).join("")}</div>
+ <p class="gz-golfo" id="gzGolfo"><svg width="50" height="30" viewBox="0 0 60 34" aria-hidden="true"><path d="M4 6 C22 2 40 14 52 26 M42 28 54 27 51 16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="gz-hand">¡así se abrió el Golfo de California!</span></p>
+ <p class="gz-note">Cálculo ilustrativo: supone velocidades constantes, pero las placas acumulan energía y se desplazan de golpe en los sismos. Para comparar, la geología del norte del Golfo de California registra al menos 276 ± 13 km de desplazamiento entre las placas del Pacífico y Norteamérica en unos 6 millones de años.</p>`;
+RND.sismos=()=>{const q=selQ!=null?QK[selQ]:null;
+ const head=q?detail({k:"Gran sismo · "+q.ty,t:"M "+q.m,p:`<b>${q.w}</b>. ${q.why}`,f:[["Fecha",q.d],["Epicentro aproximado",`<span class='num'>${q.la.toFixed(2)}° N, ${Math.abs(q.lo).toFixed(2)}° O</span>`]]},"#E9C46A")
+  :`<div class="gz-detail"><span class="k">Lo que nos recuerdan las placas</span><h2>Seis grandes sismos</h2><p>Seis de los sismos más fuertes del registro instrumental en México. Toca uno en el mapa o en la lista.</p></div>`;
+ return head+`<div class="gz-qlist" data-act="quake">${QK.map((x,i)=>`<button class="gz-qc" type="button" data-q="${i}" aria-pressed="${i===selQ}"><span class="m">M ${x.m}</span><small>${x.d.replace(/ de (\d{4})$/," $1")}</small><small>${x.w}</small></button>`).join("")}</div><p class="gz-note">Magnitudes según el Servicio Sismológico Nacional (SSN, UNAM). Epicentros aproximados.</p>`};
 const QZ=[["Baja California viaja montada sobre ella.","pa","Por eso el Golfo de California se abre: Baja California se va con la placa del Pacífico."],["Se hunde bajo Guerrero casi en horizontal.","co","Es Cocos: su tramo plano bajo Guerrero y Oaxaca aleja los volcanes de la costa."],["Es la más pequeña de las cinco y se hunde bajo Jalisco.","ri","Rivera se separó de Cocos hace unos 10 millones de años."],["Su frontera con Norteamérica pasa por Guatemala.","ca","Es el Caribe: las placas se deslizan de lado en el sistema Motagua–Polochic."]];
-const qol=document.getElementById("gzQuiz"),qs=document.getElementById("gzScore");
-qol.innerHTML=QZ.map((q,i)=>`<li class="gz-qq" data-a="${q[1]}" data-fb="${q[2]}"><p>${i+1}. ${q[0]}</p><div class="bts">${ORDER.map(k=>`<button class="gz-btn" type="button" aria-pressed="false" data-v="${k}"><span class="sw" style="background:${C[k]}"></span>${PL[k].name}</button>`).join("")}</div><p class="fb" aria-live="polite"></p></li>`).join("");
-qol.addEventListener("click",e=>{const bt=e.target.closest("button");if(!bt)return;const li=bt.closest(".gz-qq");
- li.querySelectorAll("button").forEach(x=>{x.setAttribute("aria-pressed","false");x.classList.remove("ok","no")});
- const ok=bt.dataset.v===li.dataset.a;bt.setAttribute("aria-pressed","true");bt.classList.add(ok?"ok":"no");li.dataset.r=ok?"1":"0";
- li.querySelector(".fb").textContent=(ok?"¡Correcto! ":"Casi: es "+PL[li.dataset.a].name+". ")+li.dataset.fb;
- const all=qol.children.length,done=qol.querySelectorAll("[data-r]").length,good=qol.querySelectorAll('[data-r="1"]').length;
- qs.textContent=done<all?`Llevas ${good} de ${done}.`:`Resultado: ${good} de ${all}.`+(good===all?" ¡Ya conoces las cinco placas!":" Vuelve al mapa y repasa.")});
+RND.reto=()=>{if(qi>=QZ.length){const g=qres.filter(Boolean).length;
+  return `<div class="gz-detail"><span class="k">Reto · resultado</span><h2>${g} de ${QZ.length}</h2><p>${g===QZ.length?"¡Ya conoces las cinco placas!":"Vuelve a explorar el mapa y repasa."}</p></div><div class="gz-dots">${QZ.map((_,i)=>`<i class="${qres[i]?"ok":"no"}"></i>`).join("")}</div><div class="gz-ctrl"><button class="gz-btn" type="button" data-act="restart">Jugar otra vez</button></div>`}
+ const q=QZ[qi],ans=qres[qi];
+ return `<div class="gz-detail" style="border:0;padding-bottom:0"><span class="k">Reto · pista ${qi+1} de ${QZ.length}</span><h2>¿Qué placa es?</h2></div>
+ <div class="gz-dots" aria-hidden="true">${QZ.map((_,i)=>`<i class="${i<qi?(qres[i]?"ok":"no"):i===qi?"cur":""}"></i>`).join("")}</div>
+ <p class="gz-clue">${q[0]}</p><p>Tócala en el mapa (los nombres están escondidos) o elígela aquí:</p>
+ <div class="gz-ctrl" data-act="answer">${ORDER.map(k=>`<button class="gz-btn" type="button" data-v="${k}" ${ans!=null?"disabled":""}><span class="sw" style="background:${C[k]}"></span>${PL[k].name}</button>`).join("")}</div>
+ <p class="gz-fb ${ans==null?"":ans?"ok":"no"}" id="gzFb" aria-live="polite">${ans==null?"":(ans?"¡Correcto! ":"Casi: es "+PL[q[1]].name+". ")+q[2]}</p>
+ ${ans!=null?`<div class="gz-ctrl"><button class="gz-btn" type="button" data-act="next" style="background:var(--azufre)">${qi+1<QZ.length?"Siguiente pista →":"Ver resultado"}</button></div>`:""}`};
+
+function render(){panel.innerHTML=RND[mode]();
+ if(mode==="corte")drawXS(selX);
+ if(mode==="reloj"){const tin=document.getElementById("gzT");tin.addEventListener("input",()=>{years=10**(+tin.value);updClock()});updClock()}}
+function paintMap(){clearMap();
+ if(mode==="placas"&&selP){ORDER.forEach(j=>{if(j!==selP)plateEls[j].classList.add("dim")});plateEls[selP].classList.add("sel")}
+ if(mode==="fronteras"&&selB){(selT?TYPES.find(t=>t[0]===selT)[1]:[selB]).forEach(id=>bEls[id]&&bEls[id].classList.add("on"))}
+ if(mode==="corte")cutEls[selX].classList.add("on");
+ if(mode==="sismos"&&selQ!=null){qEls[selQ].classList.add("on");const c=qEls[selQ].querySelector(".ring");c.style.animation="none";void c.getBBox();c.style.animation=""}
+ if(mode==="reto"&&qi<QZ.length&&qres[qi]!=null){const a=QZ[qi][1];ORDER.forEach(j=>{if(j!==a)plateEls[j].classList.add("dim")});plateEls[a].classList.add("sel")}}
+function setMode(m,keep){if(!MODES.includes(m))m="placas";mode=m;box.dataset.mode=m;cap.textContent=CAPS[m];
+ modeBtns.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));
+ if(!keep&&m!=="placas")custom=null;
+ render();paintMap();if(!tourOn)try{history.replaceState(null,"","#"+m)}catch(e){}}
+function updClock(){const y=years;const yy=document.getElementById("gzYrs");if(yy)yy.textContent=yfmt(y);
+ RT.forEach((r,i)=>{const s=dist(r[1]*y);const d=document.getElementById("gzD"+i);if(d)d.textContent=s;dEls[i].textContent="≈ "+s});
+ const gl=document.getElementById("gzGolfo");if(gl)gl.classList.toggle("on",y>=3e6)}
+// las acciones del mapa (llamadas desde la construcción del mapa)
+function selPlate(k){used();if(mode==="reto"){answer(k);return}custom=null;selP=k;if(mode!=="placas")setMode("placas",1);else{render();paintMap()}}
+function selBound(id){used();selB=id;selT=null;setMode("fronteras")}
+function selQuake(i){used();selQ=i;setMode("sismos")}
+function selVolc(v){used();selP=null;custom={k:"Volcán",t:v[0],p:v[3],f:[["Ubicación",`<span class='num'>${v[2].toFixed(2)}° N, ${Math.abs(v[1]).toFixed(2)}° O</span>`]]};setMode("placas",1)}
+function answer(k){if(qi>=QZ.length||qres[qi]!=null)return;qres[qi]=k===QZ[qi][1];render();paintMap()}
+function clearSel(){}
+// clics dentro del panel
+panel.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const act=b.closest("[data-act]")?.dataset.act||b.dataset.act;
+ if(b.dataset.act==="replay"){intro();return}
+ if(act==="plate"){custom=null;selP=b.dataset.k==="all"?null:b.dataset.k;render();paintMap()}
+ else if(act==="layer"){const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));document.getElementById(b.dataset.layer).classList.toggle("gz-off",!on)}
+ else if(act==="type"){const t=TYPES.find(x=>x[0]===b.dataset.t);selB=t[1][0];selT=t[0];render();paintMap()}
+ else if(act==="xs"){selX=b.dataset.x;render();paintMap()}
+ else if(act==="pre"){years=+b.dataset.y;const tin=document.getElementById("gzT");tin.value=Math.log10(years);updClock()}
+ else if(act==="quake"){selQ=+b.dataset.q;render();paintMap()}
+ else if(act==="answer"){answer(b.dataset.v)}
+ else if(b.dataset.act==="next"){qi++;render();paintMap()}
+ else if(b.dataset.act==="restart"){qi=0;qres=[];render();paintMap()}});
+document.getElementById("gzModes").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;if(tourOn)endTour();setMode(b.dataset.m)});
+
+// ---------- Corte de subducción (lámina dentro del panel) ----------
+const guide=(x1,y1,x2,y2,txt,anchor)=>`<circle cx="${x1}" cy="${y1}" r="6" fill="#0C193A"/><path class="guide-l" d="M${x1} ${y1}L${x2} ${y2}"/><text class="guide" x="${x2+(anchor==="end"?-8:anchor==="middle"?0:8)}" y="${anchor==="middle"?y2-12:y2+10}" text-anchor="${anchor||"start"}">${txt}</text>`;
+function drawXS(k){const xs=document.getElementById("gzXs");if(!xs)return;const v=XS[k];const crustBottom=k==="gu"?"560 150":"420 152";
+ xs.innerHTML=`<rect width="900" height="380" fill="#EADBC8"/><rect width="900" height="82" fill="#F6EFE4"/><path d="M0 0H330L345 82H0Z" fill="#9CCBE8"/>
+ <path d="M205 116 C260 100 300 86 340 82 L${v.vx-30} 82 L${v.vx} 30 L${v.vx+30} 82 L900 82 V124 C760 130 600 128 ${crustBottom} C300 152 250 132 205 116Z" fill="#D9B48F" stroke="#0C193A" stroke-width="3" stroke-linejoin="round"/>
+ <path d="${v.slab}" fill="none" stroke="#0C193A" stroke-width="34" stroke-linecap="round"/>
+ <path d="${v.slab}" fill="none" stroke="${v.col}" stroke-width="27" stroke-linecap="round"/>
+ <path d="${v.slab}" class="slab-flow"/>
+ ${[0,1,2,3].map(i=>`<circle class="mag" cx="${v.vx+(i%2?8:-8)}" cy="${82+v.vh}" r="${7-i*.8}" style="--h:-${v.vh}px;animation-delay:${i*.6}s"/>`).join("")}
+ <path class="star" d="M230 124l5 11 11 1-8 7 2 11-10-6-10 6 2-11-8-7 11-1z"/>
+ ${guide(200,90,200,58,"Trinchera","middle")}
+ ${guide(v.vx,36,v.vx+(v.vx>600?-40:40),18,v.vol,v.vx>600?"end":"start")}
+ ${guide(110,112,90,200,v.pl.replace("Placa de ","Placa "))}
+ ${guide(240,134,360,300,"Sismos")}
+ `}
+
+// ---------- Recorrido guiado ----------
+const TOUR=[
+ ["placas",()=>{selP=null;custom=null},"Bajo México se encuentran cinco placas tectónicas. Cada color es una placa; la trama rayada es el mar."],
+ ["placas",()=>{selP="pa";custom=null},"Baja California no viaja con el resto del país: va montada en la placa del Pacífico. Por eso el Golfo de California se abre."],
+ ["fronteras",()=>{selB="tr";selT="conv"},"Frente a la costa del Pacífico, Cocos y Rivera se hunden bajo Norteamérica: es la Trinchera Mesoamericana."],
+ ["corte",()=>{selX="gu"},"Bajo Guerrero, Cocos avanza casi horizontal antes de hundirse. Por eso los volcanes quedan lejos de la costa."],
+ ["reloj",()=>{years=6e6},"En unos 6 millones de años, el movimiento entre el Pacífico y Norteamérica abrió el Golfo de California."],
+ ["sismos",()=>{selQ=1},"El choque de Cocos con Norteamérica produce grandes sismos, como el de 1985 en la costa de Michoacán."],
+ ["reto",()=>{qi=0;qres=[]},"¿Ya las reconoces? Pon a prueba lo que aprendiste: toca la placa que corresponde a cada pista."]];
+let tourOn=false,ts=0;const tb=document.getElementById("gzTour"),tbtn=document.getElementById("gzTourBtn");
+function tourGo(i){ts=Math.max(0,Math.min(TOUR.length-1,i));const[m,f,tx]=TOUR[ts];f();setMode(m,1);
+ document.getElementById("gzTourSt").textContent=`PASO ${ts+1} DE ${TOUR.length}`;document.getElementById("gzTourTx").textContent=tx;
+ document.getElementById("gzTourPrev").disabled=ts===0;document.getElementById("gzTourNext").textContent=ts===TOUR.length-1?"Terminar ✓":"Siguiente →"}
+function startTour(){tourOn=true;tb.parentNode.classList.add("touring");used();tb.hidden=false;tbtn.setAttribute("aria-pressed","true");tourGo(0)}
+function endTour(){tourOn=false;tb.parentNode.classList.remove("touring");tb.hidden=true;tbtn.setAttribute("aria-pressed","false");try{history.replaceState(null,"","#"+mode)}catch(e){}}
+tbtn.addEventListener("click",()=>tourOn?endTour():startTour());
+document.getElementById("gzTourPrev").addEventListener("click",()=>tourGo(ts-1));
+document.getElementById("gzTourNext").addEventListener("click",()=>ts===TOUR.length-1?endTour():tourGo(ts+1));
+document.getElementById("gzTourEnd").addEventListener("click",endTour);
+
+// ---------- Fuentes y cita ----------
+const dlg=document.getElementById("gzInfo");
+document.getElementById("gzInfoBtn").addEventListener("click",()=>{if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","")});
+document.getElementById("gzInfoClose").addEventListener("click",()=>dlg.close?dlg.close():dlg.removeAttribute("open"));
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+
+// ---------- Teclado: números 1–6 cambian de modo ----------
+document.addEventListener("keydown",e=>{if(e.target.closest("input,textarea,select,[contenteditable]")||e.metaKey||e.ctrlKey||e.altKey)return;const n=+e.key;if(n>=1&&n<=6){if(tourOn)endTour();setMode(MODES[n-1])}});
+
+// ---------- Animación de entrada y contador en vivo ----------
+svg.addEventListener("animationend",e=>{if(e.animationName==="gzIn")e.target.classList.remove("gz-in")});
+function intro(){if(RM)return;
+ const re=(e,cls,delay)=>{e.classList.remove(cls);void e.getBBox();e.style.animationDelay=delay+"s";e.classList.add(cls)};
+ ORDER.forEach((k,i)=>re(plateEls[k],"gz-in",i*.22));re(gS,"gz-in",.9);re(gL,"gz-in",.9);
+ Object.values(bEls).forEach((b,i)=>{const L=b.getTotalLength();if(!b.getAttribute("stroke-dasharray")){b.style.strokeDasharray=L;b.style.strokeDashoffset=L;re(b,"gz-draw",1.3+i*.18)}else re(b,"gz-in",1.3+i*.18);if(b.inner)re(b.inner,"gz-in",2.4)});
+ re(document.getElementById("gzTeeth"),"gz-in",2.4);[gF,gA,gV,gQ,gT].forEach((x,i)=>re(x,"gz-in",2.2+i*.3))}
+const lives=document.querySelectorAll("[data-live]"),t0=performance.now(),NMS=6.3e7/31557600;
+function tick(){const nm=(performance.now()-t0)/1000*NMS,s=nm<1000?nm.toFixed(1)+" nm":(nm/1000).toFixed(3)+" µm";lives.forEach(x=>x.textContent=s)}
+tick();setInterval(tick,RM?1000:100);
+const stage=document.querySelector(".gz-stage");
+function sizeStage(){if(innerWidth<=900){stage.style.removeProperty("--gz-h");return}const top=stage.getBoundingClientRect().top+scrollY;stage.style.setProperty("--gz-h",Math.max(460,Math.min(820,innerHeight-top-18))+"px")}
+addEventListener("resize",sizeStage);sizeStage();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(sizeStage);
+updClock();
+setMode((location.hash||"").slice(1));intro();
 })();
 </script>
 <script>

@@ -31,7 +31,7 @@
 .gz-hero .wrap{padding-block:clamp(2.2rem,5vw,3.6rem) clamp(2.5rem,5vw,4rem)}
 .gz-hgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.5rem,3.5vw,3rem);align-items:start}
 .gz-col{display:grid;gap:clamp(1.25rem,2.5vw,1.75rem);align-content:start}
-@media (max-width:960px){.gz-hgrid{grid-template-columns:1fr;gap:var(--s5)}.gz-col{display:contents}.gz-top-text{order:1}.gz-mapbox{order:2}.gz-panel{order:3}.gz-tools{order:4}}
+@media (max-width:960px){.gz-hgrid{grid-template-columns:1fr;gap:var(--s5)}.gz-col{display:contents}.gz-top-text{order:1}.gz-mapbox{order:2}.gz-panel{order:3}.gz-note{order:4;margin:0}.gz-tools{order:5}}
 @media (max-width:560px){.gz-hint{display:none}}
 .gz-top-text{display:grid;gap:var(--s4)}
 .gz-crumbs{display:flex;flex-wrap:wrap;gap:.45rem;font-size:.85rem;color:var(--arena)}
@@ -70,7 +70,7 @@
 .gz-legend{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:var(--s4);font-size:.85rem;color:var(--arena)}
 .gz-legend span{display:inline-flex;align-items:center;gap:.5rem}
 .gz-legend svg{flex:none}
-.gz-note{font-size:.82rem;color:var(--arena);margin:var(--s3) 0 0;max-width:46rem}
+.gz-note{font-size:.82rem;color:var(--arena);margin:0;max-width:46rem;line-height:1.5}
 .gz-panel{background:#fff;color:var(--noche);border:3px solid var(--noche);border-radius:14px;padding:var(--s5);display:grid;gap:.6rem}
 .gz-panel .k{font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#55627A}
 .gz-panel h3{margin:0;font:900 1.9rem/1 var(--disp);text-transform:uppercase;letter-spacing:.01em;color:var(--noche);display:flex;align-items:center;gap:.6rem}
@@ -310,7 +310,6 @@
             <span><svg width="40" height="16" aria-hidden="true"><path d="M2 8H38" stroke="#EADBC8" stroke-width="2.5" stroke-dasharray="7 4"/></svg>Transformante o difusa</span>
             <span><svg width="40" height="16" aria-hidden="true"><path d="M2 8H38" stroke="#EADBC8" stroke-width="1.2"/><path d="M2 16 10 0M10 16 18 0M18 16 26 0M26 16 34 0" stroke="#EADBC8" stroke-width="1.2"/></svg>Mar (trama)</span>
           </div>
-          <p class="gz-note">Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>
           </div>
         </div>
         <div class="gz-col">
@@ -319,6 +318,7 @@
             <span class="gz-hint gz-hand" id="gzHint" aria-hidden="true">¡toca una placa!</span>
           </div>
           <aside class="gz-panel" id="gzPanel" aria-live="polite"></aside>
+          <p class="gz-note">Esquema simplificado y sin escala exacta: los límites de placa y las ubicaciones son aproximados. Las flechas muestran el movimiento respecto a la placa Norteamericana; su largo es proporcional a la velocidad.</p>
         </div>
       </div>
     </div>

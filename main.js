@@ -21,6 +21,7 @@
     {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Base de datos con DOI, metodología y capas descargables.",credit:"Ilustración de maqueta",pal:"geo"}
   ];
   const TUTS = [
+    {id:"inf-cinco-placas",r:["estudiante","docente"],type:"Infografía",ic:"geosfera",cls:"blue",title:"México en la interacción de cinco placas",text:"Mapa interactivo: cómo se mueven las cinco placas que rodean al país, dónde chocan y por qué tiembla.",lvl:"Básico",time:"5 min",esf:["Geósfera"],pal:"geo",href:"inf-cinco-placas.html",credit:"Ilustración OMCT"},
     {id:"inf-sismo",r:["estudiante","docente"],type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Del sismograma al epicentro, paso a paso.",lvl:"Básico",time:"2 min",esf:["Geósfera"],pal:"seis"},
     {id:"dilo-tiempo-clima",r:["estudiante","docente"],type:"Dilo en ciencia",ic:"atmosfera",cls:"lav",title:"«Hoy hace buen clima»… ¿o buen tiempo?",text:"El tiempo cambia en horas; el clima se mide en décadas. Aprende a distinguirlos en un minuto.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean",href:"dilo-tiempo-clima.html",credit:"Ilustración OMCT"},
     {id:"tut-ssn",r:["estudiante","investigador"],type:"Tutorial",cls:"teal",title:"Catálogo del SSN en Python",text:"Descarga, limpia y grafica la sismicidad de un estado.",lvl:"Intermedio",time:"40 min",esf:["Geósfera"],pal:"seis"},

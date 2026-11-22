@@ -37,6 +37,9 @@
 .gz-h1 .az path{stroke-dasharray:420;stroke-dashoffset:420;animation:gzTraza .8s .8s ease-out forwards}
 @keyframes gzTraza{to{stroke-dashoffset:0}}
 .gz-by{font-size:.85rem;color:var(--arena);margin:0}.gz-by b{color:#fff;font-weight:500}
+.gz-tip{display:none;align-items:center;gap:.45rem;margin:2px 0 0;font:500 .74rem/1.35 var(--f-mono);letter-spacing:.03em;color:var(--azufre)}
+.gz-tip svg{flex:none}
+@media (max-width:1024px){.gz-tip{display:flex}}
 .gz-live{display:flex;align-items:center;gap:.55rem;background:var(--noche);color:#fff;border-radius:6px;padding:.45rem .8rem;transform:rotate(-1.2deg);box-shadow:4px 4px 0 var(--base);font-size:.86rem;line-height:1.25;max-width:24rem}
 .gz-live i{width:9px;height:9px;border-radius:50%;background:var(--azufre);flex:none;animation:gzBlink 1.2s ease-in-out infinite}
 @keyframes gzBlink{50%{opacity:.2}}
@@ -329,6 +332,7 @@ a.gz-mode.info{text-decoration:none}
         <nav class="gz-crumbs" aria-label="Ruta"><a href="aprende.html">← Aprende</a><span aria-hidden="true">/</span><span>Infografía</span><span aria-hidden="true">/</span><span>Geósfera</span></nav>
         <h1 class="gz-h1" id="gzTitle">México en la interacción de <span class="az">cinco placas<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C80 4 190 18 296 7" fill="none" stroke="#E9C46A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
         <p class="gz-by">Texto y diseño de <b>Katia Fernández González</b></p>
+        <p class="gz-tip"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="2.5" y="4" width="19" height="12.5" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 20h8M12 16.5V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Para una mejor experiencia, explórala en computadora o en una tableta horizontal.</p>
       </div>
       <p class="gz-live gz-live-top" role="group" aria-label="Contador en vivo"><i aria-hidden="true"></i><span>Desde que abriste esta página, la placa de Cocos avanzó <b data-live>0.0 nm</b> bajo México.</span></p>
     </div>

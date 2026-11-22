@@ -21,15 +21,15 @@
     {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Base de datos con DOI, metodología y capas descargables.",credit:"Ilustración de maqueta",pal:"geo"}
   ];
   const TUTS = [
-    {id:"inf-cinco-placas",r:["estudiante","docente"],type:"Infografía",ic:"geosfera",cls:"blue",title:"México en la interacción de cinco placas",text:"Mapa interactivo: cómo se mueven las cinco placas que rodean al país, dónde chocan y por qué tiembla.",lvl:"Básico",time:"5 min",esf:["Geósfera"],pal:"geo",href:"inf-cinco-placas.html",img:"inf-cinco-placas-portada.png",credit:"Ilustración OMCT"},
-    {id:"dilo-tiempo-clima",r:["estudiante","docente"],type:"Dilo en ciencia",ic:"atmosfera",cls:"lav",title:"«Hoy hace buen clima»… ¿o buen tiempo?",text:"El tiempo cambia en horas; el clima se mide en décadas. Aprende a distinguirlos en un minuto.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean",href:"dilo-tiempo-clima.html",credit:"Ilustración OMCT"},
-    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",ic:"biosfera",cls:"lav",title:"Trepar, cavar y planear: las ardillas en México",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v3.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"}
+    {id:"inf-cinco-placas",r:["estudiante","docente"],type:"Infografía",ic:"geosfera",cls:"blue",title:"México en la interacción de cinco placas",text:"Mapa interactivo: cómo se mueven las cinco placas que rodean al país, dónde chocan y por qué tiembla.",lvl:"Básico",time:"5 min",esf:["Geósfera"],pal:"geo",href:"inf-cinco-placas.html",img:"inf-cinco-placas-portada.png"},
+    {id:"dilo-tiempo-clima",r:["estudiante","docente"],type:"Dilo en ciencia",ic:"atmosfera",cls:"lav",title:"«Hoy hace buen clima»… ¿o buen tiempo?",text:"El tiempo cambia en horas; el clima se mide en décadas. Aprende a distinguirlos en un minuto.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean",href:"dilo-tiempo-clima.html"},
+    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",ic:"biosfera",cls:"lav",title:"Trepar, cavar y planear: las ardillas en México",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v3.jpg",href:"articulo-mes.html"}
   ];
   const PRODS = [
-    {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Capas vectoriales con atributos de cinemática y fuente bibliográfica.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"geo"},
-    {type:"Nota técnica",cls:"blue",title:"Control de calidad de series de radiación solar",text:"Método para detectar y corregir valores atípicos en datos solarimétricos.",lic:"CC BY 4.0",esf:["Atmósfera"],pal:"heat"},
-    {type:"Informe",cls:"blue",title:"Sismicidad de México: balance anual",text:"Análisis del catálogo del SSN con gráficas y mapas reproducibles.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"seis"},
-    {type:"Capa geográfica",cls:"teal",title:"Temperatura superficial urbana 2026",text:"Mosaicos de las principales zonas metropolitanas del país.",lic:"CC BY 4.0",esf:["Atmósfera"],pal:"heat"}
+    {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Capas vectoriales con atributos de cinemática y fuente bibliográfica.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"geo",credit:"Ilustración de maqueta"},
+    {type:"Nota técnica",cls:"blue",title:"Control de calidad de series de radiación solar",text:"Método para detectar y corregir valores atípicos en datos solarimétricos.",lic:"CC BY 4.0",esf:["Atmósfera"],pal:"heat",credit:"Ilustración de maqueta"},
+    {type:"Informe",cls:"blue",title:"Sismicidad de México: balance anual",text:"Análisis del catálogo del SSN con gráficas y mapas reproducibles.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"seis",credit:"Ilustración de maqueta"},
+    {type:"Capa geográfica",cls:"teal",title:"Temperatura superficial urbana 2026",text:"Mosaicos de las principales zonas metropolitanas del país.",lic:"CC BY 4.0",esf:["Atmósfera"],pal:"heat",credit:"Ilustración de maqueta"}
   ];
   const TYPES_APRENDE = [
     ["Infografía","Pieza visual que explica un concepto, un proceso o un dato en una sola lámina.","Público general, docentes y redes sociales"],
@@ -107,9 +107,11 @@
     ctx.lineWidth=.8;contours(ctx,w,h,0,seed,[-1,-.5,0,.5,1],()=> "rgba(255,255,255,.45)",8);
   }
   const TYPE_IC={"Tutorial": "analisis", "Infografía": "graficas", "Base de datos": "datos", "Dilo en ciencia": "comunidad", "Guía": "mapas", "Material didáctico": "comunidad", "Nota técnica": "analisis", "Informe": "graficas", "Capa geográfica": "mapas"};
+  // Tarjetas: la etiqueta de crédito en la portada solo aparece si el recurso trae `credit`
+  // (maquetas o imágenes de terceros, p. ej. credit:"Imagen: NASA Earthdata"). Las portadas propias del OMCT van sin etiqueta.
   function cardHTML(o,extra){
     const fig=o.img?`<img src="${o.img}" alt="" loading="lazy">`:`<canvas data-pal="${o.pal}" aria-hidden="true"></canvas>`;
-    return `<article class="card${o.href?" has-link":""}"${o.id?` id="${o.id}"`:""}><div class="fig">${fig}<span class="credit">${o.credit||"Ilustración de maqueta"}</span></div>
+    return `<article class="card${o.href?" has-link":""}"${o.id?` id="${o.id}"`:""}><div class="fig">${fig}${o.credit?`<span class="credit">${o.credit}</span>`:""}</div>
     <div class="body"><span class="card-ic" aria-hidden="true">${ICONS[o.ic||TYPE_IC[o.type]]||""}</span><div class="meta"><span class="pill ${o.cls}">${o.type}</span>${extra||""}</div><h3>${o.href?`<a href="${o.href}">${o.title}</a>`:o.title}</h3><p>${o.text}</p></div></article>`;
   }
   function paintFigs(root){root.querySelectorAll(".fig canvas").forEach((c,i)=>drawFig(c,c.dataset.pal,1.7+i*1.3));}

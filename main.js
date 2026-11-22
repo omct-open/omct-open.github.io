@@ -22,14 +22,8 @@
   ];
   const TUTS = [
     {id:"inf-cinco-placas",r:["estudiante","docente"],type:"Infografía",ic:"geosfera",cls:"blue",title:"México en la interacción de cinco placas",text:"Mapa interactivo: cómo se mueven las cinco placas que rodean al país, dónde chocan y por qué tiembla.",lvl:"Básico",time:"5 min",esf:["Geósfera"],pal:"geo",href:"inf-cinco-placas.html",img:"inf-cinco-placas-portada.png",credit:"Ilustración OMCT"},
-    {id:"inf-sismo",r:["estudiante","docente"],type:"Infografía",cls:"blue",title:"Cómo se localiza un sismo",text:"Del sismograma al epicentro, paso a paso.",lvl:"Básico",time:"2 min",esf:["Geósfera"],pal:"seis"},
     {id:"dilo-tiempo-clima",r:["estudiante","docente"],type:"Dilo en ciencia",ic:"atmosfera",cls:"lav",title:"«Hoy hace buen clima»… ¿o buen tiempo?",text:"El tiempo cambia en horas; el clima se mide en décadas. Aprende a distinguirlos en un minuto.",lvl:"Básico",time:"1 min",esf:["Atmósfera"],pal:"ocean",href:"dilo-tiempo-clima.html",credit:"Ilustración OMCT"},
-    {id:"tut-ssn",r:["estudiante","investigador"],type:"Tutorial",cls:"teal",title:"Catálogo del SSN en Python",text:"Descarga, limpia y grafica la sismicidad de un estado.",lvl:"Intermedio",time:"40 min",esf:["Geósfera"],pal:"seis"},
-    {id:"tut-ecostress",r:["investigador"],type:"Tutorial",cls:"teal",title:"Islas de calor con ECOSTRESS",text:"Temperatura de superficie sobre Monterrey con datos de NASA.",lvl:"Avanzado",time:"60 min",esf:["Atmósfera"],pal:"heat"},
-    {id:"guia-sgm",r:["estudiante","docente"],type:"Guía",cls:"ochre",title:"Leer una carta geológica del SGM",text:"Simbología, unidades litológicas y estructuras.",lvl:"Básico",time:"15 min",esf:["Geósfera"],pal:"geo"},
-    {id:"mat-huracanes",r:["docente"],type:"Material didáctico",cls:"blue",title:"Huracanes en el Pacífico mexicano",text:"Secuencia de clase con datos de NOAA y actividades.",lvl:"Básico",time:"2 sesiones",esf:["Atmósfera","Hidrósfera"],pal:"ocean"},
-    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",ic:"biosfera",cls:"lav",title:"Trepar, cavar y planear: las ardillas en México",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v3.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"},
-    {id:"tut-inegi",r:["investigador","estudiante"],type:"Tutorial",cls:"teal",title:"Perfiles topográficos con el CEM del INEGI",text:"Del modelo de elevación a un perfil en QGIS.",lvl:"Intermedio",time:"30 min",esf:["Geósfera"],pal:"geo"}
+    {id:"articulo-mes",r:["estudiante","investigador","docente"],type:"Artículo del mes",ic:"biosfera",cls:"lav",title:"Trepar, cavar y planear: las ardillas en México",text:"Reseña del artículo de Cab-Sulub y Morán-Gutiérrez (2027) en Therya Ixmana: 35 especies, tres formas de vida y por qué importan.",lvl:"Básico",time:"5 min",esf:["Biósfera"],img:"articulo-mes-lamina-v3.jpg",href:"articulo-mes.html",credit:"Lámina OMCT · vista preliminar"}
   ];
   const PRODS = [
     {type:"Base de datos",cls:"ochre",title:"Fallas activas del Eje Neovolcánico",text:"Capas vectoriales con atributos de cinemática y fuente bibliográfica.",lic:"CC BY 4.0",esf:["Geósfera"],pal:"geo"},
@@ -183,8 +177,8 @@
     chips.innerHTML=DISC.map(d=>`<button class="chip" aria-pressed="${d==="Todas"}" data-d="${d}">${d==="Todas"?"":miniIcon(d)}${d}</button>`).join("");
     const learn=x=>{
       const l=[];
-      if(x.inf)l.push(`<a class="learn" href="aprende.html#${x.inf}"><span class="pill blue">Infografía</span>${esc(TITLES[x.inf]||"")}</a>`);
-      if(x.tut)l.push(`<a class="learn" href="aprende.html#${x.tut}"><span class="pill teal">Tutorial</span>${esc(TITLES[x.tut]||"")}</a>`);
+      if(x.inf&&TITLES[x.inf])l.push(`<a class="learn" href="aprende.html#${x.inf}"><span class="pill blue">Infografía</span>${esc(TITLES[x.inf]||"")}</a>`);
+      if(x.tut&&TITLES[x.tut])l.push(`<a class="learn" href="aprende.html#${x.tut}"><span class="pill teal">Tutorial</span>${esc(TITLES[x.tut]||"")}</a>`);
       return l.length?`<div class="src-learn"><span class="eyebrow">Aprende a usarla</span>${l.join("")}</div>`:"";
     };
     const renderSrc=()=>{

@@ -541,6 +541,57 @@
       rd.hidden=false;
     });
   }
+  // Redes sociales en el pie de página (todas las páginas)
+  const SOCIAL=[["Facebook","https://www.facebook.com/profile.php?id=61596777390697"],["Instagram","https://www.instagram.com/omct.oficial/"]];
+  document.querySelectorAll("footer.site .foot-brand").forEach(b=>{
+    const col=b.parentElement;if(!col||col.querySelector(".foot-social"))return;
+    const d=document.createElement("div");d.className="foot-social";d.style.cssText="display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;align-items:baseline";
+    d.innerHTML=`<span style="font:500 .72rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.7">Síguenos</span>`+SOCIAL.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener me">${n} ↗</a>`).join("");
+    col.appendChild(d);
+  });
+
+  // Vinculación: mapa animado de la Red de Colaboradores (ilustrativo)
+  const mxBox=$("mxRed");
+  if(mxBox){
+    const P=[-117.12,32.53,-114.72,32.72,-114.81,32.49,-111.07,31.33,-108.21,31.33,-108.21,31.78,-106.53,31.78,-106.2,31.47,-105.0,30.68,-104.5,29.66,-103.3,28.98,-102.68,29.75,-101.4,29.77,-100.9,29.3,-100.3,28.3,-99.5,27.5,-99.1,26.4,-98.2,26.06,-97.15,25.95,-97.4,25.0,-97.7,24.0,-97.85,22.2,-97.3,21.0,-97.2,20.6,-96.4,19.8,-96.1,19.2,-95.2,18.7,-94.5,18.15,-93.4,18.4,-92.6,18.65,-91.8,18.55,-91.0,19.0,-90.7,19.4,-90.45,20.0,-90.35,21.0,-90.0,21.15,-88.5,21.5,-87.5,21.5,-86.8,21.2,-87.0,20.5,-87.45,19.6,-87.7,18.7,-88.0,18.5,-88.3,18.48,-88.85,17.9,-89.15,17.82,-89.15,17.95,-90.98,17.82,-90.98,17.25,-91.43,17.25,-90.4,16.4,-91.73,16.07,-92.21,15.26,-92.23,14.53,-93.4,15.65,-94.4,16.2,-95.0,16.1,-96.5,15.65,-97.8,16.05,-98.6,16.4,-99.9,16.85,-101.0,17.3,-102.2,17.95,-103.4,18.3,-104.3,19.1,-105.0,19.5,-105.7,20.4,-105.25,20.6,-105.5,21.5,-105.6,22.2,-106.4,23.2,-107.4,24.3,-108.2,25.2,-109.1,25.8,-109.4,26.6,-110.5,27.5,-111.0,27.9,-111.8,28.5,-112.2,29.2,-112.8,30.0,-113.1,30.8,-113.9,31.55,-114.8,31.8,-114.6,31.0,-114.3,30.0,-113.5,29.0,-112.9,28.3,-112.3,27.4,-111.6,26.5,-111.3,25.8,-110.7,24.8,-110.3,24.2,-109.5,23.6,-109.9,22.9,-110.3,23.5,-111.6,24.5,-112.2,25.0,-112.1,26.0,-113.2,26.7,-114.1,27.3,-114.2,27.8,-114.0,28.3,-114.6,29.2,-115.7,29.9,-116.2,30.6,-116.7,31.6],C=[-117.0,32.5,-115.45,32.6,-116.6,31.85,-110.3,24.15,-110.95,29.1,-109.93,27.48,-106.08,28.63,-106.45,31.65,-103.4,25.54,-101.0,25.42,-100.31,25.67,-107.39,24.8,-106.41,23.25,-104.66,24.02,-102.58,22.77,-100.98,22.15,-99.13,23.74,-97.86,22.25,-102.29,21.88,-104.89,21.5,-103.35,20.67,-101.68,21.12,-100.39,20.59,-101.19,19.7,-103.72,19.24,-98.73,20.1,-99.13,19.43,-99.66,19.29,-99.23,18.92,-98.2,19.04,-97.36,19.82,-98.24,19.32,-96.91,19.54,-96.13,19.17,-99.88,16.86,-96.72,17.06,-93.12,16.75,-92.64,16.74,-92.93,17.99,-90.53,19.85,-89.62,20.97,-86.85,21.16,-88.3,18.5,-112.27,27.34];
+    const pt=a=>{const o=[];for(let i=0;i<a.length;i+=2)o.push([a[i],a[i+1]]);return o;};
+    const poly=pt(P),city=pt(C);
+    const K=Math.cos(23.5*Math.PI/180),S=20,X=l=>((l+117.7)*K*S),Y=l=>((33-l)*S);
+    const W=Math.round(X(-86.3)),H=Math.round(Y(14.2));
+    const inside=(x,y)=>{let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[x1,y1]=poly[i],[x2,y2]=poly[j];if((y1>y)!==(y2>y)&&x<(x2-x1)*(y-y1)/(y2-y1)+x1)c=!c;}return c;};
+    let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+    const st=.45,grid=[];
+    for(let lon=-117.5;lon<-86.5;lon+=st)for(let lat=14.4;lat<32.9;lat+=st)if(inside(lon,lat))grid.push([lon,lat]);
+    const people=city.map(([x,y])=>[x+(rnd()-.5)*.3,y+(rnd()-.5)*.3]);
+    for(let n=0;n<26;){const g=grid[Math.floor(rnd()*grid.length)];const p=[g[0]+(rnd()-.5)*.4,g[1]+(rnd()-.5)*.4];if(inside(p[0],p[1])){people.push(p);n++;}}
+    const ESF=["#4167BC","#40ADB8","#7F7BD0","#C16210","#41B79D","#E8762C"];
+    const d2=(a,b)=>(a[0]-b[0])**2+(a[1]-b[1])**2,links=[],seen=new Set();
+    people.forEach((p,i)=>{people.map((q,j)=>[j,d2(p,q)]).filter(([j])=>j!==i).sort((a,b)=>a[1]-b[1]).slice(0,2).forEach(([j])=>{const k=i<j?i+"-"+j:j+"-"+i;if(!seen.has(k)){seen.add(k);links.push([i,j]);}});});
+    const f=v=>v.toFixed(1);
+    let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="mxRedT"><title id="mxRedT">Mapa de México con colaboradores representados como puntos en distintas partes del país</title>
+<style>
+#mxRed .b{fill:var(--muted);opacity:.3}
+#mxRed .l{stroke:var(--blue);stroke-width:.8;opacity:0;stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+#mxRed .p circle{transform-box:fill-box;transform-origin:center}
+#mxRed .c{opacity:1}
+#mxRed .r{fill:none;stroke-width:1.2;opacity:0}
+#mxRed.on .c{animation:mxIn .6s cubic-bezier(.2,.8,.3,1.3) both;animation-delay:var(--d)}
+#mxRed.on .r{animation:mxPulse 3.2s ease-out infinite;animation-delay:calc(var(--d) + .6s)}
+#mxRed.on .l{animation:mxLink 1.4s ease-out forwards;animation-delay:var(--d)}
+@keyframes mxIn{from{opacity:0;transform:scale(0)}}
+@keyframes mxPulse{0%{opacity:.7;transform:scale(1)}70%,100%{opacity:0;transform:scale(3.2)}}
+@keyframes mxLink{to{stroke-dashoffset:0;opacity:.35}}
+@media (prefers-reduced-motion:reduce){#mxRed .l{stroke-dashoffset:0;opacity:.35}}
+</style><g>`;
+    grid.forEach(([x,y])=>{s+=`<circle class="b" cx="${f(X(x))}" cy="${f(Y(y))}" r="1.7"/>`;});
+    s+=`</g><g>`;
+    const order=people.map((p,i)=>i).sort(()=>rnd()-.5),delay=[];order.forEach((i,n)=>delay[i]=n*.09);
+    links.forEach(([i,j])=>{const a=people[i],b=people[j],len=Math.hypot(X(a[0])-X(b[0]),Y(a[1])-Y(b[1]));s+=`<line class="l" x1="${f(X(a[0]))}" y1="${f(Y(a[1]))}" x2="${f(X(b[0]))}" y2="${f(Y(b[1]))}" style="--len:${f(len)};--d:${(Math.max(delay[i],delay[j])+.4).toFixed(2)}s"/>`;});
+    s+=`</g><g>`;
+    people.forEach((p,i)=>{const c=ESF[i%ESF.length],x=f(X(p[0])),y=f(Y(p[1]));s+=`<g class="p" style="--d:${delay[i].toFixed(2)}s"><circle class="r" cx="${x}" cy="${y}" r="4" stroke="${c}"/><circle class="c" cx="${x}" cy="${y}" r="4" fill="${c}"/></g>`;});
+    mxBox.innerHTML=s+`</g></svg>`;
+    if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){mxBox.classList.add("on");io.disconnect();}},{threshold:.3});io.observe(mxBox);}else mxBox.classList.add("on");
+  }
   paintFigs(document);
   let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>paintFigs(document),200);});
 })();
